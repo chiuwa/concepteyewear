@@ -9,7 +9,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica,Arial, sans-serif;
   color: #212529;
 }
 
@@ -23,7 +23,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6, .font-primary {
-  font-family: "Raleway", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica,"Raleway", sans-serif;
 }
 main{
       margin-top: 80px;
@@ -72,65 +72,57 @@ main{
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
+
 .icon-bar {
   position: fixed;
-  top: 40%;
+  top:20%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  margin-left: 5px;
-  z-index: 9999999;
-  background-color: #ffffff;
+  margin-left: 25px;
+  z-index: 99;
   border-radius: 10px;
   opacity: 0.8;
 
 }
+.icon-backgroud{
 
-.icon-bar-2 {
-  position: fixed;
-  top: 47%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  margin-left: 5px;
-  z-index: 9999999;
-  background-color: #ffffff;
-  border-radius: 10px;
-  opacity: 0.8;
+padding: 12px;
+background-color: #ffffff;
+margin-bottom: 6px;
+border-radius: 6px;
 
 }
-
-.icon-bar a,.icon-bar-2 a {
+.icon-bar a {
   display: block;
   text-align: center;
-  transition: all 0.3s ease;
-  font-size: 15px;
-  margin: 12px;
+  transition: all 0.5s ease;
+  font-size: 25px;
 
 }
 
-.icon-bar a:hover,.icon-bar-2 a:hover {
+.icon-bar a:hover{
   background-color: #000;
     color: #ffffff !important;
 }
 .facebook {
     color: black !important;
     border-radius: 10px;
-    border: 1px solid black;
-    height: 28px;
-    width: 28px;
+    border: 3px solid black;
+    height: 40px;
+    width: 40px;
     padding: 2px;
-
+    background-color: #ffffff;
 }
 
 .instagram {
-     color: black !important;
+    color: black !important;
     border-radius: 10px;
-    border: 1px solid black;
-    height: 28px;
-    width: 28px;
-    padding: 2px;
-
+    border: 3px solid black;
+    height: 40px;
+    width: 40px;
+    background-color: #ffffff;
 }
 
 #header {
@@ -140,7 +132,7 @@ main{
   transition: all 0.5s;
   padding: 15px 0;
   background: #fff;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);*/
 }
 
 #header .logo h1 {
@@ -166,7 +158,36 @@ main{
 #main {
   margin-top: 72px;
 }
+@media (max-width: 1366px) {
+.icon-bar {
+  top:20%;
+  margin-left: 5px;
+}
+.icon-backgroud{
+padding: 5px;
+}
+.icon-bar a {
+  font-size: 20px;
+}
 
+.icon-bar a:hover{
+  background-color: #000;
+    color: #ffffff !important;
+}
+.facebook {
+    border: 2px solid black;
+    height: 35px;
+    width: 35px;
+    padding: 1px;
+}
+
+.instagram {
+    border: 2px solid black;
+    height: 35px;
+    width: 35px;
+}
+
+}
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -205,15 +226,18 @@ main{
   position: relative;
   color: #4e4039;
   padding: 10px 15px;
-  transition: 0.3s;
-  font-size: 15px;
+  transition: 0.5s;
+  font-size: 20px;
   font-family: "Open Sans", sans-serif;
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-  color: #eb5d1e;
+   font-weight: 700;
   text-decoration: none;
+    transition: 0.5s;
+
 }
+
 
 .nav-menu .get-started a {
   background: #eb5d1e;
@@ -313,10 +337,12 @@ main{
   z-index: 9999;
   overflow-y: auto;
   left: -260px;
-  width: 260px;
+  width: 200px;
   padding-top: 18px;
-  background: #4e4039;
+  background: #ffffff;
+  opacity: 0.9;
   transition: 0.4s;
+  top: 8%;
 }
 
 .mobile-nav * {
@@ -328,14 +354,16 @@ main{
 .mobile-nav a {
   display: block;
   position: relative;
-  color: #fff;
+  color: #000000;
   padding: 10px 20px;
   font-weight: 500;
   transition: 0.3s;
+  font-size: 20px;
 }
 
 .mobile-nav a:hover, .mobile-nav .active > a, .mobile-nav li:hover > a {
-  color: #f39e7a;
+  color: #000000;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -409,7 +437,7 @@ main{
 }
 .nav-member{
   position: fixed;
-  left: 10%;
+  left: 9%;
   top: 25px;
   z-index: 9998;
   border: 0;
@@ -423,8 +451,11 @@ main{
 
 }
 .nav-title{
-    margin-top: 10px;
-    font-size: 20px;
+    margin-top: 5px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 3px;
+
 }
 @media (min-width: 1350px) {
   .nav-member{
@@ -437,6 +468,14 @@ main{
   @media (max-width: 1350px) {
   .nav-toggle{
       left: 2%;
+   }
+    .nav-member{
+      left: 10%;
+  }
+   .nav-title{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 15px;
    }
   }
 
@@ -451,7 +490,7 @@ main{
   top: 0;
   left: 0;
   position: fixed;
-  background: rgba(78, 64, 57, 0.9);
+  /*background: rgba(78, 64, 57, 0.9);*/
   overflow: hidden;
   display: none;
 }
@@ -472,20 +511,27 @@ main{
 # main
 --------------------------------------------------------------*/
 
+.carousel-fluid{
+
+width: 90%;
+overflow: hidden;
+}
+
 .desv-carousel-caption {
   position: absolute;
   right: 15%;
   bottom: 20px;
   left: 15%;
   z-index: 10;
-  top: 40%;
+  top: 35%;
   color: #fff;
   text-align: center;
 }
 .desv-carousel-label{
   letter-spacing: 3px;
-  font-size: 20px;
+  font-size: 35px;
   text-shadow: black 0.1em 0.1em 0.2em;
+  margin-bottom: 100px; 
 }
 .desv-carousel-buttom{
   background-color: #000000;
@@ -495,7 +541,7 @@ main{
 }
 .main-fluid{
   margin-top:25px; 
-  height: 200px;
+  height: 220px;
   background-color: #e6e6e6;
 }
 
@@ -505,19 +551,100 @@ main{
 }
 .main-introduction-title{
  letter-spacing: 3px;
- font-size: 13px;
+ font-size: 18px;
  font-weight: 800;
 
 }
 .main-introduction-dc{
   letter-spacing: 2px;
-  font-size: 8px;
+  font-size: 15px;
 }
 
+.story-title{
+  letter-spacing: 3px;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 80px;
+}
+
+.content_image{
+  width: 100%;
+}
+.vertical-mode {
+  writing-mode: tb-rl;
+  transform: rotate(-180deg);
+  position: absolute;
+  bottom: 0;
+  font-size: 35px;
+  font-weight: 600;
+}
+.left-bor{
+  border-left: 1px solid black;
+  height: 45px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 15px;
+  margin-left: 10px;
+
+}
+
+.content-text{
+  position: absolute;
+  bottom: 0;
+  color: #757575;
+}
+.section-div{
+  margin-top: 150px;
+}
+.get-design{
+ letter-spacing: 4px;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.get-design-buttom{
+  margin-bottom: 40px;
+}
+.desv-design-buttom{
+  background-color: #000000;
+  border-radius: 10px;
+  letter-spacing: 5px;
+  height: 60px;
+  padding-top: 20px;
+}
 @media (min-width: 1350px) {
  .main-introduction{
    margin-left: 18%;
  }
+}
+
+@media (max-width: 1350px) {
+.desv-carousel-label{
+  font-size: 14px;
+  margin-bottom: 10px; 
+}
+.desv-carousel-buttom{
+  letter-spacing: 1px;
+}
+.main-fluid{
+    height: 300px;
+}
+.story-title{
+  font-size: 20px;
+}
+.section-div{
+  margin-top: 100px;
+}
+.vertical-mode {
+  font-size: 20px;
+}
+.content-text{
+ font-size: 10px;
+}
+.get-design{
+font-size: 25px;
+}
+
 }
 
 /*--------------------------------------------------------------

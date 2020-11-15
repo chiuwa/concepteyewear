@@ -37,13 +37,16 @@ use \App\Http\Controllers\HomeController;
   </head>
 
   <body>
- 
+
 <div class="icon-bar">
-  <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>  
+  <div class="icon-backgroud">
+  <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
 </div>
-<div class="icon-bar-2">
- <a href="#" class="instagram"><i class="fa fa-instagram"></i></a> 
+  <div class="icon-backgroud">
+   <a href="#" class="instagram"><i class="fa fa-instagram"></i></a> 
+   </div> 
 </div>
+
 
   <header id="header" class="fixed-top">
     <div class="container-fluid d-flex">
@@ -57,7 +60,7 @@ use \App\Http\Controllers\HomeController;
 
       <div class="nav-toggle-menu">
       <nav class="justify-content-center nav-title" style="display: flex;">
-        <span><b>@yield('title')</b></span>
+        <span>@yield('title')</span>
       </nav>
       <nav class="nav-menu d-flex justify-content-center non-active">
         <ul>
