@@ -35,9 +35,8 @@ use \App\Http\Controllers\HomeController;
       <link rel="stylesheet" href="{{ asset('css/icofont/icofont.min.css') }}">
 
   </head>
-
   <body>
-
+      <div class="colorlib-loader"></div>
 <div class="icon-bar">
   <div class="icon-backgroud">
   <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
@@ -53,7 +52,7 @@ use \App\Http\Controllers\HomeController;
 
       <div class="d-flex">
        <button type="button" class="nav-toggle d-none d-lg-block title-close"><i class="fa fa-bars"></i></button>
-         <button type="button" class="nav-member"><i class="fa fa-user-o"></i></button>
+         <a  class="nav-member" href="/login"><i class="fa fa-user-o"></i></a>
      </div>
 
  </div>
@@ -130,20 +129,16 @@ use \App\Http\Controllers\HomeController;
 
 
 <script type="text/javascript">
-  
   $('.carousel').carousel();
 </script>
 
     <script type="text/javascript">
+    $(window).ready(setTimeout(loaderPage, 800));
+    
 
     function loaderPage() {
     $(".colorlib-loader").fadeOut("show");
     };
-
-
-    $(window).ready(loaderPage);
-    setTimeout(loaderPage, 20 * 1000);
-
 
     $('.title-close').on('click', function () {
       $('.nav-menu').addClass('nav-active').siblings().removeClass('non-active');

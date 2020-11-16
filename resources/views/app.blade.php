@@ -11,10 +11,10 @@
 
 
     <!--Main layout-->
-    <main>
- <div class="justify-content-center " style="display: flex; max-height: 1100px;">
+    <main >
+ <div class="justify-content-center wow flipInX"  style="display: flex; max-height: 1100px;">
       <div class="carousel-fluid">
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel" style="position: inherit !important;">
+        <div id="carouselExampleFade"  class="carousel slide carousel-fade" data-ride="carousel" style="position: inherit !important;">
           <div class="carousel-inner">
             @foreach($carousel as $key=>$c)
             @if($key=='0')
@@ -47,7 +47,7 @@
 </div>
 
 
- <div class="container-fluid d-flex main-fluid">
+ <div class="container-fluid d-flex main-fluid  wow fadeIn">
   <div class="main-introduction">
       <span class="main-introduction-title">We Are @yield('title').</span>
       <br>
@@ -62,8 +62,6 @@ To provide clients with not only products but also design, packaging, logistics 
 
         <!--Section: Main info-->
         <section class="mt-5 wow fadeIn">
-
-
 
           <div class="row">
             <div class="col-12 story-title text-center">
@@ -84,11 +82,12 @@ To provide clients with not only products but also design, packaging, logistics 
             <div class="col-1">
             <span class="left-bor"></span>
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-sm-12">
               <span class="content-text">Abbie Top.<br>
                 I'm a paragraph. Click here to add your<br>
                 own text and edit me. It's easy.</span>
             </div>
+           
           </div>
 
         </section>
@@ -98,7 +97,7 @@ To provide clients with not only products but also design, packaging, logistics 
 
           <div class="row">
             <div class="col-4">
-              <span class="content-text">Mia Shirt.<br>
+              <span class="content-text remove-on-mobile">Mia Shirt.<br>
              I'm a paragraph. Click here to add your<br>
               own text and edit me. It's easy.</span>
             </div>
@@ -118,7 +117,11 @@ To provide clients with not only products but also design, packaging, logistics 
               <img  class="content_image responsive" src="{{ Voyager::image($promotion_image) }}" type="image/png">
               @endif
             </div>
-
+            <div class="col-12 d-none display-on-mobile">
+              <span class="content-text-2">Melisa Coat.<br>
+                I'm a paragraph. Click here to add your<br>
+                own text and edit me. It's easy.</span>
+            </div>
 
           </div>
 
@@ -142,7 +145,9 @@ To provide clients with not only products but also design, packaging, logistics 
             <div class="col-1">
             <span class="left-bor"></span>
             </div>
-            <div class="col-4">
+
+
+            <div class="col-md-4 col-sm-12">
               <span class="content-text">Melisa Coat.<br>
                 I'm a paragraph. Click here to add your<br>
                 own text and edit me. It's easy.</span>
