@@ -27,6 +27,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 main{
       margin-top: 80px;
+      min-height: 900px;
+}
+.other_page{
+    margin-top: 150px;
 }
 
 /*--------------------------------------------------------------
@@ -167,7 +171,7 @@ border-radius: 6px;
 }
 @media (max-width: 1366px) {
 .icon-bar {
-  top:20%;
+  top:25%;
   margin-left: 5px;
 }
 .icon-backgroud{
@@ -463,7 +467,6 @@ padding: 5px;
     font-size: 28px;
     font-weight: 600;
     letter-spacing: 3px;
-
 }
 @media (min-width: 1350px) {
   .nav-member{
@@ -674,7 +677,131 @@ font-size: 20px;
 }
 
 }
+/*--------------------------------------------------------------
+# modal
+--------------------------------------------------------------*/
+.desv-modal{
+  top:10%;
+  width: auto !important;
+  max-width: 30% !important;
+  opacity: 0.9;
+}
+.modal-close{
+  margin: 10px;
+}
+.modal-title{
+  letter-spacing: 2px;
+  font-size: 15px;
+  font-weight: 900;
+  color: #000000;
+}
+.modal-left{
+ border-right: 3px solid black;
+}
+.modal-login{
+  margin-top:20px;
+  margin-bottom:15px;
+  text-align: center;
+  width: 50%;
+}
+.modal-login > a{
+  text-align: center;
+  margin: 10px;
+  color: #000000;
+}
+.nav-tabs {
+  border-bottom: 3px solid #000000;
+}
+.login_main{  
+  margin: auto;
+  width: 90%;
+}
+.input-login{
+ border: 2px solid #000000;
+ border-radius: 10px;
+ height: 35px;
+ margin-top:20px;
+}
+.login_div{
+  margin-top:8%;
+  margin-bottom:8%;
+}
+.login_label{
+  margin-top:5px;
+}
+.login_field{
+  width: 100%;
+  border: 0;
+  height: 30px;
+}
+.forget_pw_div{
+  margin-top:15px;
+}
+.forget_pw{
+  color: #000000;
+  text-decoration: underline;
+}
+.login_remember{
+  margin-top: 80px;
+  margin-left: 10px;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #000000;
+  background-color: #000000;
+  border-radius: 10px;
 
+}
+.login_submit_button{
+   margin-top: 120px;
+     width: 100%;
+}
+.login-btn{
+  width: 100%;
+  height: 50px;
+  background-color: #000000;
+  color:#ffffff;
+  letter-spacing: 3px;
+  border-radius: 10px;
+}
+@media (max-width: 1350px) {
+  .desv-modal{
+    max-width: 95% !important;
+  }
+  .login_main{
+    margin: auto;
+    width: 80%;
+  }
+}
+
+/*--------------------------------------------------------------
+# contact
+--------------------------------------------------------------*/
+.contact_title_email{
+  margin-bottom: 10%;
+}
+.contact_title{
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.contact_dc{
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.icon{
+  font-size: 25px;
+  margin: 10px;
+}
+.address{
+  margin-top:50px;
+}
+.address_dc{
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/

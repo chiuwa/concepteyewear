@@ -3,85 +3,52 @@
 
 
 @section('main_page')
-<style>
+<main>
+ <div class="container d-flex wow fadeIn other_page">
+  <div class="row"> 
 
 
-.bgimg {
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  color: white;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 25px;
-  margin-top: 300px;
-}
+    <div class="col-12 contact_title_email">
+      <span class="contact_title">CONCEPT EYEWEAR MANUFACTURER LTD</span>
+      <br>
+      <span class="contact_dc"><i class="fa fa-envelope-o icon" aria-hidden="true"> </i> INFO@CMS.COM.HK</span>
+    </div>
 
 
-.bottomleft {
-  position: absolute;
-  bottom: 0;
-  left: 16px;
-}
 
-.middle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
+    <div class="col-md-6 address">
+      <span class="contact_title">HONG KONG OFFICE</span>
+      <br>
+      <span class="address_dc"><i class="fa fa-map-marker icon" aria-hidden="true"></i>Unit 9, 7F, Westley Square, 48 Hoi Yuen Road, Kwun Tong,
+      Kowloon, Hong Kong</span>
+      <br>
+      <span class="address_dc"><i class="fa fa-phone icon" aria-hidden="true"></i>(852) 2343 1338</span>
+    </div>
 
-hr {
-  margin: auto;
-  width: 40%;
-}
-</style>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12 div_botton">
-			<div class="common_main_div">
-				<div class="bgimg">
-					<div class="middle">
-						<h1>COMING SOON</h1>
-						<hr>
-					<p id="demo" style="font-size:30px;color:#FFD768 "></p>
-					</div>
 
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="col-md-6 address">
+      <span class="contact_title">CHINA FACTORY</span>
+      <br>
+      <span class="address_dc"><i class="fa fa-map-marker icon" aria-hidden="true"></i>No.33 Hong Shi Lu, Bu Xin Gong Ye Qu, Yan Tian, Feng Gang,
+Dong Guan, China</span>
+      <br>
+      <span class="address_dc"><i class="fa fa-phone icon" aria-hidden="true"></i>(86) 769-8777 000 4</span>
+    </div>
+
+    <div class="col-md-6 ">
+
+    </div>
+
+    <div class="col-md-6 address">
+      <span class="contact_title">VIETNAM FACTORY</span>
+      <br>
+      <span class="address_dc"><i class="fa fa-map-marker icon" aria-hidden="true"></i>Block E5 & 6, Hoa Hiep Industrial Zone, Dong Hoa, Phu Yen, Vietnam</span>
+      <br>
+      <span class="address_dc"><i class="fa fa-phone icon" aria-hidden="true"></i>(84) 57 3548821</span>
+    </div>
+
+
+  </div>
 </div>
-
-<script>
-// Set the date we're counting down to
-var countDownDate = new Date("Jul 31, 2020 23:59:59").getTime();
-
-// Update the count down every 1 second
-var countdownfunction = setInterval(function() {
-
-  // Get todays date and time
-  var now = new Date().getTime();
-  
-  // Find the distance between now an the count down date
-  var distance = countDownDate - now;
-  
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-  
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(countdownfunction);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
-</script>
+</main>
 @endsection

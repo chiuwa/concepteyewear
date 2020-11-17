@@ -3,8 +3,8 @@
 return [
     'service_platform'=>'Service Platform',
     'home'=>'Home',
-    'login'=>'Login',
-    'register'=>'Register a platform account',
+    'login'=>'Log In',
+    'register'=>'Register',
     'client'=>'Client',
     'staff'=>'Freelancers',
     'logout'=>'Logout',
