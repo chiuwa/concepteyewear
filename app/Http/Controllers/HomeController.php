@@ -58,6 +58,16 @@ class HomeController extends Controller
 		return view('develop');
 	}
 
+	public function lookbook(){
+
+		$files = glob('storage/lookbook/*.*');
+		$images = [];
+		for($i = 0; $i < count($files); $i++){
+			$images[$i] = $files[$i];    
+		}
+		
+		return view('lookbook', ['images' => $images]);
+	}
 
 
 	public function contact(){
@@ -65,8 +75,6 @@ class HomeController extends Controller
 
 		return view('contact');
 	}
-	
-	
 	
 	
 	public function asking(Request $request){

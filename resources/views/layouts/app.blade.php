@@ -34,6 +34,10 @@ $carousel  = HomeController::getCarousel();
 
   <link rel="stylesheet" href="{{ asset('css/icofont/icofont.min.css') }}">
 
+  <link rel="stylesheet" href="{{ asset('css/justifiedGallery.min.css') }}">
+
+  <link rel="stylesheet" href="{{ asset('css/colorbox.css') }}">
+
 </head>
 <body>
   <div class="colorlib-loader"></div>
@@ -220,6 +224,10 @@ $carousel  = HomeController::getCarousel();
 
 <script src="{{ asset('js/main.js') }}"></script>
 
+<script src="{{ asset('js/jquery.justifiedGallery.min.js') }}"></script>
+
+<script src="{{ asset('js/jquery.colorbox.js') }}"></script>
+
 <script type="text/javascript">
   new WOW().init();
 </script>
@@ -274,6 +282,26 @@ $carousel  = HomeController::getCarousel();
    $('.nav-toggle').addClass('title-close').siblings().removeClass('nav-toggle-open');
  });
   
+</script>
+<script type="text/javascript">
+
+$('.myExMul').justifiedGallery({
+ lastRow : 'nojustify', 
+    rowHeight : 200, 
+    rel : 'gallery',
+    margins : 20
+}).on('jg.complete', function () {
+    $(this).find('a').colorbox({
+        maxWidth : '90%',
+        maxHeight : '90%',
+      opacity : 0.7 ,
+      
+ 
+
+   
+    });
+});
+
 </script>
 
 </body>

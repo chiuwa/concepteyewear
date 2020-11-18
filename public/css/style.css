@@ -32,7 +32,30 @@ main{
 .other_page{
     margin-top: 150px;
 }
+.main_title_div{
+  margin-top:30px;
+  margin-bottom:100px;
+}
+.main_title{
+  font-size: 35px;
+  letter-spacing: 3px;
+  font-weight: 900;
+}
+#cboxOverlay{
+    background-color: #000000 !important; /* Add a color of your choice */
+    opacity: 0.8 !important;
+}
+#cboxContent {
+    background-color: #000000 !important;
+}
+@media (max-width: 1366px) {
+.main_title{
+  font-size: 25px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
 
+}
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -143,7 +166,7 @@ border-radius: 6px;
   transition: all 0.5s;
   padding: 15px 0;
   background: #fff;
-  /*box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
 }
 
 #header .logo h1 {
@@ -766,7 +789,7 @@ font-size: 20px;
 }
 @media (max-width: 1350px) {
   .desv-modal{
-    max-width: 95% !important;
+    max-width: 100% !important;
   }
   .login_main{
     margin: auto;
