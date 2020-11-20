@@ -69,6 +69,12 @@ class HomeController extends Controller
 		return view('lookbook', ['images' => $images]);
 	}
 
+	
+	public function makeOwn(){
+
+
+		return view('makeOwn');
+	}
 
 	public function contact(){
 

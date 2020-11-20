@@ -68,7 +68,7 @@ $carousel  = HomeController::getCarousel();
   <nav class="nav-menu d-flex justify-content-center non-active">
     <ul>
       <li class="active"><a href="home">Home</a></li>
-      <li><a href="make-own">Make-Your-Own</a></li>
+      <li><a href="makeOwn">Make-Your-Own</a></li>
       <li><a href="lookbook">Lookbook</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="contact">Contact</a></li>
@@ -295,7 +295,7 @@ $('.myExMul').justifiedGallery({
         maxWidth : '90%',
         maxHeight : '90%',
       opacity : 0.7 ,
-      
+
  
 
    

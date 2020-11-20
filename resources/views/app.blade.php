@@ -12,7 +12,7 @@ $carousel  = HomeController::getCarousel();
 
 <!--Main layout-->
 <main >
- <div class="justify-content-center wow flipInX"  style="display: flex; max-height: 1100px;">
+ <div class="justify-content-center wow fadeIn"  style="display: flex; max-height: 1100px;">
   <div class="carousel-fluid">
     <div id="carouselExampleFade"  class="carousel slide carousel-fade" data-ride="carousel" style="position: inherit !important;">
       <div class="carousel-inner">
