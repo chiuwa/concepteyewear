@@ -10,6 +10,8 @@ use Redirect;
 use Auth;
 class HomeController extends Controller
 {
+
+	
 	public function home(){
 
 		$posts = Post::select('posts.*', 'categories.name', 'posts.id as post_id')
@@ -76,7 +78,20 @@ class HomeController extends Controller
 		->where('deleted_at', '=', null)
 		->get();
 
-		return view('makeOwn', ['lens' => $lens]);
+		$frames= DB::table('frames')
+		->where('deleted_at', '=', null)
+		->get();
+
+		$images['len'] = $lens;
+		$images['frame'] = $frames;
+
+		return view('makeOwn', ['lens' => $lens,'frames'=>$frames,'images'=>$images]);
+	}
+
+	public function findOwn(Request $request){
+		
+		print_r($_POST);
+		die();
 	}
 
 	public function contact(){
@@ -87,6 +102,8 @@ class HomeController extends Controller
 	
 	
 	public function asking(Request $request){
+
+	
 		// $this->validate($request, [
             // 'email' => 'required',
             // 'rating' => 'required',
