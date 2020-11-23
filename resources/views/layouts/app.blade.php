@@ -145,7 +145,7 @@ $carousel  = HomeController::getCarousel();
           <div class="login_div tab-pane active" id="login-div">
             @if ($errors->any())
             @foreach($errors->all() as $message)
-            <div class="alert alert-danger " role="alert">
+            <div class="alert alert-danger" id="message" value="open" role="alert">
               {{$message}}
             </div>
             @endforeach
@@ -159,7 +159,7 @@ $carousel  = HomeController::getCarousel();
                   <span>USERNAME</span> 
                 </div>
                 <div class="login_input col-7">
-                  <input class="text-center login_field" name="username" type="input"  required="true">
+                  <input class="text-center login_field" name="email" type="email"  required="true">
                 </div>
               </div>
 
@@ -237,6 +237,15 @@ $carousel  = HomeController::getCarousel();
 
 <script type="text/javascript">
   $('.carousel').carousel();
+</script>
+
+<script type="text/javascript">
+$alert_data = $("#message").html();
+console.log($alert_data);
+
+if($alert_data.length > 1){
+ $('#LoginModal').modal('show');
+}
 </script>
 
 <script type="text/javascript">
