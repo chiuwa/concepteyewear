@@ -43,10 +43,10 @@ $carousel  = HomeController::getCarousel();
   <div class="colorlib-loader"></div>
   <div class="icon-bar">
     <div class="icon-backgroud">
-      <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
+      <a href="#" class="facebook"><img  class="png_icon" src="/images/facebook.png" onmouseover="fb_hover(this);" onmouseout="fb_unhover(this);"></a> 
     </div>
     <div class="icon-backgroud">
-     <a href="#" class="instagram"><i class="fa fa-instagram"></i></a> 
+     <a href="#" class="instagram"><img  class="png_icon" src="/images/instagram.png" onmouseover="ig_hover(this);" onmouseout="ig_unhover(this);"></a> 
    </div> 
  </div>
 
@@ -56,9 +56,9 @@ $carousel  = HomeController::getCarousel();
 
     <div class="d-flex">
      <button type="button" class="nav-toggle d-none d-lg-block title-close"><i class="fa fa-bars"></i></button>
-     <button type="button" class="nav-member"  data-toggle="modal" data-target="#LoginModal" ><i class="fa fa-user-o"></i></button>
+     <button type="button" class="nav-member"  data-toggle="modal" data-target="#LoginModal" ><img style="width: 50%;" src="/images/user.png"></button>
    </div>
-
+<!--i class="fa fa-user-o"></i-->
  </div>
 
  <div class="nav-toggle-menu">
@@ -304,6 +304,24 @@ $('.myExMul').justifiedGallery({
 
 </script>
 
+<script type="text/javascript">
+  
+function fb_hover(element) {
+  element.setAttribute('src', '/images/facebook_black.png');
+}
+
+function fb_unhover(element) {
+  element.setAttribute('src', '/images/facebook.png');
+}
+
+function ig_hover(element) {
+  element.setAttribute('src', '/images/instagram_black.png');
+}
+
+function ig_unhover(element) {
+  element.setAttribute('src', '/images/instagram.png');
+}
+</script>
 </body>
 
 </html>
