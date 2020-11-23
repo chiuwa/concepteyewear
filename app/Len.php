@@ -13,8 +13,5 @@ class Len extends Model
      */
     protected $table = 'lens';
 
-public function scopeSubcategories($query){
-    return $query->where('id', '!=' , null);
-}
 
 }

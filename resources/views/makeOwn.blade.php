@@ -7,26 +7,47 @@
 
 
 <main>
- <div class="container wow fadeIn other_page">
+ <div class="container-fluid wow fadeIn makeOwn-page">
 <div class="row flex-column-reverse flex-md-row">
-    <div class="col-md-6">
+    <div class="col-md-6 offset-md-1">
         <form id="regForm" action="">
 
-        	<h2>Register:</h2>
-        	<div class="tab active">Name:
-  <p><input placeholder="First name..." oninput="this.className = ''"></p>
-  <p><input placeholder="Last name..." oninput="this.className = ''"></p>
-</div>
+        	<div class="tab active">
+        		<p class="step-title">STEP 1 - LENS</p>
+        		<br>
 
-<div class="tab">Contact Info:
-  <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
-  <p><input placeholder="Phone..." oninput="this.className = ''"></p>
-</div>
+        		<p class="step-options">OPTION A</p>
+        		@foreach($lens as $key=>$len)
+        		<div class="form-check step-radio">
+        			<input class="form-check-input" type="radio" name="lens_options" id="lens_options" value={{$len->id}} >
+        			<label class="form-check-label" for="lens_options">
+        				{{$len->name_en}}
+        			</label>
+        		</div>
+        		@endforeach
+        	</div>
 
-<div style="overflow:auto;">
-  <div style="float:right;">
-    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        	<div class="tab ">
+        		<p class="step-title">STEP 2 - Frames</p>
+        		<br>
+
+        		<p class="step-options">OPTION B</p>
+        		@foreach($lens as $key=>$len)
+        		<div class="form-check step-radio">
+        			<input class="form-check-input" type="radio" name="lens_options" id="lens_options" value={{$len->id}} >
+        			<label class="form-check-label" for="lens_options">
+        				{{$len->name_en}}
+        			</label>
+        		</div>
+        		@endforeach
+        	</div>
+
+<div style="overflow:auto;margin-top:30%;">
+  <div style="float:left;">
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
+      </div>
+       <div style="float:right;">
+    <button type="button" id="nextBtn" onclick="nextPrev(1)"> <i class="fa fa-arrow-right mr-2"> </i> NEXT STEP</button>
   </div>
 </div>
 
@@ -38,14 +59,43 @@
 </div>
         </form>
     </div>
-    <div class="col-md-6">
-        main
-    </div>
+  <div class="col-md-5 full-image">
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="0" >
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+  </ol>
+  <div class="carousel-inner">
+  	  	  @foreach($lens as $key=>$len)
+         @if($key=='0')
+        <div class="carousel-item active" id="len_image_{{$len->id}}">
+         <img src="{{ Voyager::image($len->image)}}" class="d-block step-image">      
+       </div>
+       @else
+       <div class="carousel-item"   id="len_image_{{$len->id}}">
+        <img src="{{ Voyager::image($len->image)}}" class=" d-block step-image">
+      </div>    
+      @endif 
+    @endforeach
+  </div>
+  <a class="carousel-control-prev step-style" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon step-style-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next step-style" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon step-style-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+</div>
 </div>
       </div>
 </main>
 
-<script type="text/javascript">
+<script>
 
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
@@ -61,9 +111,9 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
+    document.getElementById("nextBtn").innerHTML = "<i class='fa fa-arrow-right mr-2'> </i>SEE CUSTOM-MADE RESULTS";
   } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
+    document.getElementById("nextBtn").innerHTML = "<i class='fa fa-arrow-right mr-2'> </i> NEXT STEP";
   }
   // ... and run a function that displays the correct step indicator:
   fixStepIndicator(n)
@@ -118,9 +168,20 @@ function fixStepIndicator(n) {
   }
   //... and adds the "active" class to the current step:
   x[n].className += " active";
-
+}
 </script>
 
 
+<script>
+
+
+$('input[type=radio][name=lens_options]').on('change', function() {
+	$len_image = '#len_image_'+$(this).val();
+	 $(".active").removeClass("active");
+	  $($len_image).addClass("active");
+	  console.log($len_image);
+
+});
+</script>
 
 @endsection

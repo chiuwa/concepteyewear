@@ -72,8 +72,11 @@ class HomeController extends Controller
 	
 	public function makeOwn(){
 
+		$lens= DB::table('lens')
+		->where('deleted_at', '=', null)
+		->get();
 
-		return view('makeOwn');
+		return view('makeOwn', ['lens' => $lens]);
 	}
 
 	public function contact(){

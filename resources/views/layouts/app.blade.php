@@ -18,6 +18,8 @@ $carousel  = HomeController::getCarousel();
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>@yield('title')</title>
   <!-- Font Awesome -->
+  <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+  
   <link rel="stylesheet" href="{{'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' }}">
   <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"-->
   <!-- Bootstrap core CSS -->
@@ -102,7 +104,7 @@ $carousel  = HomeController::getCarousel();
   <!--Main layout-->
   <!--Footer-->
 
-  <footer class="mt-4 footer fadeIn">
+  <footer class=" footer fadeIn">
 
 
     <div class="copyright-footer"> 
@@ -214,7 +216,7 @@ $carousel  = HomeController::getCarousel();
 
 <!-- SCRIPTS -->
 <!-- JQuery -->
-<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+
 <!-- Bootstrap tooltips -->
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <!-- Bootstrap core JavaScript -->
@@ -322,6 +324,7 @@ function ig_unhover(element) {
   element.setAttribute('src', '/images/instagram.png');
 }
 </script>
+
 </body>
 
 </html>

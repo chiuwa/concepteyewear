@@ -27,10 +27,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 main{
       margin-top: 90px;
-      min-height: 900px;
 }
 .other_page{
     margin-top: 150px;
+    margin-bottom: 20px;
 }
 .main_title_div{
   margin-top:30px;
@@ -54,7 +54,6 @@ main{
   letter-spacing: 2px;
   font-weight: 800;
 }
-
 }
 /*--------------------------------------------------------------
 # Back to top button
@@ -791,58 +790,83 @@ font-size: 20px;
 # makeOwn
 --------------------------------------------------------------*/
 #regForm {
-  background-color: #ffffff;
-  margin: 100px auto;
-  font-family: Raleway;
-  padding: 40px;
-  width: 70%;
+  margin-top: 100px auto;
+  width: 100%;
   min-width: 300px;
 }
+.step-title{
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom:50px;
+}
+.step-options{
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
 
-h1 {
-  text-align: center;  
 }
 
-input {
-  padding: 10px;
-  width: 100%;
-  font-size: 17px;
-  font-family: Raleway;
-  border: 1px solid #aaaaaa;
-}
-
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd;
-}
-
-/* Hide all steps by default: */
 .tab {
   display: none;
+  margin-top:50px;
+
+}
+.step-radio{
+    margin-bottom: 20px;
+
+}
+.step-radio > input[type='radio']:after {
+  width: 20px;
+  height: 20px;
+  border-radius: 15px;
+  top: -4px;
+  left: -3px;
+  position: relative;
+  background-color: #ffffff;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid #000000;
+
 }
 
-.tab >.active{
-  display: block;
+.step-radio > input[type='radio']:checked:after {
+  width: 22px;
+  height: 22px;
+  border-radius: 15px;
+  top: -4px;
+  left: -3px;
+  position: relative;
+  background-color: #000000;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
 }
-button {
-  background-color: #4CAF50;
+.step-radio > label{
+  margin-left: 20px;
+}
+#nextBtn {
+
   color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  font-family: Raleway;
-  cursor: pointer;
+  background-color: #000000;
+  border-radius: 15px;
+  letter-spacing: 3px;
+  padding: 15px;
+  margin-right: 50px;
+
+}
+#prevBtn{
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  padding: 10px;
+  border: 0;
+  font-size: 15px;
 }
 
-button:hover {
-  opacity: 0.8;
-}
-
-#prevBtn {
-  background-color: #bbbbbb;
-}
-
-/* Make circles that indicate the steps of the form: */
 .step {
   height: 15px;
   width: 15px;
@@ -851,18 +875,36 @@ button:hover {
   border: none;  
   border-radius: 50%;
   display: inline-block;
-  opacity: 0.5;
+  opacity: 0;
 }
 
 .step.active {
-  opacity: 1;
+  opacity: 0;
 }
 
-/* Mark the steps that are finished and valid: */
 .step.finish {
   background-color: #4CAF50;
+    opacity: 0;
 }
-
+.full-image{
+  padding:0;
+}
+.makeOwn-page{
+  margin-top:-10px;
+}
+.step-image{
+  width: 100%;
+}
+.step-style{
+  opacity: 1 !important;
+      top: 80% !important;
+}
+.step-style-icon{
+    width: 30px !important;
+    height: 30px !important;
+    background-color: #000000;
+    border-radius: 10px;
+}
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
