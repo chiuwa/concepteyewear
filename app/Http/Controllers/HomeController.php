@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Post;
+use Session;
 use App\AskingQuery;
 use DB;
 use Redirect;
@@ -11,7 +12,7 @@ use Auth;
 class HomeController extends Controller
 {
 
-	
+
 	public function home(){
 
 		$posts = Post::select('posts.*', 'categories.name', 'posts.id as post_id')
@@ -89,10 +90,25 @@ class HomeController extends Controller
 	}
 
 	public function findOwn(Request $request){
-		
-		print_r($_POST);
-		die();
+
+		$data = DB::table('product') 
+        ->where('lens_type_id', '=', $request->lens_options)
+        ->where('frames_type_id', '=', $request->frame_options)
+        ->get();
+
+    $request->session()->put('own_product', $data);
+	return redirect()->route('find_out_product');
+
 	}
+
+	public function find_out_product(){
+		$data = [];
+	
+		$data = Session::get('own_product');
+
+		return view('find_out_product',['data'=>$data]);
+	}
+	
 
 	public function contact(){
 
