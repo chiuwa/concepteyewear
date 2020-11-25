@@ -15,6 +15,7 @@
   
 
 <div class="myExMul">
+	
   @foreach($images as $key=>$image)
  <a href={{ asset('/'.$image)  }} rel="myExMul-1">
     <img src={{ asset('/'.$image)  }} />

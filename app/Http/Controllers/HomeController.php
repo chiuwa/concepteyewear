@@ -92,21 +92,32 @@ class HomeController extends Controller
 	public function findOwn(Request $request){
 
 		$data = DB::table('product') 
-        ->where('lens_type_id', '=', $request->lens_options)
-        ->where('frames_type_id', '=', $request->frame_options)
-        ->get();
+		->join('lens','lens.id','=','product.lens_type_id')
+		->join('frames','frames.id','=','product.frames_type_id')
+		->where('lens_type_id', '=', $request->lens_options)
+		->where('frames_type_id', '=', $request->frame_options)
+		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh')	
+		->orderBy('id', 'DESC')	
+		->get();
 
-    $request->session()->put('own_product', $data);
-	return redirect()->route('find_out_product');
+		$request->session()->put('own_product', $data);
+		return redirect()->route('find_out_product');
 
 	}
 
 	public function find_out_product(){
 		$data = [];
-	
+
 		$data = Session::get('own_product');
 
-		return view('find_out_product',['data'=>$data]);
+		$files = glob('storage/lookbook/*.*');
+		$images = [];
+		for($i = 0; $i < count($files); $i++){
+			$images[$i] = $files[$i];    
+		}
+		
+
+		return view('find_out_product',['data'=>$data,'images'=>$images]);
 	}
 	
 
@@ -119,21 +130,15 @@ class HomeController extends Controller
 	
 	public function asking(Request $request){
 
-	
-		// $this->validate($request, [
-            // 'email' => 'required',
-            // 'rating' => 'required',
-        // ]);
 		$model = new AskingQuery();
 		$model->title = $request->title;
 		$model->name = $request->name;
 		$model->email = $request->email;
 		$model->phone = $request->phone;
-		$model->query_type = $request->query_type_name;
 		$model->asking = $request->query_question;
 		$model->save();
 		if($model->save()){
-			return Redirect::back()->with("modal_message_success", "Submit Success <br> We will reply to you as soon as possible");
+			return Redirect::intended('home');
 		}else{
 			return Redirect::back()->with("modal_message_error", "Submit Error");
 		}

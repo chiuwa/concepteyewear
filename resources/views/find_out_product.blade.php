@@ -8,65 +8,218 @@
 
 <main>
 	<div class="container wow fadeIn other_page">
-<div class="row flex-column-reverse flex-md-row">
+		<div class="row  flex-md-row">
 
-		@if (isset($data[0]))
+			@if (isset($data[0]))
 
-		@php $your_product = $data[0]; @endphp
+			@php $your_product = $data[0]; @endphp
 
- <div class="col-md-6">
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  >
-  <ol class="carousel-indicators">
+			<div class="col-md-6 full-image">
 
-  <li data-target="#carouselExampleIndicators" data-slide-to=0 class="active"></li>
+				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  >
+					<ol class="carousel-indicators">
 
-    <li data-target="#carouselExampleIndicators" data-slide-to=1></li>
-  
-    <li data-target="#carouselExampleIndicators" data-slide-to=2></li>
-  
-  </ol>
+						<li data-target="#carouselExampleIndicators" data-slide-to=0 class="active"></li>
 
-  <div class="carousel-inner">
+						<li data-target="#carouselExampleIndicators" data-slide-to=1></li>
 
-        <div class="carousel-item active" id="product_image_1">
-         <img src="{{ Voyager::image($your_product->product_image_1)}}" class="d-block step-image">      
+						<li data-target="#carouselExampleIndicators" data-slide-to=2></li>
+
+					</ol>
+
+					<div class="carousel-inner">
+
+						<div class="carousel-item active" id="product_image_1">
+							<img src="{{ Voyager::image($your_product->product_image_1)}}" class="d-block step-image">      
+						</div>
+
+						<div class="carousel-item" id="product_image_2">
+							<img  src="{{ Voyager::image($your_product->product_image_2)}}" class="d-block step-image">      
+						</div>
+
+						<div class="carousel-item" id="product_image_3">
+							<img  src="{{ Voyager::image($your_product->product_image_3)}}" class="d-block step-image">      
+						</div>
+
+					</div>
+					<a class="carousel-control-prev step-style" href="#carouselExampleIndicators" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon step-style-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next step-style" href="#carouselExampleIndicators" role="button" data-slide="next">
+						<span class="carousel-control-next-icon step-style-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+
+				<div id="slider">
+					<img class="thumbnail active" id="1"src="{{ Voyager::image($your_product->product_image_1)}}">
+					<img class="thumbnail" id="2" src="{{ Voyager::image($your_product->product_image_2)}}">
+					<img class="thumbnail" id="3" src="{{ Voyager::image($your_product->product_image_3)}}">					
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div calss="row  flex-md-row">
+					<div class="col-12 own-poduct-title">
+						<p>
+							{{$your_product->product_name_en}}
+						</p>
+					</div>
+					<div class="col-12 own-poduct-code">
+						<p>
+							( {{$your_product->product_code}} )
+						</p>
+					</div>
+					<div class="col-12 own-poduct-money">
+						<p>
+							HK${{$your_product->price}}
+						</p>
+					</div>
+					<div class="col-3 own-poduct-color" style="background-color:{{$your_product->color}} ">
+
+					</div>
+					<div class="col-6 own-poduct-title ">
+						<p>
+							{{$your_product->color_name}}
+						</p>
+					</div>
+					<div class="col-12 ">
+						<ul>
+							<li>
+								{{$your_product->lens_name_en}}
+							</li>	
+							<li>
+								{{$your_product->frames_name_en}}
+							</li>							
+						</ul>
+					</div>
+					<div class="col-12 own-poduct-description ">
+						<p>
+							{{$your_product->description}}
+						</p>
+					</div>
+					<div class="col-12 own-poduct-add-cart">
+						<button type="button" id="add-to-cart" class="check_login"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
+					</div>
+				</div>
+			</div>
+			@if (isset($data[1]))
+			<div class="row flex-md-row other-product">
+				<div class="col-12 may-like-title">
+					<p>You may also like...</p>			
+				</div>
+				@if (isset($data[1]))
+				@php $other_1=($data[1]); @endphp
+				<div class="col-md-4 card">
+					<img src="{{ Voyager::image($other_1->product_image_1)}}" style="width:100%">
+					<h5>{{$other_1->product_name_en}}</h5>
+					<p class="price">HK${{$other_1->price}}</p>
+					<p class="own-poduct-color tooltip" style="background-color:{{$other_1->color}} ">
+						<span class="tooltiptext">{{$other_1->color_name}}</span>
+					</p>
+					<p class="description">{{$other_1->description}}</p>
+					<p><button class="check_login">Add to Cart</button></p>
+				</div>
+				@endif 
+
+				@if (isset($data[2]))
+				@php $other_2=($data[2]); @endphp
+				<div class="col-md-4 card">
+					<img src="{{ Voyager::image($other_2->product_image_1)}}" style="width:100%">
+					<h5>{{$other_2->product_name_en}}</h5>
+					<p class="price">HK${{$other_2->price}}</p>
+					<p class="own-poduct-color tooltip" style="background-color:{{$other_2->color}} ">
+						<span class="tooltiptext">{{$other_2->color_name}}</span>
+					</p>
+					<p class="description">{{$other_2->description}}</p>
+					<p><button class="check_login">Add to Cart</button></p>
+				</div>
+				@endif 				
+			</div>
+			@endif 
+			@else
+
+			<div class="col-md-6">
+				<div class="col-12 cant-find-title">
+					<p>COULDN'T FIND WHAT YOU'RE LOOKING FOR?</p>			
+				</div>	
+			<div class="col-12">
+				<p>Leave us a message.</p>
+			{!! Form::open(array('action' => 'HomeController@asking')) !!}
+ 
+           <div class="col-md-12">    
+
+           		<div class="form-check form-check-inline title_redio">
+        			<input class="form-check-input" type="radio" name="title" id="title" value="mr" >
+        			<label class="form-check-label" for="title">
+        				Mr.
+        			</label>
+        		</div>
+        		<div class="form-check form-check-inline title_redio">
+        			<input class="form-check-input" type="radio" name="title" id="title" value="mrs" >
+        			<label class="form-check-label" for="title">
+        				Mrs.
+        			</label>
+        		</div>
+        		<div class="form-check form-check-inline title_redio">
+        			<input class="form-check-input" type="radio" name="title" id="title" value="miss" >
+        			<label class="form-check-label" for="title">
+        			Miss
+        			</label>
+        		</div>
+
+          </div>
+          <div class="col-md-12">
+           {!! Form::text('name', null, array('placeholder'=>' YOUR NAME','class'=>'form_text','required'=>'true')) !!}
+         </div>
+         <div class="col-md-12">
+          {!! Form::email('email', null, array('placeholder'=>' CONTACT EMAIL','class'=>'form_text','required'=>'true')) !!}
+        </div>
+        <div class="col-md-12">
+          {!! Form::text('phone', null, array('placeholder'=>' CONTECT PHONE (Option)','class'=>'form_text')) !!}
+        </div>
+    
+        <div class="col-md-12">
+         {!! Form::textarea('query_question', null, ['placeholder'=>'MESSAGE TO US','required'=>'true','id' => 'query_question', 'rows' => 4]) !!}
        </div>
+       <div class="col-md-6 submit_button pull-right">
+        {{Form::submit('SEND MESSAGE', ['class' => 'cus_submit_button ' ])}}
+      </div>
 
- 		<div class="carousel-item" id="product_image_2">
-         <img src="{{ Voyager::image($your_product->product_image_2)}}" class="d-block step-image">      
-       </div>
-
-       	<div class="carousel-item" id="product_image_3">
-         <img src="{{ Voyager::image($your_product->product_image_3)}}" class="d-block step-image">      
-       </div>
-
-  </div>
-  <a class="carousel-control-prev step-style" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon step-style-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next step-style" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon step-style-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-</div>
-<div class="col-md-6">
-	
-</div>
-
-		@else
-
-<h1>NO DATA</h1>
-
-		@endif 
-
+      {!!  Form::close() !!}
+				</div>
+			</div>
+			<div class="col-md-6">
+					<div class="col-12 may-like-title">
+					<p>You may also like...</p>			
+				</div>
+				<div class="myExMul">
+				  @foreach($images as $key=>$image)
+  					@if($key < 7)
+				 <a href={{ asset('/'.$image)  }} rel="myExMul-1">
+				    <img src={{ asset('/'.$image)  }} />
+				       </a>
+				       @endif
+				      @endforeach
+				</div>
+			</div>
+			@endif 
+		</div>
 	</div>
-	</div>
+
 </main>
 
+<script>
 
+	$(".thumbnail").click(function () {
+		$image = '#product_image_'+$(this).attr('id');
+		$(".active").removeClass("active");
+		$($image).addClass("active");
+	});
+	$(".check_login").click(function () {
+	 $('#LoginModal').modal('show');
+	});
+</script>
 
 
 @endsection
