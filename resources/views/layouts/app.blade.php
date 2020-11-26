@@ -135,7 +135,25 @@ $carousel  = HomeController::getCarousel();
         <span aria-hidden="true">×</span>
       </button>
     </div>
+             @if(Auth::check())
 
+
+    <div class="modal-body">
+      <div class="text-center">
+        <span class="modal-title">WELCOME, {{ Auth::user()->name}}</span>
+      </div>
+
+      <div class="container">
+
+
+
+
+                <a href="logout">@lang('frontend.logout')</a>
+  </div>
+
+       </div>
+       
+              @else          
     <!--Body-->
     <div class="modal-body">
       <div class="text-center">
@@ -212,7 +230,7 @@ $carousel  = HomeController::getCarousel();
     
 
   </div>
-
+ @endif
   <!--Footer-->
 
 </div>

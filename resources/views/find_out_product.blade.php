@@ -8,7 +8,7 @@
 
 <main>
 	<div class="container wow fadeIn other_page">
-		<div class="row  flex-md-row">
+		<div class="row flex-md-row">
 
 			@if (isset($data[0]))
 
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div calss="row  flex-md-row">
+				<div calss="row flex-md-row">
 					<div class="col-12 own-poduct-title">
 						<p>
 							{{$your_product->product_name_en}}
@@ -105,7 +105,7 @@
 			</div>
 			@if (isset($data[1]))
 			<div class="row flex-md-row other-product">
-				<div class="col-12 may-like-title">
+				<div class="col-md-12 may-like-title">
 					<p>You may also like...</p>			
 				</div>
 				@if (isset($data[1]))
