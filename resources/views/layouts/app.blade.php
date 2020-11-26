@@ -17,6 +17,16 @@ $carousel  = HomeController::getCarousel();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>@yield('title')</title>
+  <meta name="description"  content="THE EYES CRAFTERS CAN MAKE YOUR OWN GLASSES. Click the link get more information." />
+  <meta name="robots" content="index,follow">
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="@yield('title')" />
+<meta property="og:description" content="THE EYES CRAFTERS CAN MAKE YOUR OWN GLASSES. Click the link get more information." />
+<meta property="og:url" content="{{url()->current()}}" />
+<meta property="og:site_name" content="THE EYES CRAFTERS" />
+<meta property="og:image" content="{{ Voyager::image($carousel[0]->value)}}" />
+<meta property="og:locale" content="en-us" />
   <!-- Font Awesome -->
   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
   
