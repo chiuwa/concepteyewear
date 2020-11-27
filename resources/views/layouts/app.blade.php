@@ -20,13 +20,13 @@ $carousel  = HomeController::getCarousel();
   <meta name="description"  content="THE EYES CRAFTERS CAN MAKE YOUR OWN GLASSES. Click the link get more information." />
   <meta name="robots" content="index,follow">
 
-<meta property="og:type" content="article" />
-<meta property="og:title" content="@yield('title')" />
-<meta property="og:description" content="THE EYES CRAFTERS CAN MAKE YOUR OWN GLASSES. Click the link get more information." />
-<meta property="og:url" content="{{url()->current()}}" />
-<meta property="og:site_name" content="THE EYES CRAFTERS" />
-<meta property="og:image" content="{{ Voyager::image($carousel[0]->value)}}" />
-<meta property="og:locale" content="en-us" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="@yield('title')" />
+  <meta property="og:description" content="THE EYES CRAFTERS CAN MAKE YOUR OWN GLASSES. Click the link get more information." />
+  <meta property="og:url" content="{{url()->current()}}" />
+  <meta property="og:site_name" content="THE EYES CRAFTERS" />
+  <meta property="og:image" content="{{ Voyager::image($carousel[0]->value)}}" />
+  <meta property="og:locale" content="en-us" />
   <!-- Font Awesome -->
   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
   
@@ -70,7 +70,7 @@ $carousel  = HomeController::getCarousel();
      <button type="button" class="nav-toggle d-none d-lg-block title-close"><i class="fa fa-bars"></i></button>
      <button type="button" class="nav-member"  data-toggle="modal" data-target="#LoginModal" ><img style="width: 50%;" src="/images/user.png"></button>
    </div>
-<!--i class="fa fa-user-o"></i-->
+   <!--i class="fa fa-user-o"></i-->
  </div>
 
  <div class="nav-toggle-menu">
@@ -135,103 +135,117 @@ $carousel  = HomeController::getCarousel();
         <span aria-hidden="true">×</span>
       </button>
     </div>
-             @if(Auth::check())
+    @if(Auth::check())
 
 
     <div class="modal-body">
       <div class="text-center">
         <span class="modal-title">WELCOME, {{ Auth::user()->name}}</span>
       </div>
-
-      <div class="container">
-
-
-
-
-                <a href="logout">@lang('frontend.logout')</a>
-  </div>
-
-       </div>
-       
-              @else          
-    <!--Body-->
-    <div class="modal-body">
-      <div class="text-center">
-        <span class="modal-title">MEMBERSHIP</span>
-      </div>
-
-      <div class="container">
-
-        <ul id="myTab" class="nav nav-tabs">
-          <li class="active modal-login modal-left" >
-            <a href="#login-div" data-toggle="tab">@lang('frontend.login')</a>
-          </li>
-          <li  class="modal-login" ><a href="#register" data-toggle="tab">@lang('frontend.register')</a></li>
-        </ul>
-
-        <div id="myTabContent" class="tab-content">
-          <div class="login_div tab-pane active" id="login-div">
-            @if ($errors->any())
-            @foreach($errors->all() as $message)
-            <div class="alert alert-danger" id="message" value="open" role="alert">
-              {{$message}}
-            </div>
-            @endforeach
-            @endif
-            {!! Form::open(array('action' => 'LoginController@login')) !!}
-
-            <div class="login_main">
-
-              <div class="input-login row">
-                <div class="login_label col-5">
-                  <span>USERNAME</span> 
-                </div>
-                <div class="login_input col-7">
-                  <input class="text-center login_field" name="email" type="email"  required="true">
-                </div>
-              </div>
-
-              <div class="input-login row"> 
-                <div class="login_label col-5">
-                  <span>PASSWORD</span> 
-                </div>
-                <div class="login_input col-7">
-                  <input class="text-center login_field" name="password" type="password"  required="true">
-                </div>
-              </div>
-
-              <div class="pull-right forget_pw_div">
-                <a class="forget_pw" href="#forget_pw">Forgot Password</a>
-              </div>
-
-              <div class="login_remember pull-left">
-                <input class="custom-control-input" type="radio" name="rememberRadios" id="rememberRadios1" value="1">
-                <label class="custom-control-label" for="rememberRadios1">
-                  Remember Me
-                </label>
-              </div>
-              <div class="login_submit_button">
-               {{Form::submit('LONIG', ['class' => 'login-btn text-center'])}}
-             </div>
-           </div>
-
-           {{ Form::close() }}
-         </div>
-
-
-         <div class="login_div tab-pane " id="register">
-          <div class="login_main text-center">
-            <h5>Coming Soon</h5>
+          @if  (\Session::has('success'))
+          <div class="alert" id="message" value="open" role="alert" style="display: none">
+       {!! \Session::get('success') !!}
           </div>
+          @endif
+
+      <div class="container">
+       <div class="login_main">
+
+         <div class="member_button">
+          <a class="btn member-btn text-center" href="shopping_cart"> <i class="fa fa-shopping-cart mr-3 member-icon" aria-hidden="true"></i> MY SHOPPING CART</a>
+        </div>
+        <div class="member_button">
+          <a class="btn member-btn text-center" href="user_profile"> <i class="fa fa-user mr-3 member-icon" aria-hidden="true"></i> PROFILE SETTINGS</a>
         </div>
 
+        <div class="login_submit_button">
+          <a class="btn logout-btn text-center" href="logout">@lang('frontend.logout')</a>
+        </div>
       </div>
+
     </div>
-    
 
   </div>
- @endif
-  <!--Footer-->
+
+  @else          
+  <!--Body-->
+  <div class="modal-body">
+    <div class="text-center">
+      <span class="modal-title">MEMBERSHIP</span>
+    </div>
+
+    <div class="container">
+
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active modal-login modal-left" >
+          <a href="#login-div" data-toggle="tab">@lang('frontend.login')</a>
+        </li>
+        <li  class="modal-login" ><a href="#register" data-toggle="tab">@lang('frontend.register')</a></li>
+      </ul>
+
+      <div id="myTabContent" class="tab-content">
+        <div class="login_div tab-pane active" id="login-div">
+          @if ($errors->any())
+          @foreach($errors->all() as $message)
+          <div class="alert alert-danger" id="message" value="open" role="alert">
+            {{$message}}
+          </div>
+          @endforeach
+          @endif
+          {!! Form::open(array('action' => 'LoginController@login')) !!}
+
+          <div class="login_main">
+
+            <div class="input-login row">
+              <div class="login_label col-5">
+                <span>USERNAME</span> 
+              </div>
+              <div class="login_input col-7">
+                <input class="text-center login_field" name="email" type="email"  required="true">
+              </div>
+            </div>
+
+            <div class="input-login row"> 
+              <div class="login_label col-5">
+                <span>PASSWORD</span> 
+              </div>
+              <div class="login_input col-7">
+                <input class="text-center login_field" name="password" type="password"  required="true">
+              </div>
+            </div>
+
+            <div class="pull-right forget_pw_div">
+              <a class="forget_pw" href="#forget_pw">Forgot Password</a>
+            </div>
+
+            <div class="login_remember pull-left">
+              <input class="custom-control-input" type="radio" name="rememberRadios" id="rememberRadios1" value="1">
+              <label class="custom-control-label" for="rememberRadios1">
+                Remember Me
+              </label>
+            </div>
+            <div class="login_submit_button">
+             {{Form::submit('LONIG', ['class' => 'login-btn text-center'])}}
+           </div>
+         </div>
+
+         {{ Form::close() }}
+       </div>
+
+
+       <div class="login_div tab-pane " id="register">
+        <div class="login_main text-center">
+          <h5>Coming Soon</h5>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+@endif
+<!--Footer-->
 
 </div>
 <!--/.Content-->
@@ -268,12 +282,12 @@ $carousel  = HomeController::getCarousel();
 </script>
 
 <script type="text/javascript">
-$alert_data = $("#message").html();
-console.log($alert_data);
+  $alert_data = $("#message").html();
+  console.log($alert_data);
 
-if($alert_data.length > 1){
- $('#LoginModal').modal('show');
-}
+  if($alert_data.length > 1){
+   $('#LoginModal').modal('show');
+ }
 </script>
 
 <script type="text/javascript">
@@ -324,42 +338,42 @@ if($alert_data.length > 1){
 </script>
 <script type="text/javascript">
 
-$('.myExMul').justifiedGallery({
- lastRow : 'nojustify', 
-    rowHeight : 200, 
-    rel : 'gallery',
-    margins : 20
-}).on('jg.complete', function () {
-    $(this).find('a').colorbox({
-        maxWidth : '90%',
-        maxHeight : '90%',
-      opacity : 0.7 ,
+  $('.myExMul').justifiedGallery({
+   lastRow : 'nojustify', 
+   rowHeight : 200, 
+   rel : 'gallery',
+   margins : 20
+ }).on('jg.complete', function () {
+  $(this).find('a').colorbox({
+    maxWidth : '90%',
+    maxHeight : '90%',
+    opacity : 0.7 ,
 
- 
 
-   
-    });
+
+
+  });
 });
 
 </script>
 
 <script type="text/javascript">
-  
-function fb_hover(element) {
-  element.setAttribute('src', '/images/facebook_black.png');
-}
 
-function fb_unhover(element) {
-  element.setAttribute('src', '/images/facebook.png');
-}
+  function fb_hover(element) {
+    element.setAttribute('src', '/images/facebook_black.png');
+  }
 
-function ig_hover(element) {
-  element.setAttribute('src', '/images/instagram_black.png');
-}
+  function fb_unhover(element) {
+    element.setAttribute('src', '/images/facebook.png');
+  }
 
-function ig_unhover(element) {
-  element.setAttribute('src', '/images/instagram.png');
-}
+  function ig_hover(element) {
+    element.setAttribute('src', '/images/instagram_black.png');
+  }
+
+  function ig_unhover(element) {
+    element.setAttribute('src', '/images/instagram.png');
+  }
 </script>
 
 </body>

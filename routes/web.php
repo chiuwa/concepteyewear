@@ -48,6 +48,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::get('/contact','HomeController@contact')->name('contact');
     Route::get('/lookbook','HomeController@lookbook')->name('lookbook');
     Route::get('/makeOwn','HomeController@makeOwn')->name('makeOwn');
+        Route::get('/shopping_cart','HomeController@shopping_cart')->name('shopping_cart');
+            Route::get('/user_profile','HomeController@user_profile')->name('user_profile');
     Route::post('/findOwn', 'HomeController@findOwn')->name('findOwn');
     Route::get('/find_out_product', 'HomeController@find_out_product')->name('find_out_product');
     Route::get('/home', 'HomeController@home')->name('home');

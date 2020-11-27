@@ -38,16 +38,15 @@ class LoginController extends Controller {
                 ->select('users.*','roles.name as roles')
                 ->first();
 				
-                return Redirect::intended('/home');
+                return redirect()->back()->with('success', 'Login success');   
             }
 
-            return Redirect::to('home')
-                ->withErrors(['fail' => 'Username or password is wrong']);
+           return redirect()->back()->withErrors(['fail' => 'Username or password is wrong']);
         }
 
         //fail
         if ($validator->fails()) {
-            return Redirect::to('home')
+            return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
             //;

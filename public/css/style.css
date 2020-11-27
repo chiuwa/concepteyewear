@@ -742,7 +742,35 @@ main{
 }
 .login_submit_button{
  margin-top: 120px;
+  margin-bottom: 20px;
  width: 100%;
+}
+
+.member_button{
+ margin-top: 60px;
+ width: 100%;
+}
+
+.member-btn{
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  color:#000000;
+  letter-spacing: 4px;
+  border-radius: 10px;
+ border: 3px solid #000000;
+ font-weight: 800;
+}
+.member-icon{
+  color:#000000 !important;
+  font-size: 25px !important;
+}
+.logout-btn{
+  width: 100%;
+  background-color: #000000;
+  color:#ffffff;
+  letter-spacing: 3px;
+  border-radius: 10px;
 }
 .login-btn{
   width: 100%;
@@ -761,7 +789,14 @@ main{
     width: 80%;
   }
 }
+/*--------------------------------------------------------------
+# Shopping Cart
+--------------------------------------------------------------*/
 
+.shopping-cart-title{
+  font-weight: 700;
+  letter-spacing: 2px;
+}
 /*--------------------------------------------------------------
 # contact
 --------------------------------------------------------------*/

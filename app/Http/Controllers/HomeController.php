@@ -145,6 +145,32 @@ class HomeController extends Controller
 	}	
 
 
+	public function shopping_cart(){
+
+		if (!Auth::check()) {
+          return Redirect::to('home')
+                ->withErrors(['fail' => 'Please Login First']);
+		}
+
+
+		return view('shopping_cart');
+	}
+
+
+
+	public function user_profile(){
+
+		if (!Auth::check()) {
+          return Redirect::to('home')
+                ->withErrors(['fail' => 'Please Login First']);
+		}
+
+		return view('user_profile');
+	}
+
+
+
+
 	public function plan_asking(Request $request){
 		// $this->validate($request, [
             // 'email' => 'required',
