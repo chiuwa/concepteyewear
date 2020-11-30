@@ -225,7 +225,7 @@ $carousel  = HomeController::getCarousel();
               </label>
             </div>
             <div class="login_submit_button">
-             {{Form::submit('LONIG', ['class' => 'login-btn text-center'])}}
+             {{Form::submit('Login', ['class' => 'login-btn text-center'])}}
            </div>
          </div>
 

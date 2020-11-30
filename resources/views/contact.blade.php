@@ -18,20 +18,22 @@
 
     <div class="col-md-6 address">
       <span class="contact_title">HONG KONG OFFICE</span>
-      <br>
-      <span class="address_dc"><i class="fa fa-map-marker icon" aria-hidden="true"></i>Unit 9, 7F, Westley Square, 48 Hoi Yuen Road, Kwun Tong,
+      <br>   <br>  
+      <i class="fa fa-map-marker icon" aria-hidden="true" style="float:left;"></i>
+      <span class="address_dc">Unit 9, 7F, Westley Square, 48 Hoi Yuen Road, Kwun Tong,
       Kowloon, Hong Kong</span>
-      <br>
+      <br>   <br>  
       <span class="address_dc"><i class="fa fa-phone icon" aria-hidden="true"></i>(852) 2343 1338</span>
     </div>
 
 
     <div class="col-md-6 address">
       <span class="contact_title">CHINA FACTORY</span>
-      <br>
-      <span class="address_dc"><i class="fa fa-map-marker icon" aria-hidden="true"></i>No.33 Hong Shi Lu, Bu Xin Gong Ye Qu, Yan Tian, Feng Gang,
+       <br>   <br>  
+       <i class="fa fa-map-marker icon" aria-hidden="true"  style="float:left;"></i>
+      <span class="address_dc">No.33 Hong Shi Lu, Bu Xin Gong Ye Qu, Yan Tian, Feng Gang,
 Dong Guan, China</span>
-      <br>
+      <br>    <br>
       <span class="address_dc"><i class="fa fa-phone icon" aria-hidden="true"></i>(86) 769-8777 000 4</span>
     </div>
 
@@ -41,9 +43,10 @@ Dong Guan, China</span>
 
     <div class="col-md-6 address">
       <span class="contact_title">VIETNAM FACTORY</span>
-      <br>
-      <span class="address_dc"><i class="fa fa-map-marker icon" aria-hidden="true"></i>Block E5 & 6, Hoa Hiep Industrial Zone, Dong Hoa, Phu Yen, Vietnam</span>
-      <br>
+      <br> <br>
+      <i class="fa fa-map-marker icon" aria-hidden="true" style="float:left;"></i>
+      <span class="address_dc">Block E5 & 6, Hoa Hiep Industrial Zone, Dong Hoa, Phu Yen, Vietnam</span>
+      <br>    <br>
       <span class="address_dc"><i class="fa fa-phone icon" aria-hidden="true"></i>(84) 57 3548821</span>
     </div>
 
