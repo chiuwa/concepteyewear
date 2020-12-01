@@ -152,8 +152,21 @@ class HomeController extends Controller
                 ->withErrors(['fail' => 'Please Login First']);
 		}
 
+		$cart = Session::get('cart');
+		foreach ($cart as $key => $value) {
+		$data = DB::table('product') 
+		->where('id', '=', $key)
+		->first();
+		
+		$cart[$key]['product_name'] = $data->product_name;
+		$cart[$key]['product_name_en'] = $data->product_name_en;
+		$cart[$key]['price'] = $data->price;
+		$cart[$key]['color'] = $data->color;
+		$cart[$key]['color_name'] = $data->color_name;
+		$cart[$key]['product_image'] = $data->product_image_1;
+		}
 
-		return view('shopping_cart');
+		return view('shopping_cart',['cart'=>$cart]);
 	}
 
 
@@ -165,10 +178,23 @@ class HomeController extends Controller
                 ->withErrors(['fail' => 'Please Login First']);
 		}
 
+
 		return view('user_profile');
 	}
 
+	public function addtocart(Request $request){
+		$item_id = $request->id;
+		$cart = Session::get('cart');
 
+		if(isset($cart[$item_id])){
+			$cart[$item_id]['qty'] = $cart[$item_id]['qty']+1;
+		}else{
+			$cart[$item_id]['qty'] = 1; 
+		}
+		$request->session()->put('cart', $cart);
+			
+		return $cart;
+	}
 
 
 	public function plan_asking(Request $request){

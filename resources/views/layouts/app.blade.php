@@ -152,10 +152,10 @@ $carousel  = HomeController::getCarousel();
        <div class="login_main">
 
          <div class="member_button">
-          <a class="btn member-btn text-center" href="shopping_cart"> <i class="fa fa-shopping-cart mr-3 member-icon" aria-hidden="true"></i> MY SHOPPING CART</a>
+          <a class="btn member-btn text-center" href="shopping_cart"> <i class="fa fa-shopping-cart member-icon" aria-hidden="true"></i> MY SHOPPING CART</a>
         </div>
         <div class="member_button">
-          <a class="btn member-btn text-center" href="user_profile"> <i class="fa fa-user mr-3 member-icon" aria-hidden="true"></i> PROFILE SETTINGS</a>
+          <a class="btn member-btn text-center" href="user_profile"><p> <i class="fa fa-user  member-icon" aria-hidden="true"></i> PROFILE SETTINGS</p></a>
         </div>
 
         <div class="login_submit_button">
@@ -271,6 +271,8 @@ $carousel  = HomeController::getCarousel();
 <script src="{{ asset('js/jquery.justifiedGallery.min.js') }}"></script>
 
 <script src="{{ asset('js/jquery.colorbox.js') }}"></script>
+
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 
 <script type="text/javascript">
   new WOW().init();

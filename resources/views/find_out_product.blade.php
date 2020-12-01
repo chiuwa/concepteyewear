@@ -98,12 +98,12 @@
 							{{$your_product->description}}
 						</p>
 					</div>
-					<div class="col-12 own-poduct-add-cart">
-					   @if(Auth::check())
-						<button type="button" id="add-to-cart"  data-image="{{Voyager::image($your_product->product_image_1)}}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
+					<div class="col-12 own-poduct-add-cart find-image">
+						<img src="{{Voyager::image($your_product->product_image_1)}}" alt="item" style="display: none;" />
+						@if(Auth::check())
+						<button type="button" id="add-to-cart"  class="addtocart"  data-id="{{$your_product->id}}" data-image="{{Voyager::image($your_product->product_image_1)}}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
 						@else
-					<button type="button" id="add-to-cart" class="check_login" data-image="{{Voyager::image($your_product->product_image_1)}}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
-
+						<button type="button" id="add-to-cart" class="check_login"  data-image="{{Voyager::image($your_product->product_image_1)}}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
 						@endif
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 				</div>
 				@if (isset($data[1]))
 				@php $other_1=($data[1]); @endphp
-				<div class="col-md-4 card">
+				<div class="col-md-4 card find-image">
 					<img src="{{ Voyager::image($other_1->product_image_1)}}" style="width:100%">
 					<h5>{{$other_1->product_name_en}}</h5>
 					<p class="price">HK${{$other_1->price}}</p>
@@ -123,13 +123,18 @@
 						<span class="tooltiptext">{{$other_1->color_name}}</span>
 					</p>
 					<p class="description">{{$other_1->description}}</p>
-					<p><button class="check_login">Add to Cart</button></p>
+					<img src="{{Voyager::image($other_1->product_image_1)}}" alt="item" style="display: none;" />
+					@if(Auth::check())
+					<button class="addtocart"  data-id="{{$other_1->id}}">Add to Cart</button>
+					@else
+					<button class="check_login">Add to Cart</button>
+					@endif
 				</div>
 				@endif 
 
 				@if (isset($data[2]))
 				@php $other_2=($data[2]); @endphp
-				<div class="col-md-4 card">
+				<div class="col-md-4 card find-image">
 					<img src="{{ Voyager::image($other_2->product_image_1)}}" style="width:100%">
 					<h5>{{$other_2->product_name_en}}</h5>
 					<p class="price">HK${{$other_2->price}}</p>
@@ -137,7 +142,13 @@
 						<span class="tooltiptext">{{$other_2->color_name}}</span>
 					</p>
 					<p class="description">{{$other_2->description}}</p>
-					<p><button class="check_login">Add to Cart</button></p>
+					<img src="{{Voyager::image($other_2->product_image_1)}}" alt="item" style="display: none;" />
+					@if(Auth::check())
+					<button class="addtocart" data-id="{{$other_2->id}}">Add to Cart</button>
+					@else
+					<button class="check_login">Add to Cart</button>
+
+					@endif
 				</div>
 				@endif 				
 			</div>
@@ -148,64 +159,64 @@
 				<div class="col-12 cant-find-title">
 					<p>COULDN'T FIND WHAT YOU'RE LOOKING FOR?</p>			
 				</div>	
-			<div class="col-12">
-				<p>Leave us a message.</p>
-			{!! Form::open(array('action' => 'HomeController@asking')) !!}
- 
-           <div class="col-md-12">    
+				<div class="col-12">
+					<p>Leave us a message.</p>
+					{!! Form::open(array('action' => 'HomeController@asking')) !!}
 
-           		<div class="form-check form-check-inline title_redio">
-        			<input class="form-check-input" type="radio" name="title" id="title" value="mr" >
-        			<label class="form-check-label" for="title">
-        				Mr.
-        			</label>
-        		</div>
-        		<div class="form-check form-check-inline title_redio">
-        			<input class="form-check-input" type="radio" name="title" id="title" value="mrs" >
-        			<label class="form-check-label" for="title">
-        				Mrs.
-        			</label>
-        		</div>
-        		<div class="form-check form-check-inline title_redio">
-        			<input class="form-check-input" type="radio" name="title" id="title" value="miss" >
-        			<label class="form-check-label" for="title">
-        			Miss
-        			</label>
-        		</div>
+					<div class="col-md-12">    
 
-          </div>
-          <div class="col-md-12">
-           {!! Form::text('name', null, array('placeholder'=>' YOUR NAME','class'=>'form_text','required'=>'true')) !!}
-         </div>
-         <div class="col-md-12">
-          {!! Form::email('email', null, array('placeholder'=>' CONTACT EMAIL','class'=>'form_text','required'=>'true')) !!}
-        </div>
-        <div class="col-md-12">
-          {!! Form::text('phone', null, array('placeholder'=>' CONTECT PHONE (Option)','class'=>'form_text')) !!}
-        </div>
-    
-        <div class="col-md-12">
-         {!! Form::textarea('query_question', null, ['placeholder'=>'MESSAGE TO US','required'=>'true','id' => 'query_question', 'rows' => 4]) !!}
-       </div>
-       <div class="col-md-6 submit_button pull-right">
-        {{Form::submit('SEND MESSAGE', ['class' => 'cus_submit_button ' ])}}
-      </div>
+						<div class="form-check form-check-inline title_redio">
+							<input class="form-check-input" type="radio" name="title" id="title" value="mr" >
+							<label class="form-check-label" for="title">
+								Mr.
+							</label>
+						</div>
+						<div class="form-check form-check-inline title_redio">
+							<input class="form-check-input" type="radio" name="title" id="title" value="mrs" >
+							<label class="form-check-label" for="title">
+								Mrs.
+							</label>
+						</div>
+						<div class="form-check form-check-inline title_redio">
+							<input class="form-check-input" type="radio" name="title" id="title" value="miss" >
+							<label class="form-check-label" for="title">
+								Miss
+							</label>
+						</div>
 
-      {!!  Form::close() !!}
+					</div>
+					<div class="col-md-12">
+						{!! Form::text('name', null, array('placeholder'=>' YOUR NAME','class'=>'form_text','required'=>'true')) !!}
+					</div>
+					<div class="col-md-12">
+						{!! Form::email('email', null, array('placeholder'=>' CONTACT EMAIL','class'=>'form_text','required'=>'true')) !!}
+					</div>
+					<div class="col-md-12">
+						{!! Form::text('phone', null, array('placeholder'=>' CONTECT PHONE (Option)','class'=>'form_text')) !!}
+					</div>
+
+					<div class="col-md-12">
+						{!! Form::textarea('query_question', null, ['placeholder'=>'MESSAGE TO US','required'=>'true','id' => 'query_question', 'rows' => 4]) !!}
+					</div>
+					<div class="col-md-6 submit_button pull-right">
+						{{Form::submit('SEND MESSAGE', ['class' => 'cus_submit_button ' ])}}
+					</div>
+
+					{!!  Form::close() !!}
 				</div>
 			</div>
 			<div class="col-md-6">
-					<div class="col-12 may-like-title">
+				<div class="col-12 may-like-title">
 					<p>You may also like...</p>			
 				</div>
 				<div class="myExMul">
-				  @foreach($images as $key=>$image)
-  					@if($key < 7)
-				 <a href={{ asset('/'.$image)  }} rel="myExMul-1">
-				    <img src={{ asset('/'.$image)  }} />
-				       </a>
-				       @endif
-				      @endforeach
+					@foreach($images as $key=>$image)
+					@if($key < 7)
+					<a href={{ asset('/'.$image)  }} rel="myExMul-1">
+						<img src={{ asset('/'.$image)  }} />
+					</a>
+					@endif
+					@endforeach
 				</div>
 			</div>
 			@endif 
@@ -222,53 +233,73 @@
 		$($image).addClass("active");
 	});
 	$(".check_login").click(function () {
-	 $('#LoginModal').modal('show');
+		$('#LoginModal').modal('show');
 	});
 </script>
 
 <script type="text/javascript">
 	
-$('#add-to-cart').on('click', function () {
-        var cart = $('.nav-member');
-        var imgtodrag = $(this).attr('data-image');
+	$('.addtocart').on('click', function () {
+		var cart = $('.nav-member');
+		var imgtodrag =$(this).parent('.find-image').find("img").eq(0);
 
-        if (imgtodrag) {
-            var imgclone = imgtodrag.clone()
-                .offset({
-                top: imgtodrag.offset().top,
-                left: imgtodrag.offset().left
-            })
-                .css({
-                'opacity': '0.5',
-                    'position': 'absolute',
-                    'height': '150px',
-                    'width': '150px',
-                    'z-index': '100'
-            })
-                .appendTo($('body'))
-                .animate({
-                'top': cart.offset().top + 10,
-                    'left': cart.offset().left + 10,
-                    'width': 75,
-                    'height': 75
-            }, 1000, 'easeInOutExpo');
-            
-            setTimeout(function () {
-                cart.effect("shake", {
-                    times: 2
-                }, 200);
-            }, 1500);
- 
-            imgclone.animate({
-                'width': 0,
-                    'height': 0
-            }, function () {
-                $(this).detach()
+		if (imgtodrag) {
+			var imgclone = imgtodrag.clone()
+			.offset({
+				top: imgtodrag.offset().top,
+				left: imgtodrag.offset().left
+			})
+			.css({
+				'opacity': '0.7',
+				'position': 'absolute',
+				'width': '50%',
+				'z-index': '100',
+				'display':'block'
+			})
+			.appendTo($('body'))
+			.animate({
+				'top': cart.offset().top + 50,
+				'left': cart.offset().left + 50,
+				'width': 75,
+				'height': 75
+			}, 1000, 'easeInOutExpo');
+
+			setTimeout(function () {
+				cart.effect("shake", {
+					times: 1,                
+				}, 300);
+			}, 50);
+
+			imgclone.animate({
+				'width': 0,
+				'height': 0
+			}, function () {
+				$(this).detach()
+			});
+		}
+
+		var item_id = $(this).attr('data-id');
+		  $.ajax({
+		  	 type:'POST',
+               url:'addtocart',
+               data:{'id':item_id,'_token':'{{csrf_token()}}'},
+               success:function(data){
+                 console.log(data);
+                 return false;
+               }
+
+
             });
-        }
-    });
 
 
-</script>>
+
+
+
+
+
+	});
+
+
+</script>
 
 @endsection
