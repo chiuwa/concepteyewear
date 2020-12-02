@@ -53,6 +53,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::post('/findOwn', 'HomeController@findOwn')->name('findOwn');
     Route::get('/find_out_product', 'HomeController@find_out_product')->name('find_out_product');
     Route::post('/addtocart', 'HomeController@addtocart')->name('addtocart');
+    Route::post('/clearAllItem', 'HomeController@clearAllItem')->name('clearAllItem');
     Route::get('/home', 'HomeController@home')->name('home');
     Route::get('/blog/view/{id}', 'BlogController@home');
     Route::post('/asking', 'HomeController@asking')->name('asking');

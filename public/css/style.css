@@ -35,7 +35,7 @@ main{
 }
 .main_title_div{
   margin-top:30px;
-  margin-bottom:100px;
+  margin-bottom:60px;
 }
 .main_title{
   font-size: 35px;
@@ -792,18 +792,18 @@ main{
 
 
 }
-  @media (max-width: 599px) {
+@media (max-width: 599px) {
 
  .desv-modal{
-    max-width: 100% !important;
-  }
+  max-width: 100% !important;
+}
 
 }
 @media (max-width: 415px) {
 
-.member-icon{
-  font-size: 15px !important;
-}
+  .member-icon{
+    font-size: 15px !important;
+  }
 
 }
 /*--------------------------------------------------------------
@@ -814,6 +814,83 @@ main{
   font-weight: 700;
   letter-spacing: 2px;
 }
+.cart_item{
+  margin-bottom: 30px;
+  margin-top:  40px !important;
+  border-bottom: 1px solid #828282;
+  margin: 10px;
+}
+.item_name{
+  font-weight: 800;
+}
+.cus-row{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+.item_qty{
+  width: 100%;
+  border: 1px solid #828282;
+  border-radius: 30px;  
+  text-align: center;
+
+}
+.item_image{
+  margin-top: 5%;
+}
+.qty_icon{
+  width: 25px;
+  height: 25px;
+  border: 1px solid #828282;
+  border-radius: 25px;  
+  text-align: center;
+
+}
+.item_other{
+ margin-top: 5%;
+}
+.item-clear{
+  background-color: #828282;
+  color: #ffffff;
+  text-transform:capitalize;
+  font-weight: 700;
+  letter-spacing: 4px;
+  border-radius: 10px;
+}
+.item_count{
+  margin-top: 15px;
+  font-weight: 800;
+  letter-spacing: 3px; 
+}
+#add-to-cart_2{
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 15px;
+  letter-spacing: 3px;
+  padding: 15px;
+  margin-top: 30px; 
+  width: 30%;
+}
+#add-to-cart_2:hover {
+  opacity: 0.7;
+}
+.item_sm_title{
+  font-size: 10px;
+  color: #828282;
+}
+.no-item-title{
+font-weight: 800;
+font-size: 20px;
+margin-top: 10%;
+margin-bottom: 20%;
+}
+@media (max-width: 700px) {
+
+#add-to-cart_2{
+  width: 90%;
+}
+
+}
+
 /*--------------------------------------------------------------
 # contact
 --------------------------------------------------------------*/

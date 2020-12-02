@@ -116,7 +116,6 @@ class HomeController extends Controller
 			$images[$i] = $files[$i];    
 		}
 		
-
 		return view('find_out_product',['data'=>$data,'images'=>$images]);
 	}
 	
@@ -151,20 +150,24 @@ class HomeController extends Controller
           return Redirect::to('home')
                 ->withErrors(['fail' => 'Please Login First']);
 		}
-
 		$cart = Session::get('cart');
+		if(isset($cart)){
 		foreach ($cart as $key => $value) {
 		$data = DB::table('product') 
 		->where('id', '=', $key)
 		->first();
-		
+		$cart[$key]['id'] = $data->id;
 		$cart[$key]['product_name'] = $data->product_name;
 		$cart[$key]['product_name_en'] = $data->product_name_en;
+		$cart[$key]['description'] = $data->description;
 		$cart[$key]['price'] = $data->price;
 		$cart[$key]['color'] = $data->color;
 		$cart[$key]['color_name'] = $data->color_name;
 		$cart[$key]['product_image'] = $data->product_image_1;
 		}
+	}else{
+		$cart = [] ; 
+	}
 
 		return view('shopping_cart',['cart'=>$cart]);
 	}
@@ -195,7 +198,13 @@ class HomeController extends Controller
 			
 		return $cart;
 	}
+	public function clearAllItem(Request $request){
 
+		$cart = [];
+		$request->session()->put('cart', $cart);
+
+		return $cart;
+	}
 
 	public function plan_asking(Request $request){
 		// $this->validate($request, [
