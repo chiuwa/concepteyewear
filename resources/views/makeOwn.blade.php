@@ -8,93 +8,87 @@
 
 <main>
  <div class="container-fluid wow fadeIn makeOwn-page">
-<div class="row flex-column-reverse flex-md-row">
+  <div class="row flex-column-reverse flex-md-row">
     <div class="col-md-6 offset-md-1">
-    {!! Form::open(array('action'=>'HomeController@findOwn','method'=>'post','id'=>'regForm')) !!}
-        	<div class="tab active" data-id="len">
-        		<p class="step-title">STEP 1 - LENS</p>
-        		<br>
+      {!! Form::open(array('action'=>'HomeController@findOwn','method'=>'post','id'=>'regForm')) !!}
+      <div class="tab active" data-id="len">
+        <p class="step-title">Step 1 - Lenes</p>
+        <br>
 
-        		<p class="step-options">OPTION A</p>
-        		@foreach($lens as $key=>$len)
-        		<div class="form-check step-radio">
-        			<input class="form-check-input" type="radio" name="lens_options" id="len" value={{$len->id}} >
-        			<label class="form-check-label" for="lens_options">
-        				{{$len->name_en}}
-        			</label>
-        		</div>
-        		@endforeach
-        	</div>
-
-        	<div class="tab" data-id="frame">
-        		<p class="step-title">STEP 2 - Frames</p>
-        		<br>
-
-        		<p class="step-options">OPTION B</p>
-        		@foreach($frames as $key2=>$frame)
-        		<div class="form-check step-radio">
-        			<input class="form-check-input" type="radio" name="frame_options" id="frame" value={{$frame->id}} >
-        			<label class="form-check-label" for="frame_options">
-        				{{$frame->name_en}}
-        			</label>
-        		</div>
-        		@endforeach
-        	</div>
-
-<div style="overflow:auto;margin-top:30%;">
-  <div style="float:left;">
-    <button type="button" id="prevBtn" onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
+        <p class="step-options">OPTION A</p>
+        @foreach($lens as $key=>$len)
+        <div class="form-check step-radio">
+         <input class="form-check-input" type="radio" name="lens_options" id="len" value={{$len->id}} >
+         <label class="form-check-label" for="lens_options">
+          {{$len->name_en}}
+        </label>
       </div>
-       <div style="float:right;">
-    <button type="button" id="nextBtn" onclick="nextPrev(1)"> <i class="fa fa-arrow-right mr-2"> </i> NEXT STEP</button>
-  </div>
-</div>
-
-<!-- Circles which indicates the steps of the form: -->
-<div style="text-align:center;margin-top:40px;">
-  <span class="step"></span>
-  <span class="step"></span>
-
-</div>
-   
-      {!!  Form::close() !!}
+      @endforeach
     </div>
-  <div class="col-md-5 full-image">
+    <div class="tab" data-id="len_color">
+      <p class="step-title">STEP 2 - Len Color</p>
+      <br>
+
+      <p class="step-options" id ="len_option_line">OPTION B</p>
+      <div id="len_color_div">
+      </div>
+    </div>
+
+    <div class="tab" data-id="frame">
+      <p class="step-title">STEP 3 - Frames</p>
+      <br>
+
+      <p class="step-options">OPTION C</p>
+      @foreach($frames as $key2=>$frame)
+      <div class="form-check step-radio">
+       <input class="form-check-input" type="radio" name="frame_options" id="frame" value={{$frame->id}} >
+       <label class="form-check-label" for="frame_options">
+        {{$frame->name_en}}
+      </label>
+    </div>
+    @endforeach
+  </div>
+
+  <div style="overflow:auto;margin-top:30%;">
+    <div style="float:left;">
+      <button type="button" id="prevBtn" data-step="home" onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
+    </div>
+    <div style="float:right;">
+      <button type="button" id="nextBtn" data-step="len_color" onclick="nextPrev(1)"> <i class="fa fa-arrow-right mr-2"> </i> NEXT STEP</button>
+    </div>
+  </div>
+
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+
+  </div>
+
+  {!!  Form::close() !!}
+</div>
+<div class="col-md-5 full-image">
 
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="0" >
-  <ol class="carousel-indicators">
-  	@php $y = 0 ;  @endphp
-  	  	  @foreach($images as $key=>$type)
-  	  	   @foreach($type as $key2=>$image)
-         @if($y=='0')
-  <li data-target="#carouselExampleIndicators" data-slide-to={{$y}} class="active"></li>
-   @else
-    <li data-target="#carouselExampleIndicators" data-slide-to={{$y}}></li>
-              @endif 
-      	@php $y++ ;  @endphp
-          
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="0" >
+
+   <div class="carousel-inner">
+     @php $i = 0 ;  @endphp
+     @foreach($images as $key=>$type)
+     @foreach($type as $key2=>$image)
+     @if($i=='0')
+     <div class="carousel-item active" id="{{$key}}_image_{{$image->id}}">
+       <img src="{{ Voyager::image($image->image)}}" class="d-block step-image">      
+     </div>
+     @else
+     <div class="carousel-item"   id="{{$key}}_image_{{$image->id}}">
+      <img src="{{ Voyager::image($image->image)}}" class=" d-block step-image">
+    </div> 
+    @endif 
+    @php $i++ ;  @endphp
+
     @endforeach
-     @endforeach
-  
-  </ol>
-  <div class="carousel-inner">
-  			@php $i = 0 ;  @endphp
-  	  	  @foreach($images as $key=>$type)
-  	  	   @foreach($type as $key2=>$image)
-         @if($i=='0')
-        <div class="carousel-item active" id="{{$key}}_image_{{$image->id}}">
-         <img src="{{ Voyager::image($image->image)}}" class="d-block step-image">      
-       </div>
-       @else
-       <div class="carousel-item"   id="{{$key}}_image_{{$image->id}}">
-        <img src="{{ Voyager::image($image->image)}}" class=" d-block step-image">
-      </div> 
-      @endif 
-      	@php $i++ ;  @endphp
-          
     @endforeach
-     @endforeach
   </div>
   <a class="carousel-control-prev step-style" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon step-style-icon" aria-hidden="true"></span>
@@ -108,8 +102,74 @@
 
 </div>
 </div>
-      </div>
+</div>
 </main>
+
+<script>
+
+  $('input[type=radio]').on('change', function() {
+    $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
+    $(".active").removeClass("active");
+    $($image).addClass("active");
+
+    $option = '';
+    $type ='';
+    $option = $(this).val();
+    $type =  $(this).attr('id');
+
+  });
+
+  $('#nextBtn').on('click', function () { 
+ $('#len_color_div').html('');
+    var step = $(this).attr('data-step');
+
+    if($type == 'len'){  
+      console.log( $('#len_color_div'));
+      $.ajax({
+        type:'POST',
+        url:'getLensColor',
+        data:{'option':$option,'_token':'{{csrf_token()}}'},
+        success:function(data){
+          var  all_option =data;
+          var  html = '';
+          var image = ''; 
+          $('#len_color_div').html('');
+          if(all_option!=''){
+           $.each(all_option, function(index) {
+
+            html+='<div class="form-check step-radio ">';
+            html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+' >';
+            html+='<label class="form-check-label" for="frame_options"> '+all_option[index].color_name+' <div class="options_color" style="background-color:'+all_option[index].color+' "></div> </label>'  
+            html+='</div>';   
+            image+='<div class="carousel-item"   id="len_color_image_'+all_option[index].id+'">';
+            var APP_URL = {!! json_encode(url('/')) !!}
+
+            image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
+
+          });
+           $('#len_color_div').append(html); 
+           $('.carousel-inner').append(image); 
+
+          $('input[type=radio]').on('change', function() {
+            $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
+            $(".active").removeClass("active");
+            $($image).addClass("active");
+          });
+
+         }else{
+            html='<label> This Len with out any color options</label>';
+            $('#len_color_div').append(html);         
+         }
+       }
+
+     });
+    }
+
+  });
+
+</script>
+
+
 
 <script>
 
@@ -133,14 +193,12 @@ function showTab(n) {
     document.getElementById("nextBtn").innerHTML = "<i class='fa fa-arrow-right mr-2'> </i> NEXT STEP";
   }
   // ... and run a function that displays the correct step indicator:
-  if(n==0){
-   $(".active").removeClass("active");
-	  $('#len_image_1').addClass("active");
-	}
+
   fixStepIndicator(n)
 }
 
 function nextPrev(n) {
+
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
@@ -157,10 +215,7 @@ function nextPrev(n) {
   }
   // Otherwise, display the correct tab:
   showTab(currentTab);
-  if(n==1){
-   $(".active").removeClass("active");
-	  $('#frame_image_1').addClass("active");
-	}
+
 }
 
 function validateForm() {
@@ -197,17 +252,6 @@ function fixStepIndicator(n) {
 </script>
 
 
-<script>
 
-
-$('input[type=radio]').on('change', function() {
-
-	$image = '#'+$(this).attr('id')+'_image_'+$(this).val();
-	 $(".active").removeClass("active");
-	  $($image).addClass("active");
-	  console.log($image);
-
-});
-</script>
 
 @endsection

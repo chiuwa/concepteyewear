@@ -105,6 +105,16 @@ class HomeController extends Controller
 
 	}
 
+	public function getLensColor(Request $request){
+		$data= [] ;
+		$data = DB::table('lens_color') 
+		->where('len_id', '=', $request->option)
+		->get();
+
+		return $data;
+
+	}
+
 	public function find_out_product(){
 		$data = [];
 
@@ -180,9 +190,27 @@ class HomeController extends Controller
           return Redirect::to('home')
                 ->withErrors(['fail' => 'Please Login First']);
 		}
+	 	$user = Auth::user();
+	 
+
+		return view('user_profile',['user'=>$user]);
+	}
 
 
-		return view('user_profile');
+
+	public function updateProfile(Request $request){
+
+		if (!Auth::check()) {
+          return Redirect::to('home')
+                ->withErrors(['fail' => 'Please Login First']);
+		}
+
+		$user = Auth::user();
+		$user->password = bcrypt($request->get('password'));
+		$user->name =$request->name;
+		$user->mobile =$request->mobile;
+		$user->save();
+		return Redirect::back();
 	}
 
 	public function addtocart(Request $request){
