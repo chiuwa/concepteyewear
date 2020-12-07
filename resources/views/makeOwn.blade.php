@@ -21,6 +21,9 @@
          <input class="form-check-input" type="radio" name="lens_options" id="len" value={{$len->id}} >
          <label class="form-check-label" for="lens_options">
           {{$len->name_en}}
+
+          <img src="{{ Voyager::image($len->image)}}" class="d-block select-image">      
+
         </label>
       </div>
       @endforeach
@@ -44,28 +47,63 @@
        <input class="form-check-input" type="radio" name="frame_options" id="frame" value={{$frame->id}} >
        <label class="form-check-label" for="frame_options">
         {{$frame->name_en}}
+        <img src="{{ Voyager::image($frame->image)}}" class="d-block select-image">      
       </label>
     </div>
     @endforeach
   </div>
+  <div class="tab" data-id="frame_color">
+    <p class="step-title">STEP 4 - Frame Color</p>
+    <br>
 
-  <div style="overflow:auto;margin-top:30%;">
-    <div style="float:left;">
-      <button type="button" id="prevBtn" data-step="home" onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
-    </div>
-    <div style="float:right;">
-      <button type="button" id="nextBtn" data-step="len_color" onclick="nextPrev(1)"> <i class="fa fa-arrow-right mr-2"> </i> NEXT STEP</button>
+    <p class="step-options" id ="frame_option_line">OPTION D</p>
+    <div id="frame_color_div">
+
+         
     </div>
   </div>
 
-  <!-- Circles which indicates the steps of the form: -->
-  <div style="text-align:center;margin-top:40px;">
-    <span class="step"></span>
-    <span class="step"></span>
+  <div class="tab" data-id="temple">
+    <p class="step-title">STEP 5 - Temples</p>
+    <br>
 
+    <p class="step-options">OPTION E</p>
+    @foreach($temples as $key2=>$temple)
+    <div class="form-check step-radio">
+     <input class="form-check-input" type="radio" name="temple_options" id="temple" value={{$temple->id}} >
+     <label class="form-check-label" for="temple_options">
+      {{$temple->name_en}}
+      <img src="{{ Voyager::image($temple->image)}}" class="d-block select-image">      
+    </label>
   </div>
+  @endforeach
+</div>
+<div class="tab" data-id="temple_color">
+  <p class="step-title">STEP 6 - Temple Color</p>
+  <br>
 
-  {!!  Form::close() !!}
+  <p class="step-options" id ="temple_option_line">OPTION F</p>
+  <div id="temple_color_div">
+  </div>
+</div>
+
+<div style="overflow:auto;margin-top:30%;">
+  <div style="float:left;">
+    <button type="button" id="prevBtn"  onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
+  </div>
+  <div style="float:right;">
+    <button type="button" id="nextBtn" onclick="nextPrev(1)"> <i class="fa fa-arrow-right mr-2"> </i> NEXT STEP</button>
+  </div>
+</div>
+
+<!-- Circles which indicates the steps of the form: -->
+<div style="text-align:center;margin-top:40px;">
+  <span class="step"></span>
+  <span class="step"></span>
+
+</div>
+
+{!!  Form::close() !!}
 </div>
 <div class="col-md-5 full-image">
 
@@ -81,7 +119,7 @@
        <img src="{{ Voyager::image($image->image)}}" class="d-block step-image">      
      </div>
      @else
-     <div class="carousel-item"   id="{{$key}}_image_{{$image->id}}">
+     <div class="carousel-item"  id="{{$key}}_image_{{$image->id}}">
       <img src="{{ Voyager::image($image->image)}}" class=" d-block step-image">
     </div> 
     @endif 
@@ -120,52 +158,150 @@
   });
 
   $('#nextBtn').on('click', function () { 
- $('#len_color_div').html('');
-    var step = $(this).attr('data-step');
+  
 
-    if($type == 'len'){  
-      console.log( $('#len_color_div'));
-      $.ajax({
-        type:'POST',
-        url:'getLensColor',
-        data:{'option':$option,'_token':'{{csrf_token()}}'},
-        success:function(data){
-          var  all_option =data;
-          var  html = '';
-          var image = ''; 
-          $('#len_color_div').html('');
-          if(all_option!=''){
-           $.each(all_option, function(index) {
+   if($type == 'len'){  
+    console.log('len');
+    $.ajax({
+      type:'POST',
+      url:'getLensColor',
+      data:{'option':$option,'_token':'{{csrf_token()}}'},
+      success:function(data){
+        var  all_option =data;
+        var  html = '';
+        var image = ''; 
 
-            html+='<div class="form-check step-radio ">';
-            html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+' >';
-            html+='<label class="form-check-label" for="frame_options"> '+all_option[index].color_name+' <div class="options_color" style="background-color:'+all_option[index].color+' "></div> </label>'  
-            html+='</div>';   
-            image+='<div class="carousel-item"   id="len_color_image_'+all_option[index].id+'">';
-            var APP_URL = {!! json_encode(url('/')) !!}
+        if(all_option!=''){
+                  $('#len_color_div').html('');
+         $.each(all_option, function(index) {
 
-            image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
+          html+='<div class="form-check step-radio ">';
+          html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+' >';
+          html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_color" style="background-color:'+all_option[index].color+' "></div> </label>'  
+          html+='</div>';   
+          image+='<div class="carousel-item"   id="len_color_image_'+all_option[index].id+'">';
+          var APP_URL = {!! json_encode(url('/')) !!}
 
-          });
-           $('#len_color_div').append(html); 
-           $('.carousel-inner').append(image); 
+          image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
 
-          $('input[type=radio]').on('change', function() {
-            $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
-            $(".active").removeClass("active");
-            $($image).addClass("active");
-          });
+        });
+         $('#len_color_div').append(html); 
+         $('.carousel-inner').append(image); 
 
-         }else{
-            html='<label> This Len with out any color options</label>';
-            $('#len_color_div').append(html);         
-         }
-       }
+         $('input[type=radio]').on('change', function() {
+          $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
+          $(".active").removeClass("active");
+          $($image).addClass("active");
+           $option = '';
+            $type ='';
+            $option = $(this).val();
+            $type =  $(this).attr('id');
+        });
 
-     });
+       }else{
+                $('#len_color_div').html('');
+        html='<label> This Len with out any color options</label>';
+        $('#len_color_div').append(html);         
+      }
     }
 
   });
+
+  }
+  if($type == 'frame'){
+console.log('frame');
+    $.ajax({
+      type:'POST',
+      url:'getFramesColor',
+      data:{'option':$option,'_token':'{{csrf_token()}}'},
+      success:function(data){
+        var  all_option =data;
+        var  html = '';
+        var image = ''; 
+
+        if(all_option!=''){
+                  $('#frame_color_div').html('');
+         $.each(all_option, function(index) {
+
+          html+='<div class="form-check step-radio ">';
+          html+='<input class="form-check-input" type="radio" name="frame_color_options" id="frame_color" value='+all_option[index].id+' >';
+          html+='<label class="form-check-label" for="frame_color_options"> '+all_option[index].color_name+' <div class="options_color" style="background-color:'+all_option[index].color+' "></div> </label>'  
+          html+='</div>';   
+          image+='<div class="carousel-item"   id="frame_color_image_'+all_option[index].id+'">';
+          var APP_URL = {!! json_encode(url('/')) !!}
+
+          image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
+
+        });
+         $('#frame_color_div').append(html); 
+         $('.carousel-inner').append(image); 
+
+         $('input[type=radio]').on('change', function() {
+          $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
+          $(".active").removeClass("active");
+          $($image).addClass("active");
+           $option = '';
+            $type ='';
+            $option = $(this).val();
+            $type =  $(this).attr('id');
+        });
+
+       }else{
+                $('#frame_color_div').html('');
+        html='<label> This Frame with out any color options</label>';
+        $('#frame_color_div').append(html);         
+      }
+    }
+
+  });
+  }
+
+
+  if($type == 'temple'){
+console.log('temple');
+    $.ajax({
+      type:'POST',
+      url:'getTemplesColor',
+      data:{'option':$option,'_token':'{{csrf_token()}}'},
+      success:function(data){
+        var  all_option =data;
+        var  html = '';
+        var image = ''; 
+       
+        if(all_option!=''){
+         $('#temple_color_div').html('');
+         $.each(all_option, function(index) {
+
+          html+='<div class="form-check step-radio ">';
+          html+='<input class="form-check-input" type="radio" name="temple_color_options" id="temple_color" value='+all_option[index].id+' >';
+          html+='<label class="form-check-label" for="temple_color"> '+all_option[index].color_name+' <div class="options_color" style="background-color:'+all_option[index].color+' "></div> </label>'  
+          html+='</div>';   
+          image+='<div class="carousel-item"   id="temple_color_image_'+all_option[index].id+'">';
+          var APP_URL = {!! json_encode(url('/')) !!}
+
+          image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
+
+        });
+         $('#temple_color_div').append(html); 
+         $('.carousel-inner').append(image); 
+
+         $('input[type=radio]').on('change', function() {
+          $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
+          $(".active").removeClass("active");
+          $($image).addClass("active");
+        });
+
+       }else{
+         $('#temple_color_div').html('');
+        html='<label> This Temple with out any color options</label>';
+        $('#temple_color_div').append(html);         
+      }
+    }
+
+  });
+  }
+
+});
 
 </script>
 
@@ -194,7 +330,7 @@ function showTab(n) {
   }
   // ... and run a function that displays the correct step indicator:
 
-  fixStepIndicator(n)
+ // fixStepIndicator(n)
 }
 
 function nextPrev(n) {
@@ -202,7 +338,7 @@ function nextPrev(n) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
+ // if (n == 1 && !validateForm()) return false;
   // Hide the current tab:
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:

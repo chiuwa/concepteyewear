@@ -38,8 +38,8 @@ try {
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function() {
 	Route::group(['before'=>'auth'], function(){
-     Route::get('logout', 'LoginController@logout');
- });
+       Route::get('logout', 'LoginController@logout');
+   });
     Route::get('/','HomeController@home')->name('home');
     Route::get('/service','HomeController@service')->name('service');
     Route::get('/platform','HomeController@platform')->name('platform');
@@ -51,7 +51,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::get('/shopping_cart','HomeController@shopping_cart')->name('shopping_cart');
     Route::get('/user_profile','HomeController@user_profile')->name('user_profile');
     Route::post('/findOwn', 'HomeController@findOwn')->name('findOwn');
-        Route::post('/getLensColor', 'HomeController@getLensColor')->name('getLensColor');
+    Route::post('/getLensColor', 'HomeController@getLensColor')->name('getLensColor');
+    Route::post('/getFramesColor', 'HomeController@getFramesColor')->name('getFramesColor');
+    Route::post('/getTemplesColor', 'HomeController@getTemplesColor')->name('getTemplesColor'); 
     Route::get('/find_out_product', 'HomeController@find_out_product')->name('find_out_product');
     Route::post('/addtocart', 'HomeController@addtocart')->name('addtocart');
     Route::post('/clearAllItem', 'HomeController@clearAllItem')->name('clearAllItem');

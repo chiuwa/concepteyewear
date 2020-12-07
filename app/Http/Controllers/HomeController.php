@@ -83,23 +83,34 @@ class HomeController extends Controller
 		->where('deleted_at', '=', null)
 		->get();
 
+		$temples= DB::table('temples')
+		->where('deleted_at', '=', null)
+		->get();
+
 		$images['len'] = $lens;
 		$images['frame'] = $frames;
+		$images['temple'] = $temples;
 
-		return view('makeOwn', ['lens' => $lens,'frames'=>$frames,'images'=>$images]);
+		return view('makeOwn', ['lens' => $lens,'frames'=>$frames,'temples'=>$temples,'images'=>$images]);
 	}
 
 	public function findOwn(Request $request){
-
+	
 		$data = DB::table('product') 
-		->join('lens','lens.id','=','product.lens_type_id')
+		->join('lens','lens.id','=','product.lens_type_id')	
+		->join('lens_color','lens.id','=','lens_color.len_id')
+
 		->join('frames','frames.id','=','product.frames_type_id')
-		->where('lens_type_id', '=', $request->lens_options)
-		->where('frames_type_id', '=', $request->frame_options)
-		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh')	
+			->join('frames_color','frames.id','=','frames_color.frames_id')
+		//->where('lens_type_id', '=', $request->len_color_options)
+		//->where('frames_type_id', '=', $request->frame_color_options)
+			//->where('temples_type_id', '=', $request->temple_color_options)
+		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image')	
 		->orderBy('id', 'DESC')	
 		->get();
-
+	echo '<pre>';
+		print_r($data);
+		die();
 		$request->session()->put('own_product', $data);
 		return redirect()->route('find_out_product');
 
@@ -109,6 +120,27 @@ class HomeController extends Controller
 		$data= [] ;
 		$data = DB::table('lens_color') 
 		->where('len_id', '=', $request->option)
+		->get();
+
+		return $data;
+
+	}
+
+
+	public function getFramesColor(Request $request){
+		$data= [] ;
+		$data = DB::table('frames_color') 
+		->where('frames_id', '=', $request->option)
+		->get();
+
+		return $data;
+
+	}
+
+		public function getTemplesColor(Request $request){
+		$data= [] ;
+		$data = DB::table('temples_color') 
+		->where('temples_id', '=', $request->option)
 		->get();
 
 		return $data;
