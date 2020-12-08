@@ -884,6 +884,13 @@ font-size: 20px;
 margin-top: 10%;
 margin-bottom: 20%;
 }
+.textarea-cart{
+  border: 0.1px solid #ece9e7;
+  border-radius: 10px;
+  margin: 10px;
+  text-align: center;
+  width: 99%;
+}
 @media (max-width: 700px) {
 
 #add-to-cart_2{
@@ -1085,6 +1092,7 @@ margin-bottom: 20%;
  border-radius: 100px;
  margin: 10px;
  z-index: 100;
+  border: 1px solid #000000;
 }
 .own-poduct-code{
   color: #cfcfcf;

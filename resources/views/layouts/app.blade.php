@@ -151,11 +151,11 @@ $carousel  = HomeController::getCarousel();
       <div class="container">
        <div class="login_main">
 
-         <div class="member_button">
-          <a class="btn member-btn text-center" href="shopping_cart"> <i class="fa fa-shopping-cart member-icon" aria-hidden="true"></i> MY SHOPPING CART</a>
+         <div class="member_button d-flex justify-content-center">
+          <a class="btn member-btn d-flex justify-content-center" href="shopping_cart"><p> <i class="fa fa-shopping-cart member-icon mr-3" aria-hidden="true"></i> MY SHOPPING CART</p></a>
         </div>
-        <div class="member_button">
-          <a class="btn member-btn text-center" href="user_profile"><p> <i class="fa fa-user  member-icon" aria-hidden="true"></i> PROFILE SETTINGS</p></a>
+        <div class="member_button d-flex justify-content-center">
+          <a class="btn member-btn d-flex justify-content-center" href="user_profile"><p> <i class="fa fa-user member-icon mr-3" aria-hidden="true"></i> PROFILE SETTINGS</p></a>
         </div>
 
         <div class="login_submit_button">

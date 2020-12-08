@@ -72,16 +72,16 @@
 
 				<div class="col-md-3 col-6 item_other ">
 					<div class="row">
-						<div class="col-3">
+						<div class="col-4  d-flex justify-content-center">
 							<div class="qty_icon add_qty" id="{{$c['id']}}" data-price="{{$c['price']}}">
 								<i class="fa fa-plus" aria-hidden="true"></i>
 							</div>
 						</div>
-						<div class="col-6  d-flex justify-content-center">
+						<div class="col-4 d-flex justify-content-center">
 							<input type="text" id="qty_{{$c['id']}}" data-name="qty_{{$c['id']}}" data-price="{{$c['price']}}" data-id="{{$c['id']}}" class="item_qty" value="{{ $c['qty']}}">
 						</div>
-						<div class="col-3">
-							<div class="qty_icon min_qty"  id="{{$c['id']}}" data-price="{{$c['price']}}">
+						<div class="col-4  d-flex justify-content-center">
+							<div class="qty_icon min_qty "  id="{{$c['id']}}" data-price="{{$c['price']}}">
 								<i class="fa fa-minus" aria-hidden="true"></i>
 							</div>
 						</div>
@@ -93,6 +93,13 @@
 				<div class="col-md-2 col-3 d-flex justify-content-center item_other tot_price" data-price="{{$c['price']}}" id="tot_price_{{$c['id']}}">
 
 					<p>HKD${{$tot_price}}</p>
+				</div>
+				<div class="col-6 d-flex justify-content-center">
+					<input type="text"  class="textarea-cart d-flex justify-content-center" name="model-name" placeholder="Model"/>
+				</div>
+
+				<div class="col-6 d-flex justify-content-center">
+						<input type="text"  class="textarea-cart d-flex justify-content-center" name="model-dc" placeholder="Description"/>
 				</div>
 			</div>
 
