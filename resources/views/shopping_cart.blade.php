@@ -50,7 +50,7 @@
 					</div>
 				</div>
 			</div>
-
+      {!! Form::open(array('action'=>'HomeController@submitOrder','method'=>'post')) !!}
 			@foreach($cart as $key=>$c)
 			<div class="cart_item row" id="item_{{$c['id']}}">
 				<div class="col-md-5">
@@ -78,7 +78,7 @@
 							</div>
 						</div>
 						<div class="col-4 d-flex justify-content-center">
-							<input type="text" id="qty_{{$c['id']}}" data-name="qty_{{$c['id']}}" data-price="{{$c['price']}}" data-id="{{$c['id']}}" class="item_qty" value="{{ $c['qty']}}">
+							<input type="text" name="cart[{{$c['id']}}][qty]" id="qty_{{$c['id']}}" data-name="qty_{{$c['id']}}" data-price="{{$c['price']}}" data-id="{{$c['id']}}" class="item_qty" value="{{ $c['qty']}}">
 						</div>
 						<div class="col-4  d-flex justify-content-center">
 							<div class="qty_icon min_qty "  id="{{$c['id']}}" data-price="{{$c['price']}}">
@@ -95,20 +95,20 @@
 					<p>HKD${{$tot_price}}</p>
 				</div>
 				<div class="col-6 d-flex justify-content-center">
-					<input type="text"  class="textarea-cart d-flex justify-content-center" name="model-name" placeholder="Model"/>
+					<input type="text"  class="textarea-cart d-flex justify-content-center" name="cart[{{$c['id']}}][model_name]" placeholder="Model"/>
 				</div>
 
 				<div class="col-6 d-flex justify-content-center">
-						<input type="text"  class="textarea-cart d-flex justify-content-center" name="model-dc" placeholder="Description"/>
+						<input type="text"  class="textarea-cart d-flex justify-content-center" name="cart[{{$c['id']}}][model_dc]" placeholder="Description"/>
 				</div>
 			</div>
 
 			@endforeach
-
+		<div class="row flex-md-row cus-row">
 			<div class="col-md-5 d-none d-md-block">
 				<button class="btn item-clear">Clear All</button>
 			</div>
-			<div class="col-md-3 item_count  d-none d-md-block">
+			<div class="col-md-3 item_count d-none d-md-block">
 				@php $item_count = count($cart); @endphp
 				@if($item_count < 2)
 				<p id="count_2" data-count="{{$item_count}}">{{$item_count}} Item</p>
@@ -125,9 +125,12 @@
 
 		</div>
 		<div class="col-md-12 d-flex justify-content-center">
-			<button type="button"  id="add-to-cart_2" > <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i> Check—Out</button>
+
+			<button type="submit"  id="add-to-cart_2" > <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i> Check—Out</button>
 		</div>
+
 		<br>
+		{!!  Form::close() !!}
 		@else
 <div class="row flex-md-row cus-row">
 			<div class="col-12 no-item-title">

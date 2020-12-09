@@ -56,8 +56,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::post('/getTemplesColor', 'HomeController@getTemplesColor')->name('getTemplesColor'); 
     Route::get('/find_out_product', 'HomeController@find_out_product')->name('find_out_product');
     Route::post('/addtocart', 'HomeController@addtocart')->name('addtocart');
+     Route::post('/submitOrder', 'HomeController@submitOrder')->name('submitOrder');
     Route::post('/clearAllItem', 'HomeController@clearAllItem')->name('clearAllItem');
     Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfile');
+        Route::post('/updateOrder', 'HomeController@updateOrder')->name('updateOrder');
+    Route::get('/order', 'HomeController@order')->name('order');
     Route::get('/home', 'HomeController@home')->name('home');
     Route::get('/blog/view/{id}', 'BlogController@home');
     Route::post('/asking', 'HomeController@asking')->name('asking');

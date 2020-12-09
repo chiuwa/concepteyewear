@@ -21,9 +21,9 @@
           </div>
 
           <ul class="nav nav-pills nav-stacked">
-              <li class="active"><a href="#"> <i class="fa fa-user"></i>Profile</a></li>
+              <li class="active"><a href="user_profile"> <i class="fa fa-user"></i>Profile</a></li>
 
-              <li><a href="#"> <i class="fa fa-edit"></i> Order </a></li>
+              <li><a href="order"> <i class="fa fa-edit"></i> Order </a></li>
           </ul>
       </div>
   </div>

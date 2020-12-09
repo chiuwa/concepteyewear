@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use TCG\Voyager\Models\Post;
 use Session;
 use App\AskingQuery;
+use App\Order;
+use App\OrderDetail;
 use DB;
 use Redirect;
 use Auth;
+use Intervention\Image\ImageManagerStatic as Image;
 class HomeController extends Controller
 {
 
@@ -95,7 +98,7 @@ class HomeController extends Controller
 	}
 
 	public function findOwn(Request $request){
-	
+
 		$data = DB::table('product') 
 		->join('lens_color','lens_color.id','=','product.lens_type_id')
 		->join('lens','lens.id','=','lens_color.len_id')		
@@ -137,7 +140,7 @@ class HomeController extends Controller
 
 	}
 
-		public function getTemplesColor(Request $request){
+	public function getTemplesColor(Request $request){
 		$data= [] ;
 		$data = DB::table('temples_color') 
 		->where('temples_id', '=', $request->option)
@@ -189,27 +192,27 @@ class HomeController extends Controller
 	public function shopping_cart(){
 
 		if (!Auth::check()) {
-          return Redirect::to('home')
-                ->withErrors(['fail' => 'Please Login First']);
+			return Redirect::to('home')
+			->withErrors(['fail' => 'Please Login First']);
 		}
 		$cart = Session::get('cart');
 		if(isset($cart)){
-		foreach ($cart as $key => $value) {
-		$data = DB::table('product') 
-		->where('id', '=', $key)
-		->first();
-		$cart[$key]['id'] = $data->id;
-		$cart[$key]['product_name'] = $data->product_name;
-		$cart[$key]['product_name_en'] = $data->product_name_en;
-		$cart[$key]['description'] = $data->description;
-		$cart[$key]['price'] = $data->price;
-		$cart[$key]['color'] = $data->color;
-		$cart[$key]['color_name'] = $data->color_name;
-		$cart[$key]['product_image'] = $data->product_image_1;
+			foreach ($cart as $key => $value) {
+				$data = DB::table('product') 
+				->where('id', '=', $key)
+				->first();
+				$cart[$key]['id'] = $data->id;
+				$cart[$key]['product_name'] = $data->product_name;
+				$cart[$key]['product_name_en'] = $data->product_name_en;
+				$cart[$key]['description'] = $data->description;
+				$cart[$key]['price'] = $data->price;
+				$cart[$key]['color'] = $data->color;
+				$cart[$key]['color_name'] = $data->color_name;
+				$cart[$key]['product_image'] = $data->product_image_1;
+			}
+		}else{
+			$cart = [] ; 
 		}
-	}else{
-		$cart = [] ; 
-	}
 
 		return view('shopping_cart',['cart'=>$cart]);
 	}
@@ -219,22 +222,39 @@ class HomeController extends Controller
 	public function user_profile(){
 
 		if (!Auth::check()) {
-          return Redirect::to('home')
-                ->withErrors(['fail' => 'Please Login First']);
+			return Redirect::to('home')
+			->withErrors(['fail' => 'Please Login First']);
 		}
-	 	$user = Auth::user();
-	 
+		$user = Auth::user();
+
 
 		return view('user_profile',['user'=>$user]);
 	}
 
 
+	public function order(){
+
+		if (!Auth::check()) {
+			return Redirect::to('home')
+			->withErrors(['fail' => 'Please Login First']);
+		}
+
+		$user = Auth::user();
+
+		$order = DB::table('order') 
+		->where('user_id', '=', $user->id)
+		->orderBy('updated_at', 'DESC')	
+		->get();
+
+		return view('order',['user'=>$user,'order'=>$order]);
+	}
+
 
 	public function updateProfile(Request $request){
 
 		if (!Auth::check()) {
-          return Redirect::to('home')
-                ->withErrors(['fail' => 'Please Login First']);
+			return Redirect::to('home')
+			->withErrors(['fail' => 'Please Login First']);
 		}
 
 		$user = Auth::user();
@@ -255,9 +275,52 @@ class HomeController extends Controller
 			$cart[$item_id]['qty'] = 1; 
 		}
 		$request->session()->put('cart', $cart);
-			
+
 		return $cart;
 	}
+
+	public function submitOrder(Request $request){
+		$user = Auth::user();
+		$order = new Order();
+		$total_price = 0 ; 
+		try{
+			foreach ($request->cart as $key => $value) {
+				$product[$key] = DB::table('product') 
+				->where('id', '=', $key)
+				->first();
+				$total_price = (($product[$key]->price) * (  $value['qty'])) + $total_price;
+			}
+
+			$order->user_id = $user->id ; 
+			$order->total_price = $total_price ; 
+			$order->status = 'In Progress';
+			$order->created_at = date('Y-m-d H:i:s');
+			$order->updated_at = date('Y-m-d H:i:s');
+			$order->save();
+			foreach ($request->cart as $key => $value) {
+				$order_detail  = new OrderDetail();
+				$order_detail->order_id = $order->id;
+				$order_detail->product_id = $key ; 
+				$order_detail->product_price = $product[$key]->price ; 
+				$order_detail->product_qty = $value['qty']; 
+				$order_detail->detail_price = (($value['qty'])*($product[$key]->price)); 
+				$order_detail->model_name = $value['model_name']; 
+				$order_detail->model_dc = $value['model_dc']; 
+				$order_detail->created_at = date('Y-m-d H:i:s');
+				$order_detail->updated_at = date('Y-m-d H:i:s');
+				$order_detail->save();
+			}
+
+		$cart = [];
+		$request->session()->put('cart', $cart);
+			return Redirect::intended('order');
+		}catch(Exception $e){
+			return Redirect::back()->with("error",$e->getMessage());
+		}
+	}
+
+
+
 	public function clearAllItem(Request $request){
 
 		$cart = [];
@@ -265,6 +328,39 @@ class HomeController extends Controller
 
 		return $cart;
 	}
+
+	public function updateOrder(Request $request){
+		if (!Auth::check()) {
+			return Redirect::to('home')
+			->withErrors(['fail' => 'Please Login First']);
+		}
+	try{
+  		$order_id = request('order_id');
+        $imagePath = request('receipt_image')->store("uploads/receipt/{$order_id}", 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $image->save(public_path("storage/{$imagePath}"), 60);
+
+        $image->save();
+        // Save Purchase Order Data
+        // Attach User Data
+   
+		$order = DB::table('order') 
+		->where('id', '=', $order_id)
+		 ->update(['receipt_image' =>  $imagePath,'status' => 'Under Review']); 
+	
+	
+		session()->flash('success', 'Order Update Success');
+        // Redirect Route
+        return redirect('order');
+        }catch(Exception $e){
+			return Redirect::back()->with("error",$e->getMessage());
+		}
+	}
+
+
+
 
 	public function plan_asking(Request $request){
 		// $this->validate($request, [
