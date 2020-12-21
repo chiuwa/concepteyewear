@@ -11,11 +11,62 @@
   <div class="row flex-column-reverse flex-md-row">
     <div class="col-md-6 offset-md-1">
       {!! Form::open(array('action'=>'HomeController@findOwn','method'=>'post','id'=>'regForm')) !!}
-      <div class="tab active" data-id="len">
-        <p class="step-title">Step 1 - Lenes</p>
+     
+
+    <div class="tab" data-id="frame">
+      <p class="step-title">STEP 1 - Frames</p>
+      <br>
+
+      <p class="step-options">OPTION A</p>
+      @foreach($frames as $key2=>$frame)
+      <div class="form-check step-radio">
+       <input class="form-check-input" type="radio" name="frame_options" id="frame" value={{$frame->id}} >
+       <label class="form-check-label" for="frame_options">
+        {{$frame->name_en}}
+        <img src="{{ Voyager::image($frame->image)}}" class="d-block select-image">      
+      </label>
+    </div>
+    @endforeach
+  </div>
+  <div class="tab" data-id="frame_color">
+    <p class="step-title">STEP 2 - Frame Color</p>
+    <br>
+
+    <p class="step-options" id ="frame_option_line">OPTION B</p>
+    <div id="frame_color_div">
+
+         
+    </div>
+  </div>
+
+  <div class="tab" data-id="temple">
+    <p class="step-title">STEP 3 - Temples</p>
+    <br>
+
+    <p class="step-options">OPTION C</p>
+    @foreach($temples as $key2=>$temple)
+    <div class="form-check step-radio">
+     <input class="form-check-input" type="radio" name="temple_options" id="temple" value={{$temple->id}} >
+     <label class="form-check-label" for="temple_options">
+      {{$temple->name_en}}
+      <img src="{{ Voyager::image($temple->image)}}" class="d-block select-image">      
+    </label>
+  </div>
+  @endforeach
+</div>
+<div class="tab" data-id="temple_color">
+  <p class="step-title">STEP 4 - Temple Color</p>
+  <br>
+
+  <p class="step-options" id ="temple_option_line">OPTION D</p>
+  <div id="temple_color_div">
+  </div>
+</div>
+ <div class="tab active" data-id="len">
+        <p class="step-title">Step 5 - Lenes</p>
         <br>
 
-        <p class="step-options">OPTION A</p>
+        <p class="step-options">OPTION E</p>
         @foreach($lens as $key=>$len)
         <div class="form-check step-radio">
          <input class="form-check-input" type="radio" name="lens_options" id="len" value={{$len->id}} >
@@ -29,64 +80,13 @@
       @endforeach
     </div>
     <div class="tab" data-id="len_color">
-      <p class="step-title">STEP 2 - Len Color</p>
+      <p class="step-title">STEP 6 - Len Color</p>
       <br>
 
-      <p class="step-options" id ="len_option_line">OPTION B</p>
+      <p class="step-options" id ="len_option_line">OPTION F</p>
       <div id="len_color_div">
       </div>
     </div>
-
-    <div class="tab" data-id="frame">
-      <p class="step-title">STEP 3 - Frames</p>
-      <br>
-
-      <p class="step-options">OPTION C</p>
-      @foreach($frames as $key2=>$frame)
-      <div class="form-check step-radio">
-       <input class="form-check-input" type="radio" name="frame_options" id="frame" value={{$frame->id}} >
-       <label class="form-check-label" for="frame_options">
-        {{$frame->name_en}}
-        <img src="{{ Voyager::image($frame->image)}}" class="d-block select-image">      
-      </label>
-    </div>
-    @endforeach
-  </div>
-  <div class="tab" data-id="frame_color">
-    <p class="step-title">STEP 4 - Frame Color</p>
-    <br>
-
-    <p class="step-options" id ="frame_option_line">OPTION D</p>
-    <div id="frame_color_div">
-
-         
-    </div>
-  </div>
-
-  <div class="tab" data-id="temple">
-    <p class="step-title">STEP 5 - Temples</p>
-    <br>
-
-    <p class="step-options">OPTION E</p>
-    @foreach($temples as $key2=>$temple)
-    <div class="form-check step-radio">
-     <input class="form-check-input" type="radio" name="temple_options" id="temple" value={{$temple->id}} >
-     <label class="form-check-label" for="temple_options">
-      {{$temple->name_en}}
-      <img src="{{ Voyager::image($temple->image)}}" class="d-block select-image">      
-    </label>
-  </div>
-  @endforeach
-</div>
-<div class="tab" data-id="temple_color">
-  <p class="step-title">STEP 6 - Temple Color</p>
-  <br>
-
-  <p class="step-options" id ="temple_option_line">OPTION F</p>
-  <div id="temple_color_div">
-  </div>
-</div>
-
 <div style="overflow:auto;margin-top:30%;">
   <div style="float:left;">
     <button type="button" id="prevBtn"  onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
@@ -154,14 +154,15 @@
     $type ='';
     $option = $(this).val();
     $type =  $(this).attr('id');
-
+    console.log($type);
+ console.log($option);
   });
 
   $('#nextBtn').on('click', function () { 
   
 
    if($type == 'len'){  
-    console.log('len');
+
     $.ajax({
       type:'POST',
       url:'getLensColor',
@@ -172,15 +173,16 @@
         var image = ''; 
 
         if(all_option!=''){
-                  $('#len_color_div').html('');
-         $.each(all_option, function(index) {
+          $('#len_color_div').html('');
 
+         $.each(all_option, function(index) {
+        var APP_URL = {!! json_encode(url('/')) !!}
           html+='<div class="form-check step-radio ">';
           html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+' >';
-          html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_color" style="background-color:'+all_option[index].color+' "></div> </label>'  
+          html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
           html+='</div>';   
           image+='<div class="carousel-item"   id="len_color_image_'+all_option[index].id+'">';
-          var APP_URL = {!! json_encode(url('/')) !!}
+
 
           image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
 
@@ -209,7 +211,7 @@
 
   }
   if($type == 'frame'){
-console.log('frame');
+
     $.ajax({
       type:'POST',
       url:'getFramesColor',
@@ -220,15 +222,16 @@ console.log('frame');
         var image = ''; 
 
         if(all_option!=''){
-                  $('#frame_color_div').html('');
+          $('#frame_color_div').html('');
+         
          $.each(all_option, function(index) {
-
+           var APP_URL = {!! json_encode(url('/')) !!}
           html+='<div class="form-check step-radio ">';
           html+='<input class="form-check-input" type="radio" name="frame_color_options" id="frame_color" value='+all_option[index].id+' >';
-          html+='<label class="form-check-label" for="frame_color_options"> '+all_option[index].color_name+' <div class="options_color" style="background-color:'+all_option[index].color+' "></div> </label>'  
+          html+='<label class="form-check-label" for="frame_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"> </div> </label>' ; 
           html+='</div>';   
           image+='<div class="carousel-item"   id="frame_color_image_'+all_option[index].id+'">';
-          var APP_URL = {!! json_encode(url('/')) !!}
+
 
           image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
 
@@ -258,26 +261,28 @@ console.log('frame');
 
 
   if($type == 'temple'){
-console.log('temple');
+    console.log($type);
+    console.log($option);
     $.ajax({
       type:'POST',
       url:'getTemplesColor',
       data:{'option':$option,'_token':'{{csrf_token()}}'},
       success:function(data){
-        var  all_option =data;
+        var  all_option = data;
         var  html = '';
         var image = ''; 
        
         if(all_option!=''){
          $('#temple_color_div').html('');
-         $.each(all_option, function(index) {
 
+         $.each(all_option, function(index) {
+                 var APP_URL = {!! json_encode(url('/')) !!}      
           html+='<div class="form-check step-radio ">';
           html+='<input class="form-check-input" type="radio" name="temple_color_options" id="temple_color" value='+all_option[index].id+' >';
-          html+='<label class="form-check-label" for="temple_color"> '+all_option[index].color_name+' <div class="options_color" style="background-color:'+all_option[index].color+' "></div> </label>'  
+          html+='<label class="form-check-label" for="temple_color"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
           html+='</div>';   
           image+='<div class="carousel-item"   id="temple_color_image_'+all_option[index].id+'">';
-          var APP_URL = {!! json_encode(url('/')) !!}
+         
 
           image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
 
@@ -289,6 +294,10 @@ console.log('temple');
           $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
           $(".active").removeClass("active");
           $($image).addClass("active");
+             $option = '';
+            $type ='';
+            $option = $(this).val();
+            $type =  $(this).attr('id');
         });
 
        }else{

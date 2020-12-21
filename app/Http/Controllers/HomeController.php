@@ -89,15 +89,16 @@ class HomeController extends Controller
 		$temples= DB::table('temples')
 		->where('deleted_at', '=', null)
 		->get();
-
-		$images['len'] = $lens;
 		$images['frame'] = $frames;
 		$images['temple'] = $temples;
+		$images['len'] = $lens;
+
 
 		return view('makeOwn', ['lens' => $lens,'frames'=>$frames,'temples'=>$temples,'images'=>$images]);
 	}
 
 	public function findOwn(Request $request){
+
 
 		$data = DB::table('product') 
 		->join('lens_color','lens_color.id','=','product.lens_type_id')
@@ -107,13 +108,12 @@ class HomeController extends Controller
 		->join('temples_color','temples_color.id','=','product.temples_type_id')
 		->join('temples','temples.id','=','temples_color.temples_id')
 		->where('lens_type_id', '=', $request->len_color_options)
-		->where('lens_type_id', '=', $request->len_color_options)
 		->where('frames_type_id', '=', $request->frame_color_options)
 		->where('temples_type_id', '=', $request->temple_color_options)
 		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
 		->orderBy('id', 'DESC')	
 		->get();
-
+	
 		$request->session()->put('own_product', $data);
 		return redirect()->route('find_out_product');
 
@@ -196,6 +196,7 @@ class HomeController extends Controller
 			->withErrors(['fail' => 'Please Login First']);
 		}
 		$cart = Session::get('cart');
+
 		if(isset($cart)){
 			foreach ($cart as $key => $value) {
 				$data = DB::table('product') 
@@ -226,7 +227,6 @@ class HomeController extends Controller
 			->withErrors(['fail' => 'Please Login First']);
 		}
 		$user = Auth::user();
-
 
 		return view('user_profile',['user'=>$user]);
 	}
@@ -261,6 +261,7 @@ class HomeController extends Controller
 		$user->password = bcrypt($request->get('password'));
 		$user->name =$request->name;
 		$user->mobile =$request->mobile;
+		$user->address =$request->address;
 		$user->save();
 		return Redirect::back();
 	}
@@ -324,10 +325,32 @@ class HomeController extends Controller
 	public function clearAllItem(Request $request){
 
 		$cart = [];
+		//$request->session()->put('cart', $cart);
+
+		return $cart;
+	}
+
+
+
+	public function addEyeCase(Request $request){
+
+		$data = DB::table('product') 
+				->where('product_code', '=', 'eye_glasses_case')
+				->first();
+				$item_id = $data->id;
+		
+		$cart = Session::get('cart');
+
+		if(isset($cart[$item_id])){
+			$cart[$item_id]['qty'] = $cart[$item_id]['qty']+1;
+		}else{
+			$cart[$item_id]['qty'] = 1; 
+		}
 		$request->session()->put('cart', $cart);
 
 		return $cart;
 	}
+
 
 	public function updateOrder(Request $request){
 		if (!Auth::check()) {

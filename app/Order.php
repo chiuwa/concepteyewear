@@ -13,5 +13,12 @@ class Order extends Model
      */
     protected $table = 'order';
 
-
+public function order_detail()
+{
+    return $this->hasMany('App\OrderDetail');
+}
+public function product()
+{
+    return $this->hasManyThrough('App\OrderDetail','App\Product');
+}
 }

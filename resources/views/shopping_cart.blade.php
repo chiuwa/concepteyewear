@@ -12,6 +12,7 @@
 		<div class="row flex-md-row cus-row">
 			<div class="col-12  main_title_div">
 				<span class="shopping-cart-title">MY SHOPPING CART</span>
+			
 			</div>
 
 
@@ -122,7 +123,8 @@
 			<div class="col-6 col-md-2 item_count">
 				<p id="tital_price" class="pull-right">HKD${{$all_price}}</p>
 			</div>
-
+		<br>
+		<a class="btn item_eye_case">Add Eye glasses case</a>
 		</div>
 		<div class="col-md-12 d-flex justify-content-center">
 
@@ -212,6 +214,20 @@
 		$('#tital_price').text('HKD$'+new_tot_price);
 	});
 
+	$('.item_eye_case').on('click', function () {
+	
+			$.ajax({
+				type:'POST',
+				url:'addEyeCase',
+				data:{'_token':'{{csrf_token()}}'},
+				success:function(data){
+				
+					location.reload();
+				}
+
+			});
+
+	});
 
 	$('.item-clear').on('click', function () {
 
@@ -226,9 +242,12 @@
 				}
 
 			});
-		} 
+		} else{
+			return false;
+		}
 
 	});
+
 
 </script>
 

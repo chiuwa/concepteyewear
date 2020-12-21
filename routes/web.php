@@ -15,7 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+     
 });
+//Route::get('/order/index','OrderController@index')->name('order/index');
+// Route::group(['prefix' => 'admin','as' => 'voyager.', 'middleware' => 'admin.user'], function()
+// {
+//     Route::get('order/index','OrderController@index')->name('order/index');
+  
+// });
 
 try {
     $pages = \TCG\Voyager\Models\Page::all();
@@ -38,8 +45,8 @@ try {
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function() {
 	Route::group(['before'=>'auth'], function(){
-       Route::get('logout', 'LoginController@logout');
-   });
+     Route::get('logout', 'LoginController@logout');
+ });
     Route::get('/','HomeController@home')->name('home');
     Route::get('/service','HomeController@service')->name('service');
     Route::get('/platform','HomeController@platform')->name('platform');
@@ -56,10 +63,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::post('/getTemplesColor', 'HomeController@getTemplesColor')->name('getTemplesColor'); 
     Route::get('/find_out_product', 'HomeController@find_out_product')->name('find_out_product');
     Route::post('/addtocart', 'HomeController@addtocart')->name('addtocart');
-     Route::post('/submitOrder', 'HomeController@submitOrder')->name('submitOrder');
+    Route::post('/submitOrder', 'HomeController@submitOrder')->name('submitOrder');
     Route::post('/clearAllItem', 'HomeController@clearAllItem')->name('clearAllItem');
+    Route::post('/addEyeCase', 'HomeController@addEyeCase')->name('addEyeCase');
     Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfile');
-        Route::post('/updateOrder', 'HomeController@updateOrder')->name('updateOrder');
+    Route::post('/updateOrder', 'HomeController@updateOrder')->name('updateOrder');
     Route::get('/order', 'HomeController@order')->name('order');
     Route::get('/home', 'HomeController@home')->name('home');
     Route::get('/blog/view/{id}', 'BlogController@home');

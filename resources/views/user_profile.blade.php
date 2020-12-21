@@ -46,14 +46,17 @@
                   <div class="bio-row">
                       <p><span>Email </span> {!! Form::email('email', $user->email, array('class'=>'form_text user-input','disabled'=>'disabled')) !!}</p>
                   </div>
-   				<div class="bio-row">
+   			        	<div class="bio-row">
                       <p><span>Mobile </span> {!! Form::text('mobile', $user->mobile, array('class'=>'form_text user-input')) !!}</p>
                   </div>
-      
+              <div class="bio-row">
+                      <p><span>Address </span> {!! Form::text('address', $user->address , array( 'class'=>'form_text user-input')) !!}</p>
+                  </div>
 
               		<div class="bio-row">
                       <p><span>Password </span> {!! Form::text('password',null, array('placeholder'=>' New Password', 'class'=>'form_text user-input')) !!}</p>
                   </div>
+
 
                   	<div class="col-md-4 submit_button pull-right">
 						{{Form::submit('Update Profile', ['class' => 'user_submit_button' ])}}
