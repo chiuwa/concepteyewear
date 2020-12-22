@@ -33,6 +33,7 @@ class OrderController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
 
    		$dataType = Order::with('order_detail')
    		->with('order_detail.product')
+      ->orderby('updated_at','DESC')
         ->get();
        // ->toarray();
 	
