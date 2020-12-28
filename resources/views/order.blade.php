@@ -42,14 +42,36 @@
                      <p>Order Time :{{$data->created_at}} </p>
                   </div>
                     <div class="bio-row">
-                     <p>Order Status :{{$data->status}} </p>
+                     <p>Order Status :<b>{{$data->status}}</b> </p>
                   </div>
                        <div class="bio-row">
                      <p>Follow Up Salse :{{$data->follow_up_user_id}} </p>
                   </div>
+
                    <div class="bio-row full-bio-row">
                      <p>Order Totel Price : <b>HKD ${{$data->total_price}} </b></p>
                   </div>     
+
+                     <div class="bio-row full-bio-row">
+   <p>Order Detail :</p>
+  @foreach($data->order_detail as $key2 => $product) 
+            <ul>
+          <li>Product : {{$product->product->product_name_en}}</a> </li>
+          <li>Unit Price : ${{$product->product->price}}</li>
+           <li>Qty : {{$product->product_qty}}</li>
+             <li>Total  : ${{$product->detail_price}}</li>
+          <li>Code : {{$product->product->product_code}}</li>
+          @if($product->model_name !==null)
+            <li>Model : {{$product->model_name}}</li>
+            @endif
+             @if($product->model_dc !==null)
+              <li>Model DC : {{$product->product->model_dc}}</li>
+                @endif
+      </ul>
+      @endforeach
+                  </div>    
+
+
                   <div class="bio-row" style="display: none">
                       <p><span>Order Num: </span> {!! Form::text('order_id', $data->id, array('class'=>'form_text user-input')) !!}</p>
                   </div>
@@ -57,14 +79,15 @@
                    <div class="bio-row full-bio-row">
                       <p><span>Receipt : </span>  <input class="receipt_upload" type="file" name="receipt_image"/></p>
                   </div>
+                    <div class="col-md-4 submit_button pull-right">
+            {{Form::submit('Update Order', ['class' => 'user_submit_button' ])}}
+          </div>
                   @else
                      <div class="bio-row full-bio-row">
                       <p><span>Receipt : </span>   <img src="{{ Voyager::image($data->receipt_image)}}" class="d-block select-image">      </p>
                   </div>
                   @endif
-                 <div class="col-md-4 submit_button pull-right">
-            {{Form::submit('Update Order', ['class' => 'user_submit_button' ])}}
-          </div>
+               
                    {!!  Form::close() !!}
               </div>
           </div>

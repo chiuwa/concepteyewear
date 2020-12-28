@@ -117,19 +117,19 @@
 						<ul>
 							<li>
 								{{$your_product->lens_name_en}} ({{$your_product->len_color_name}})
-								<div class="col-2 own-poduct-color" style="background-color:{{$your_product->lens_color}} ">
-
-								</div>
+							<img src="{{ Voyager::image($your_product->lens_color)}}" class=" d-block step-image option_small_image">
+					
 							</li>	
 							<li>
 								{{$your_product->frames_name_en}}({{$your_product->frames_color_name}})
-								<div class="col-2 own-poduct-color" style="background-color:{{$your_product->frames_color}} ">
+							<img src="{{ Voyager::image($your_product->frames_color)}}" class=" d-block step-image option_small_image">
 
 							</li>
 
 							<li>
 								{{$your_product->temples_name_en}}({{$your_product->temples_color_name}})
-								<div class="col-2 own-poduct-color" style="background-color:{{$your_product->temples_color}} ">
+							<img src="{{ Voyager::image($your_product->temples_color)}}" class=" d-block step-image option_small_image">
+								
 
 							</li>								
 						</ul>

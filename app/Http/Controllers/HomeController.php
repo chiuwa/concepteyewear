@@ -110,10 +110,10 @@ class HomeController extends Controller
 		->where('lens_type_id', '=', $request->len_color_options)
 		->where('frames_type_id', '=', $request->frame_color_options)
 		->where('temples_type_id', '=', $request->temple_color_options)
-		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
+		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color_image as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color_image as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color_image as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
 		->orderBy('id', 'DESC')	
 		->get();
-	
+
 		$request->session()->put('own_product', $data);
 		return redirect()->route('find_out_product');
 
@@ -214,6 +214,7 @@ class HomeController extends Controller
 		}else{
 			$cart = [] ; 
 		}
+	
 
 		return view('shopping_cart',['cart'=>$cart]);
 	}
@@ -241,10 +242,12 @@ class HomeController extends Controller
 
 		$user = Auth::user();
 
-		$order = DB::table('order') 
-		->where('user_id', '=', $user->id)
-		->orderBy('updated_at', 'DESC')	
-		->get();
+
+ 		$order = Order::with('order_detail')
+   		->with('order_detail.product')
+      	->orderby('updated_at','DESC')
+        ->get();
+
 
 		return view('order',['user'=>$user,'order'=>$order]);
 	}
@@ -305,8 +308,12 @@ class HomeController extends Controller
 				$order_detail->product_price = $product[$key]->price ; 
 				$order_detail->product_qty = $value['qty']; 
 				$order_detail->detail_price = (($value['qty'])*($product[$key]->price)); 
+				if(isset($value['model_name'])){
 				$order_detail->model_name = $value['model_name']; 
+			}
+			if(isset($value['model_dc'])){
 				$order_detail->model_dc = $value['model_dc']; 
+			}
 				$order_detail->created_at = date('Y-m-d H:i:s');
 				$order_detail->updated_at = date('Y-m-d H:i:s');
 				$order_detail->save();
@@ -346,6 +353,7 @@ class HomeController extends Controller
 		}else{
 			$cart[$item_id]['qty'] = 1; 
 		}
+		$cart[$item_id]['type'] = 'case'; 
 		$request->session()->put('cart', $cart);
 
 		return $cart;

@@ -95,6 +95,7 @@
 
 					<p>HKD${{$tot_price}}</p>
 				</div>
+				@if(!isset($c['type']))
 				<div class="col-6 d-flex justify-content-center">
 					<input type="text"  class="textarea-cart d-flex justify-content-center" name="cart[{{$c['id']}}][model_name]" placeholder="Model"/>
 				</div>
@@ -102,6 +103,7 @@
 				<div class="col-6 d-flex justify-content-center">
 						<input type="text"  class="textarea-cart d-flex justify-content-center" name="cart[{{$c['id']}}][model_dc]" placeholder="Description"/>
 				</div>
+				@endif
 			</div>
 
 			@endforeach

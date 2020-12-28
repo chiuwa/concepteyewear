@@ -108,7 +108,7 @@
 <div class="col-md-5 full-image">
 
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="0" >
+  <div id="carouselExampleIndicators" class="carousel slide make-slide" data-ride="carousel" data-interval="99999">
 
    <div class="carousel-inner">
      @php $i = 0 ;  @endphp
@@ -128,14 +128,7 @@
     @endforeach
     @endforeach
   </div>
-  <a class="carousel-control-prev step-style" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon step-style-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next step-style" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon step-style-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+
 </div>
 
 </div>
