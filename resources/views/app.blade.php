@@ -77,15 +77,17 @@ $carousel  = HomeController::getCarousel();
         @endif
       </div>
       <div class="col-1">
-        <span class="vertical-mode">Workmanship</span>
+        <span class="vertical-mode">Environment</span>
       </div>
       <div class="col-1">
         <span class="left-bor"></span>
       </div>
       <div class="col-md-4 col-sm-12">
-        <span class="content-text">Abbie Top.<br>
-          I'm a paragraph. Click here to add your<br>
-        own text and edit me. It's easy.</span>
+        <span class="content-text">
+We keep sourcing<br>recycled and renewable materials in manufacturing our eyewear products.<br><br>
+ XX and XX <br> are two widely used energy-efficient materials for our design. <br><br>
+ At The Eyes Crafters,<br> we want to do more for the planet.
+</span>
       </div>
       
     </div>
@@ -97,9 +99,9 @@ $carousel  = HomeController::getCarousel();
 
     <div class="row">
       <div class="col-4">
-        <span class="content-text remove-on-mobile">Mia Shirt.<br>
-         I'm a paragraph. Click here to add your<br>
-       own text and edit me. It's easy.</span>
+        <span class="content-text remove-on-mobile">
+For every product we made,<br> we promise to uphold the highest quality standard. <br><br>Even a small metal component in the product,<br> we ensure we are using the highest class of material. 
+</span>
      </div>
      
      <div class="col-1">
@@ -107,7 +109,7 @@ $carousel  = HomeController::getCarousel();
     </div>
 
     <div class="col-1">
-      <span class="vertical-mode">Material-Recycling</span>
+      <span class="vertical-mode">The Highest Standards</span>
     </div>
     <div class="col-6 image_class">
       @php
@@ -118,9 +120,8 @@ $carousel  = HomeController::getCarousel();
       @endif
     </div>
     <div class="col-12 d-none display-on-mobile">
-      <span class="content-text-2">Melisa Coat.<br>
-        I'm a paragraph. Click here to add your<br>
-      own text and edit me. It's easy.</span>
+      <span class="content-text-2">For every product we made,<br> we promise to uphold the highest quality standard. <br><br>Even a small metal component in the product,<br> we ensure we are using the highest class of material. 
+</span>
     </div>
 
   </div>
@@ -140,7 +141,7 @@ $carousel  = HomeController::getCarousel();
       @endif
     </div>
     <div class="col-1">
-      <span class="vertical-mode">Detail-Oriented</span>
+      <span class="vertical-mode">Workmanship</span>
     </div>
     <div class="col-1">
       <span class="left-bor"></span>
@@ -148,9 +149,10 @@ $carousel  = HomeController::getCarousel();
 
 
     <div class="col-md-4 col-sm-12">
-      <span class="content-text">Melisa Coat.<br>
-        I'm a paragraph. Click here to add your<br>
-      own text and edit me. It's easy.</span>
+      <span class="content-text">
+Every pair of eyeglasses are made by a series of manufacturing processes.<br><br> To ensure the quality of our products,<br> our professional factory specialists are holding a strict code of practice to maintain the consistency.
+
+</span>
     </div>
   </div>
 
