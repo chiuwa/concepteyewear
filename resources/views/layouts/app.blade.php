@@ -60,6 +60,12 @@ $carousel  = HomeController::getCarousel();
     <div class="icon-backgroud">
      <a href="#" class="instagram"><img  class="png_icon" src="/images/instagram.png" onmouseover="ig_hover(this);" onmouseout="ig_unhover(this);"></a> 
    </div> 
+   <div class="icon-backgroud">
+     <a href="#" class="pinterest"><img  class="png_icon" src="/images/pinterest.png" onmouseover="pi_hover(this);" onmouseout="pi_unhover(this);"></a> 
+   </div> 
+   <div class="icon-backgroud">
+     <a href="#" class="twitter"><img  class="png_icon" src="/images/twitter.png" onmouseover="tw_hover(this);" onmouseout="tw_unhover(this);"></a> 
+   </div> 
  </div>
 
 
@@ -375,6 +381,21 @@ $carousel  = HomeController::getCarousel();
 
   function ig_unhover(element) {
     element.setAttribute('src', '/images/instagram.png');
+  }
+  
+   function pi_hover(element) {
+    element.setAttribute('src', '/images/pinterest_black.png');
+  }
+
+  function pi_unhover(element) {
+    element.setAttribute('src', '/images/pinterest.png');
+  }
+   function tw_hover(element) {
+    element.setAttribute('src', '/images/twitter_black.png');
+  }
+
+  function tw_unhover(element) {
+    element.setAttribute('src', '/images/twitter.png');
   }
 </script>
 
