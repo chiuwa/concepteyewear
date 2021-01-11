@@ -81,7 +81,14 @@ $carousel  = HomeController::getCarousel();
 
  <div class="nav-toggle-menu">
   <nav class="justify-content-center nav-title" style="display: flex;">
-    <a href="home"><span style="color: #000000;">{{Voyager::setting('site.title')}}</span></a>
+     @php
+        $logo = Voyager::setting('site.logo');
+        @endphp
+        @if($logo !== '')
+       <a href="home">  <img  class="responsive logo_image"  src="{{ Voyager::image($logo) }}" type="image/png"></a>
+        @else
+          <a href="home"><span style="color: #000000;">{{Voyager::setting('site.title')}}</span></a>
+        @endif
   </nav>
   <nav class="nav-menu d-flex justify-content-center non-active">
     <ul>

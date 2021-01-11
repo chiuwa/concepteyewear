@@ -101,6 +101,10 @@ main{
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+.logo_image{
+      width: 110px;
+      height: 50px;
+}
 .colorlib-loader {
   position: fixed;
   left: 0px;
@@ -177,6 +181,15 @@ main{
     .icon-bar{
       margin-left: 5px;
     }
+    .logo_image{
+      margin:  -8px;
+}
+  }
+    @media (min-width: 1366px) {
+
+    .logo_image{
+      margin:  -10px;
+}
   }
 /*--------------------------------------------------------------
 # Navigation Menu
