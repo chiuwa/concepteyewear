@@ -348,6 +348,10 @@
 <script type="text/javascript">
 	
 	$('.addtocart').on('click', function () {
+		$('.modal_bubble').css('display','block');
+		var cart_no = $('.modal_bubble').val();
+		cart_no = cart_no + 1;
+	     $('.modal_bubble').text(cart_no);
 		var cart = $('.nav-member');
 		var imgtodrag =$(this).parent('.find-image').find("img").eq(0);
 

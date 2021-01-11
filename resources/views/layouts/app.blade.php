@@ -153,17 +153,27 @@ $carousel  = HomeController::getCarousel();
        {!! \Session::get('success') !!}
           </div>
           @endif
-
+        @php 
+        $order_number  = HomeController::getOrder(); 
+        $cart_number  = HomeController::getCart(); 
+        @endphp  
       <div class="container">
        <div class="login_main">
-
+        @if($cart_number!=0)
+      <div class="modal_bubble" value ="{{$cart_number}}" >{{$cart_number}}</div>
+      @else
+        <div class="modal_bubble" style="display: none">{{$cart_number}}</div>
+      @endif
          <div class="member_button d-flex justify-content-center">
           <a class="btn member-btn d-flex justify-content-center" href="shopping_cart"><p> <i class="fa fa-shopping-cart member-icon mr-3" aria-hidden="true"></i> MY SHOPPING CART</p></a>
         </div>
+        @if($order_number!=0)
+         <div class="modal_bubble_2">{{$order_number}}</div>
+               @endif
         <div class="member_button d-flex justify-content-center">
           <a class="btn member-btn d-flex justify-content-center" href="user_profile"><p> <i class="fa fa-user member-icon mr-3" aria-hidden="true"></i> PROFILE SETTINGS</p></a>
         </div>
-
+     
         <div class="login_submit_button">
           <a class="btn logout-btn text-center" href="logout">@lang('frontend.logout')</a>
         </div>

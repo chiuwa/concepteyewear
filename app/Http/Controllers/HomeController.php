@@ -39,6 +39,49 @@ class HomeController extends Controller
 		return $carousel;					
 		exit();
 	}
+
+		public static function getOrder(){
+		
+		if (!Auth::check()) {
+			return Redirect::to('home')
+			->withErrors(['fail' => 'Please Login First']);
+		}
+
+		$user = Auth::user();
+
+
+ 		$order = Order::with('order_detail')
+   		->where('status', '<>', 'Finish')
+        ->get();
+
+        if($order){
+        	$order =count($order);
+        }else{
+        	$oder = 0 ;
+        }
+
+		return $order;					
+		exit();
+	}
+
+		public static function getCart(){
+		
+		if (!Auth::check()) {
+			return Redirect::to('home')
+			->withErrors(['fail' => 'Please Login First']);
+		}
+
+		$cart = Session::get('cart');
+
+        if($cart){
+        	$cart =count($cart);
+        }else{
+        	$cart = 0 ;
+        }
+
+		return $cart;					
+		exit();
+	}
 	
 	public function service(){
 
@@ -332,7 +375,7 @@ class HomeController extends Controller
 	public function clearAllItem(Request $request){
 
 		$cart = [];
-		//$request->session()->put('cart', $cart);
+		$request->session()->put('cart', $cart);
 
 		return $cart;
 	}

@@ -26,7 +26,7 @@
 			</div>
 
 			<div class="col-8 d-none d-block d-md-none ">
-				<button class="btn item-clear pull-right" >Clear All</button>
+				<a class="btn item-clear pull-right"  id="item-clear_1">Clear All</a>
 
 			</div>
 
@@ -109,7 +109,7 @@
 			@endforeach
 		<div class="row flex-md-row cus-row">
 			<div class="col-md-5 d-none d-md-block">
-				<button class="btn item-clear">Clear All</button>
+				<a class="btn item-clear" id="item-clear_2">Clear All</a>
 			</div>
 			<div class="col-md-3 item_count d-none d-md-block">
 				@php $item_count = count($cart); @endphp
@@ -149,7 +149,36 @@
 </main>
 
 <script type="text/javascript">
+		$('#item-clear_1').on('click', function () {
+
+			$.ajax({
+				type:'POST',
+				url:'clearAllItem',
+				data:{'_token':'{{csrf_token()}}'},
+				success:function(data){
+
+					location.reload();
+				}
+
+			});
 	
+
+	});
+
+	$('#item-clear_2').on('click', function () {
+
+			$.ajax({
+				type:'POST',
+				url:'clearAllItem',
+				data:{'_token':'{{csrf_token()}}'},
+				success:function(data){
+					location.reload();
+				}
+
+			});
+	
+
+	});
 	$('.add_qty').on('click', function () {
 		var item_id = $(this).attr('id'); 
 		var item_qty = parseInt($('#qty_'+item_id).val(),10);
@@ -231,24 +260,6 @@
 
 	});
 
-	$('.item-clear').on('click', function () {
-
-		if (confirm('Are you sure clear all product?')) {
-
-			$.ajax({
-				type:'POST',
-				url:'clearAllItem',
-				data:{'_token':'{{csrf_token()}}'},
-				success:function(data){
-					location.reload();
-				}
-
-			});
-		} else{
-			return false;
-		}
-
-	});
 
 
 </script>
