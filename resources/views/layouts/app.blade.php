@@ -84,7 +84,7 @@ $carousel  = HomeController::getCarousel();
      @php
         $logo = Voyager::setting('site.logo');
         @endphp
-        @if($logo !== '')
+        @if($logo)
        <a href="home">  <img  class="responsive logo_image"  src="{{ Voyager::image($logo) }}" type="image/png"></a>
         @else
           <a href="home"><span style="color: #000000;">{{Voyager::setting('site.title')}}</span></a>
