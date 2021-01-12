@@ -102,9 +102,9 @@ class HomeController extends Controller
 
 
 
-	public function develop(){
+	public function about(){
 
-		return view('develop');
+		return view('about');
 	}
 
 	public function lookbook(){

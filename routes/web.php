@@ -51,7 +51,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::get('/service','HomeController@service')->name('service');
     Route::get('/platform','HomeController@platform')->name('platform');
     Route::get('/design','HomeController@design')->name('design');
-    Route::get('/develop','HomeController@develop')->name('develop');
+    Route::get('/about','HomeController@about')->name('about');
     Route::get('/contact','HomeController@contact')->name('contact');
     Route::get('/lookbook','HomeController@lookbook')->name('lookbook');
     Route::get('/makeOwn','HomeController@makeOwn')->name('makeOwn');
