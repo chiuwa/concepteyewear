@@ -71,10 +71,18 @@ $carousel  = HomeController::getCarousel();
 
  <header id="header" class="fixed-top">
   <div class="container-fluid d-flex">
-
+       @php 
+        $order_number  = HomeController::getOrder(); 
+        $cart_number  = HomeController::getCart(); 
+        @endphp  
     <div class="d-flex">
      <button type="button" class="nav-toggle d-none d-lg-block title-close"><i class="fa fa-bars"></i></button>
-     <button type="button" class="nav-member"  data-toggle="modal" data-target="#LoginModal" ><img style="width: 50%;" src="/images/user.png"></button>
+     @if($order_number!=0 ||  $cart_number!=0)
+ 
+     <button type="button" class="nav-member"  data-toggle="modal" data-target="#LoginModal" ><img style="width: 45%;" src="/images/user.png"><div class="user_bubble"></div></button>     
+     @else
+      <button type="button" class="nav-member"  data-toggle="modal" data-target="#LoginModal" ><img style="width: 45%;" src="/images/user.png"></button>
+     @endif
    </div>
    <!--i class="fa fa-user-o"></i-->
  </div>
@@ -160,10 +168,7 @@ $carousel  = HomeController::getCarousel();
        {!! \Session::get('success') !!}
           </div>
           @endif
-        @php 
-        $order_number  = HomeController::getOrder(); 
-        $cart_number  = HomeController::getCart(); 
-        @endphp  
+       
       <div class="container">
        <div class="login_main">
         @if($cart_number!=0)
