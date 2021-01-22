@@ -327,6 +327,7 @@ class HomeController extends Controller
 	}
 
 	public function submitOrder(Request $request){
+
 		$user = Auth::user();
 		$order = new Order();
 		$total_price = 0 ; 
@@ -408,6 +409,11 @@ class HomeController extends Controller
 			return Redirect::to('home')
 			->withErrors(['fail' => 'Please Login First']);
 		}
+		if(request('receipt_image')==null){
+			return Redirect::to('order');
+					session()->flash('error', 'Please upload receipt file first');
+			//->withErrors(['fail' => 'Please upload receipt file first']);
+		}
 	try{
   		$order_id = request('order_id');
         $imagePath = request('receipt_image')->store("uploads/receipt/{$order_id}", 'public');
@@ -425,7 +431,7 @@ class HomeController extends Controller
 		 ->update(['receipt_image' =>  $imagePath,'status' => 'Under Review']); 
 	
 	
-		session()->flash('success', 'Order Update Success');
+		//session()->flash('success', 'Order Update Success');
         // Redirect Route
         return redirect('order');
         }catch(Exception $e){

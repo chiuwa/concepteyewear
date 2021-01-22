@@ -77,7 +77,7 @@
                   </div>
                   @if($data->receipt_image == null)
                    <div class="bio-row full-bio-row">
-                      <p><span>Receipt : </span>  <input class="receipt_upload" type="file" name="receipt_image"/></p>
+                      <p><span>Receipt : </span>  <input class="receipt_upload" type="file" name="receipt_image"/ required></p>
                   </div>
                     <div class="col-md-4 submit_button pull-right">
             {{Form::submit('Update Order', ['class' => 'user_submit_button' ])}}
