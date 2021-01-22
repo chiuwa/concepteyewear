@@ -849,6 +849,17 @@ main{
 
 
 }
+@media (min-width: 1151px) and (max-width: 1502px) {
+  .desv-modal{
+    max-width: 60% !important;
+  }
+  .login_main{
+    margin: auto;
+    width: 100%;
+  }
+
+
+}
 @media (max-width: 599px) {
 
  .desv-modal{
