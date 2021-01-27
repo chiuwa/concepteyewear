@@ -7,11 +7,11 @@
   </h1>
 </div>
 @stop
-
+ 
 @section('content')
 
 <div class="page-content browse container-fluid">
-  <table class="table table-striped">
+  <table id="example" class="table table-striped">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -31,10 +31,10 @@
      <tr>
       <th scope="row">{{$key}}</th>
       <td><a class="image-link" href="users/{{$v->user_id}}" target="_blank">{{$v->user_id}}</a> </td>
-      @if($v->receipt_image!==null)
+      @if($v->follow_up_user_id!==null)
            <td><a class="image-link" href="users/{{$v->follow_up_user_id}}" target="_blank">{{$v->follow_up_user_id}}</a> </td>
            @else
-  <td><label style="color:red">No One Follow</label></td>
+  <td><label style="color:red">N/A</label></td>
 @endif
         <td>{{$v->created_at}}</td>
       <td>${{$v->total_price}}</td>
@@ -64,15 +64,32 @@
 @endif
 </td>
    <td>{{$v->updated_at}}</td>
+   <td>
+     
+   <a href="{{ route('voyager.order.edit', $v->id) }}" class="btn btn-info">
+                <span class="glyphicon glyphicon-pencil"> {{ __('voyager::generic.edit') }}</span>&nbsp;
+</a>
+                <br><br>
+             
+
+ <a href="{{ route('custom_view','id='.$v->id) }}" class="btn btn-info">
+                <span class="glyphicon glyphicon-list-alt"> {{ __('voyager::generic.view') }}</span>&nbsp;
+               </a>
+
+ 
+   </td>
 </tr>
 
 @endforeach
 </tbody>
+
 </table>
 </div>
 @stop
+
 <script type="text/javascript">
       $(document).ready(function() {
   $('.image-link').magnificPopup({type:'image'});
 });
+
 </script>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'admin'], function () {
+    Route::get('/vendor/voyager/order/custom_view','OrderController@custom_view')->name('custom_view');
     Voyager::routes();
      
 });

@@ -21,4 +21,14 @@ public function product()
 {
     return $this->hasManyThrough('App\OrderDetail','App\Product');
 }
+
+public function customer()
+{
+    return $this->hasOne('App\User','id','user_id');
+}
+
+public function user()
+{
+    return $this->hasOne('App\User','id','follow_up_user_id');
+}
 }
