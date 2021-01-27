@@ -2,6 +2,9 @@
 
 @section('page_title', __('voyager::generic.view'))
 @section('page_header')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <h1 class="page-title">
 
 
@@ -12,7 +15,7 @@
 <a href="{{ route('voyager.order.index') }}" class="btn btn-warning">
     <span class="glyphicon glyphicon-list"> {{ __('voyager::generic.index') }}</span>&nbsp;
 </a>
-
+<button id="cmd" class="btn btn-danger">generate PDF</button>
 @if($dataType->receipt_image!==null)
 <a  href="{{Voyager::image($dataType->receipt_image)}}" target="_blank" class="btn btn-dark"> 
     <span class=" glyphicon glyphicon-picture"> Receipt </span></a>
@@ -23,6 +26,7 @@
 @stop
 
 @section('content')
+
 <style type="text/css">
     .FieldLabel
     {
@@ -49,6 +53,7 @@
       margin-top:5%;
       width: 50%;
   }
+
   @media(max-width: 900px) {
     .center {
         width: 100% !important;
@@ -56,9 +61,10 @@
 }
 
 </style>
-<div >
-    <div  class="center" id="Orders_editForm1">
-        <table style="width: 100%">
+
+<div id="content">
+    <div  class="center" id="Orders_editForm1" style="background-color: #ffffff">
+        <table   style="width: 100%" >
             <tr>
                 <td valign="top">
                     <table>
@@ -67,7 +73,7 @@
                             Oder ID:
                         </td>
                         <td>
-                            <div class="FieldPlaceholder DataOnly">
+                            <div class="FieldPlaceholder DataOnly" id="order_id" data-val="{{$dataType->id}}">
                                #{{$dataType->id}}</div>
                            </td>
                        </tr>
@@ -295,4 +301,20 @@
 </table>
 </div>
 </div>
+
+
+
+<script type="text/javascript">
+
+
+var pdf = new jsPDF('l', 'pt','a4');
+$('#cmd').click(function () {
+    var order_id = $('#order_id').attr('data-val');
+
+ pdf.addHTML($('#Orders_editForm1')[0], function () {
+     pdf.save(order_id+'_order.pdf');
+ });
+
+});
+</script>
 @stop
