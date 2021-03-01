@@ -808,6 +808,7 @@ main{
     position: relative;
     float: right;
     background-color: red;
+    color:#ffffff;
 }
 .modal_bubble_2{
     border-radius: 35px;
