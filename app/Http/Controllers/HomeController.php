@@ -136,7 +136,6 @@ class HomeController extends Controller
 		$images['temple'] = $temples;
 		$images['len'] = $lens;
 
-
 		return view('makeOwn', ['lens' => $lens,'frames'=>$frames,'temples'=>$temples,'images'=>$images]);
 	}
 
@@ -166,6 +165,8 @@ class HomeController extends Controller
 		$data= [] ;
 		$data = DB::table('lens_color') 
 		->where('len_id', '=', $request->option)
+		 ->orderBy('sort_order', 'desc')
+		  ->orderBy('updated_at', 'desc')
 		->get();
 
 		return $data;
@@ -177,6 +178,8 @@ class HomeController extends Controller
 		$data= [] ;
 		$data = DB::table('frames_color') 
 		->where('frames_id', '=', $request->option)
+		 ->orderBy('sort_order', 'desc')
+		  ->orderBy('updated_at', 'desc')
 		->get();
 
 		return $data;
@@ -187,6 +190,8 @@ class HomeController extends Controller
 		$data= [] ;
 		$data = DB::table('temples_color') 
 		->where('temples_id', '=', $request->option)
+		 ->orderBy('sort_order', 'desc')
+		  ->orderBy('updated_at', 'desc')
 		->get();
 
 		return $data;

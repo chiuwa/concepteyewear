@@ -1066,6 +1066,8 @@ margin-bottom: 20%;
 .step-radio{
   margin-bottom: 20px;
   margin-top: 20px;
+  width: 300px;
+  float: left;
 }
 
 .step-radio > input[type='radio']:after {
@@ -1179,15 +1181,25 @@ margin-bottom: 20%;
      border-radius: 30px;
      width: 80px;
      height: 30px;
+     border: 1px solid black;
 }
 .select-image{
-      width: 15%;
+      width: 40%;
     border-radius: 20px;
 }
 @media (min-width: 1400px) {
 .make-slide{
   top:15%;
 }
+
+}
+@media (max-width: 1100px) {
+.step-radio{
+
+  width: 100%;
+
+}
+
 }
 
 /*--------------------------------------------------------------

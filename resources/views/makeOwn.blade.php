@@ -26,6 +26,7 @@
         <img src="{{ Voyager::image($frame->image)}}" class="d-block select-image">      
       </label>
     </div>
+  
     @endforeach
   </div>
   <div class="tab" data-id="frame_color">
@@ -87,14 +88,16 @@
       <div id="len_color_div">
       </div>
     </div>
-<div style="overflow:auto;margin-top:30%;">
-  <div style="float:left;">
+    <br><br>
+<div style="margin-top:30%;">
+  <div style="float:left;margin-bottom:10%;">
     <button type="button" id="prevBtn"  onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
   </div>
-  <div style="float:right;">
+  <div style="float:right;margin-bottom:10%;">
     <button type="button" id="nextBtn" onclick="nextPrev(1)"> <i class="fa fa-arrow-right mr-2"> </i> NEXT STEP</button>
   </div>
 </div>
+
 
 <!-- Circles which indicates the steps of the form: -->
 <div style="text-align:center;margin-top:40px;">
