@@ -71,13 +71,14 @@ $carousel  = HomeController::getCarousel();
 
  <header id="header" class="fixed-top">
   <div class="container-fluid d-flex">
-        @if(Auth::check())
+       
+    <div class="d-flex">
+     <button type="button" class="nav-toggle d-none d-lg-block title-close"><i class="fa fa-bars"></i></button>
+      @if(Auth::check())
        @php 
         $order_number  = HomeController::getOrder(); 
         $cart_number  = HomeController::getCart(); 
         @endphp  
-    <div class="d-flex">
-     <button type="button" class="nav-toggle d-none d-lg-block title-close"><i class="fa fa-bars"></i></button>
      @if($order_number!=0 ||  $cart_number!=0)
      <button type="button" class="nav-member"  data-toggle="modal" data-target="#LoginModal" ><img style="width: 45%;" src="/images/user.png"><div class="user_bubble"></div></button>     
      @else

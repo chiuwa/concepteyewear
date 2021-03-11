@@ -26,7 +26,6 @@
         <img src="{{ Voyager::image($frame->image)}}" class="d-block select-image">      
       </label>
     </div>
-  
     @endforeach
   </div>
   <div class="tab" data-id="frame_color">
