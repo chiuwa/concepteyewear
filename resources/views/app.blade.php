@@ -20,7 +20,7 @@ $carousel  = HomeController::getCarousel();
         @if($key=='0')
         <div class="carousel-item active">
           <div class="desv-carousel-caption" >
-           <label class="desv-carousel-label">{{ Voyager::setting('site.carousel_label')}}</label>
+           <label class="desv-carousel-label">{{ Voyager::setting('site.main-carousel_label')}}</label>
            <p><a class="btn desv-carousel-buttom" href="makeOwn" role="button"><i class="fa fa-arrow-right mr-3"></i> Create Now</a>
            </p>
          </div>
