@@ -61,12 +61,14 @@
            <li>Qty : {{$product->product_qty}}</li>
              <li>Total  : ${{$product->detail_price}}</li>
           <li>Code : {{$product->product->product_code}}</li>
-          @if($product->model_name !==null)
-            <li>Model : {{$product->model_name}}</li>
-            @endif
-             @if($product->model_dc !==null)
-              <li>Model DC : {{$product->product->model_dc}}</li>
-                @endif
+         
+
+           <li>Printing instructions:</li> 
+           <ul>
+              <li>Left Inner Temple : {{$product->model_name}}</li>
+        <li>Right Inner temple : {{$product->model_dc}}</li>
+            </ul>
+           
       </ul>
       @endforeach
                   </div>    

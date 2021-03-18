@@ -50,11 +50,8 @@ $carousel  = HomeController::getCarousel();
 <div class="container-fluid d-flex main-fluid  wow fadeIn">
   <div class="main-introduction">
     <span class="main-introduction-title">We Are @yield('title').</span>
-    <br>
-    <span class="main-introduction-dc">It 's time to make moves.</span>
-    <br><br>
-    <span class="main-introduction-dc">Our one-stop solution can help you to bring your dreams into reality, combine with our experienced operation team.
-    To provide clients with not only products but also design, packaging, logistics and further services.</span>
+    <br> <br>
+   {!! Voyager::setting('site.main-introduction-dc') !!}
   </div>
 </div>
 
@@ -84,9 +81,7 @@ $carousel  = HomeController::getCarousel();
       </div>
       <div class="col-md-4 col-sm-12">
         <span class="content-text">
-We keep sourcing<br>recycled and renewable materials in manufacturing our eyewear products.<br><br>
- XX and XX <br> are two widely used energy-efficient materials for our design. <br><br>
- At The Eyes Crafters,<br> we want to do more for the planet.
+          {!! Voyager::setting('site.content-text_1') !!}
 </span>
       </div>
       
@@ -100,7 +95,8 @@ We keep sourcing<br>recycled and renewable materials in manufacturing our eyewea
     <div class="row">
       <div class="col-4">
         <span class="content-text remove-on-mobile">
-For every product we made,<br> we promise to uphold the highest quality standard. <br><br>Even a small metal component in the product,<br> we ensure we are using the highest class of material. 
+           {!! Voyager::setting('site.content-text_2') !!}
+
 </span>
      </div>
      
@@ -120,7 +116,9 @@ For every product we made,<br> we promise to uphold the highest quality standard
       @endif
     </div>
     <div class="col-12 d-none display-on-mobile">
-      <span class="content-text-2">For every product we made,<br> we promise to uphold the highest quality standard. <br><br>Even a small metal component in the product,<br> we ensure we are using the highest class of material. 
+      <span class="content-text-2">
+ {!! Voyager::setting('site.content-text_3') !!}
+   
 </span>
     </div>
 
