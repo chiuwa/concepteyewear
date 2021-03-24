@@ -93,7 +93,7 @@ $carousel  = HomeController::getCarousel();
   <section class="wow fadeIn section-div">
 
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <span class="content-text remove-on-mobile">
            {!! Voyager::setting('site.content-text_2') !!}
 
@@ -104,7 +104,7 @@ $carousel  = HomeController::getCarousel();
       <span class="left-bor"></span>
     </div>
 
-    <div class="col-1">
+    <div class="col-2">
       <span class="vertical-mode">The Highest Standards</span>
     </div>
     <div class="col-6 image_class">
