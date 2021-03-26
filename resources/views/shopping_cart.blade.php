@@ -7,6 +7,9 @@
 
 
 <main>
+	@if(Session::has('message'))
+<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+@endif
 	<div class="container wow fadeIn ">
 		@if(count($cart)>0)
 		<div class="row flex-md-row cus-row">
@@ -68,7 +71,7 @@
 
 				<div class="col-md-2 col-3 item_other d-flex justify-content-center">
 
-					<p>HKD${{ $c['price']}}</p>
+					<p>USD${{ $c['price']}}</p>
 				</div>
 
 				<div class="col-md-3 col-6 item_other ">
@@ -79,21 +82,27 @@
 							</div>
 						</div>
 						<div class="col-4 d-flex justify-content-center">
-							<input type="text" name="cart[{{$c['id']}}][qty]" id="qty_{{$c['id']}}" data-name="qty_{{$c['id']}}" data-price="{{$c['price']}}" data-id="{{$c['id']}}" class="item_qty" value="{{ $c['qty']}}">
+							<input type="text" name="cart[{{$c['id']}}][qty]" id="qty_{{$c['id']}}" data-name="qty_{{$c['id']}}" data-price="{{$c['price']}}" data-id="{{$c['id']}}" class="item_qty" value="{{ $c['qty'] > 50 ? $c['qty']: 50 }}">
 						</div>
 						<div class="col-4  d-flex justify-content-center">
-							<div class="qty_icon min_qty "  id="{{$c['id']}}" data-price="{{$c['price']}}">
+							<div class="qty_icon min_qty "  id="{{$c['id']}}" data-price="{{ $c['price']}}">
 								<i class="fa fa-minus" aria-hidden="true"></i>
 							</div>
 						</div>
 					</div>
 				</div>
-				@php $tot_price = $c['qty']* $c['price'] ; 
+				@php 
+				if($c['qty']>50){
+				$tot_price = $c['qty']* $c['price'] ; 
 				$all_price = $all_price + $tot_price;
+				}else{
+				$tot_price = 50* $c['price'] ; 
+				$all_price = $all_price + $tot_price;
+				}
 				@endphp
 				<div class="col-md-2 col-3 d-flex justify-content-center item_other tot_price" data-price="{{$c['price']}}" id="tot_price_{{$c['id']}}">
 
-					<p>HKD${{$tot_price}}</p>
+					<p>USD${{$tot_price}}</p>
 				</div>
 				@if(!isset($c['type']))
 				<label class="col-12 text-center">Printing instructions:</label>
@@ -124,7 +133,7 @@
 				<p>Grand Total</p>
 			</div>
 			<div class="col-6 col-md-2 item_count">
-				<p id="tital_price" class="pull-right">HKD${{$all_price}}</p>
+				<p id="tital_price" class="pull-right">USD${{$all_price}}</p>
 			</div>
 		<br>
 		<a class="btn item_eye_case">Add Eye glasses case</a>
@@ -183,18 +192,20 @@
 	$('.add_qty').on('click', function () {
 		var item_id = $(this).attr('id'); 
 		var item_qty = parseInt($('#qty_'+item_id).val(),10);
+		console.log(item_qty);
+
 		var new_item_qty = item_qty+1; 
 		var item_price = parseInt($(this).attr('data-price'),10); 
 		var new_item_price = item_price*new_item_qty;
 		$('#qty_'+item_id).val(new_item_qty);
-		$('#tot_price_'+item_id).text('HKD$'+new_item_price);
+		$('#tot_price_'+item_id).text('USD$'+new_item_price);
 		$('#tot_price_'+item_id).attr('data-price',new_item_price) ;
 		var new_tot_price = 0 ;
 		$(".cart_item").each(function(){
 			var tot_price = parseInt($(this).find(".tot_price").attr('data-price'),10);
 			new_tot_price = tot_price + new_tot_price;
 		});
-		$('#tital_price').text('HKD$'+new_tot_price);
+		$('#tital_price').text('USD$'+new_tot_price);
 	});
 
 
@@ -202,7 +213,7 @@
 		var item_id = $(this).attr('id'); 
 		var item_qty = parseInt($('#qty_'+item_id).val(),10);
 		var new_item_qty = item_qty-1; 
-		if (new_item_qty < 1  ){
+		if (new_item_qty < 50  ){
 			$('#item_'+item_id).remove();
 			var now_count_1 = parseInt($('#count_1').attr('data-count'),10);
 
@@ -220,14 +231,14 @@
 		var item_price = parseInt($(this).attr('data-price'),10); 
 		var new_item_price = item_price*new_item_qty;
 		$('#qty_'+item_id).val(new_item_qty);
-		$('#tot_price_'+item_id).text('HKD$'+new_item_price);
+		$('#tot_price_'+item_id).text('USD$'+new_item_price);
 		$('#tot_price_'+item_id).attr('data-price',new_item_price) ;
 		var new_tot_price = 0 ;
 		$(".cart_item").each(function(){
 			var tot_price = parseInt($(this).find(".tot_price").attr('data-price'),10);
 			new_tot_price = tot_price + new_tot_price;
 		});
-		$('#tital_price').text('HKD$'+new_tot_price);
+		$('#tital_price').text('USD$'+new_tot_price);
 
 	});
 
@@ -236,14 +247,14 @@
 		var item_qty = parseInt($(this).val(),10);
 		var item_price = parseInt($(this).attr('data-price'),10);
 		var new_item_price = item_qty*item_price;
-		$('#tot_price_'+item_id).text('HKD$'+new_item_price);
+		$('#tot_price_'+item_id).text('USD$'+new_item_price);
 		$('#tot_price_'+item_id).attr('data-price',new_item_price) ;
 		var new_tot_price = 0 ;
 		$(".cart_item").each(function(){
 			var tot_price = parseInt($(this).find(".tot_price").attr('data-price'),10);
 			new_tot_price = tot_price + new_tot_price;
 		});
-		$('#tital_price').text('HKD$'+new_tot_price);
+		$('#tital_price').text('USD$'+new_tot_price);
 	});
 
 	$('.item_eye_case').on('click', function () {

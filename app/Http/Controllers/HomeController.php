@@ -336,14 +336,29 @@ class HomeController extends Controller
 		$user = Auth::user();
 		$order = new Order();
 		$total_price = 0 ; 
+		$total_qty = 0 ; 
+			
 		try{
 			foreach ($request->cart as $key => $value) {
 				$product[$key] = DB::table('product') 
 				->where('id', '=', $key)
 				->first();
 				$total_price = (($product[$key]->price) * (  $value['qty'])) + $total_price;
+				$total_qty = $total_qty + $value['qty'];
+			if($value['qty'] < 50){
+			Session::flash('message', 'Each item min 50 qty'); 
+			Session::flash('alert-class', 'alert-danger'); 
+			return Redirect::to('shopping_cart')
+			->withErrors(['fail' => 'Min 100 total qty for each order']);
+				}
 			}
-
+			if($total_qty < 100){
+			Session::flash('message', 'Min 100 total qty for each order'); 
+			Session::flash('alert-class', 'alert-danger'); 
+			return Redirect::to('shopping_cart')
+			->withErrors(['fail' => 'Min 100 total qty for each order']);
+			}
+			
 			$order->user_id = $user->id ; 
 			$order->total_price = $total_price ; 
 			$order->status = 'In Progress';
