@@ -13,11 +13,14 @@
 	<div class="container wow fadeIn ">
 		@if(count($cart)>0)
 		<div class="row flex-md-row cus-row">
+				<div class="col-9 d-flex">
+			<a href="makeOwn"  class="text-center" id="add-to-cart_2" > Find More Item ?</a>
+		</div>
 			<div class="col-12  main_title_div">
 				<span class="shopping-cart-title">MY SHOPPING CART</span>
 			
 			</div>
-
+	
 
 			<div class="col-4 item_count d-none d-block d-md-none">
 				@php $item_count = count($cart); $all_price = 0 ; @endphp
@@ -145,6 +148,7 @@
 
 		<br>
 		{!!  Form::close() !!}
+
 		@else
 <div class="row flex-md-row cus-row">
 			<div class="col-12 no-item-title">
