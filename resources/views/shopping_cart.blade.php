@@ -13,9 +13,7 @@
 	<div class="container wow fadeIn ">
 		@if(count($cart)>0)
 		<div class="row flex-md-row cus-row">
-				<div class="col-9 d-flex">
-			<a href="makeOwn"  class="text-center" id="add-to-cart_2" > Find More Item ?</a>
-		</div>
+			
 			<div class="col-12  main_title_div">
 				<span class="shopping-cart-title">MY SHOPPING CART</span>
 			
@@ -80,16 +78,18 @@
 				<div class="col-md-3 col-6 item_other ">
 					<div class="row">
 						<div class="col-4  d-flex justify-content-center">
-							<div class="qty_icon add_qty" id="{{$c['id']}}" data-price="{{$c['price']}}">
-								<i class="fa fa-plus" aria-hidden="true"></i>
+							<div class="qty_icon min_qty "  id="{{$c['id']}}" data-price="{{ $c['price']}}">
+								<i class="fa fa-minus" aria-hidden="true"></i>
 							</div>
 						</div>
+
 						<div class="col-4 d-flex justify-content-center">
 							<input type="text" name="cart[{{$c['id']}}][qty]" id="qty_{{$c['id']}}" data-name="qty_{{$c['id']}}" data-price="{{$c['price']}}" data-id="{{$c['id']}}" class="item_qty" value="{{ $c['qty'] > 50 ? $c['qty']: 50 }}">
 						</div>
-						<div class="col-4  d-flex justify-content-center">
-							<div class="qty_icon min_qty "  id="{{$c['id']}}" data-price="{{ $c['price']}}">
-								<i class="fa fa-minus" aria-hidden="true"></i>
+					
+							<div class="col-4  d-flex justify-content-center">
+							<div class="qty_icon add_qty" id="{{$c['id']}}" data-price="{{$c['price']}}">
+								<i class="fa fa-plus" aria-hidden="true"></i>
 							</div>
 						</div>
 					</div>
@@ -135,12 +135,18 @@
 			<div class="col-6 col-md-2 item_count">
 				<p>Grand Total</p>
 			</div>
+
 			<div class="col-6 col-md-2 item_count">
 				<p id="tital_price" class="pull-right">USD${{$all_price}}</p>
 			</div>
 		<br>
+		<div class="col-md-6 ">
 		<a class="btn item_eye_case">Add Eye glasses case</a>
+</div>
+	<div class="col-md-6 ">
+		<a href="makeOwn"  class="btn find_more" >Find More Item</a>
 		</div>
+	</div>
 		<div class="col-md-12 d-flex justify-content-center">
 
 			<button type="submit"  id="add-to-cart_2" > <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i> Check—Out</button>
@@ -198,7 +204,7 @@
 		var item_qty = parseInt($('#qty_'+item_id).val(),10);
 		console.log(item_qty);
 
-		var new_item_qty = item_qty+1; 
+		var new_item_qty = item_qty+50; 
 		var item_price = parseInt($(this).attr('data-price'),10); 
 		var new_item_price = item_price*new_item_qty;
 		$('#qty_'+item_id).val(new_item_qty);
@@ -216,12 +222,12 @@
 	$('.min_qty').on('click', function () {
 		var item_id = $(this).attr('id'); 
 		var item_qty = parseInt($('#qty_'+item_id).val(),10);
-		var new_item_qty = item_qty-1; 
+		var new_item_qty = item_qty-50; 
 		if (new_item_qty < 50  ){
 			$('#item_'+item_id).remove();
 			var now_count_1 = parseInt($('#count_1').attr('data-count'),10);
 
-			var now_count = now_count_1 - 1; 
+			var now_count = now_count_1 - 50; 
 			$('#count_1').attr('data-count',now_count) ;
 
 			if(now_count > 1){

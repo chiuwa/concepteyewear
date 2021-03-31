@@ -954,10 +954,22 @@ main{
   background-color: #000000;
   color: #ffffff  !important;;
   text-transform:capitalize;
-  font-weight: 600;
+  font-weight: 550;
   letter-spacing: 2px;
-  border-radius: 50px;
+  border-radius: 10px;
   opacity: 0.7;
+
+}
+.find_more{
+    background-color: #000000;
+  color: #ffffff  !important;;
+  text-transform:capitalize;
+  font-weight: 550;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  opacity: 0.7;
+  float: right;
+
 }
 .item_count{
   margin-top: 15px;
@@ -998,7 +1010,14 @@ margin-bottom: 20%;
 #add-to-cart_2{
   width: 90%;
 }
+.item_eye_case{
 
+width: auto !important;
+}
+.find_more{
+width: auto !important;
+float: left!important;
+}
 }
 
 /*--------------------------------------------------------------
