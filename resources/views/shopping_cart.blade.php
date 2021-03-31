@@ -144,7 +144,7 @@
 		<a class="btn item_eye_case">Add Eye glasses case</a>
 </div>
 	<div class="col-md-6 ">
-		<a href="makeOwn"  class="btn find_more" >Find More Item</a>
+		<a href="makeOwn"  class="btn find_more" >Find More Items</a>
 		</div>
 	</div>
 		<div class="col-md-12 d-flex justify-content-center">
