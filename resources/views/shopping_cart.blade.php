@@ -229,7 +229,7 @@
   		$('#item_'+item_id).remove();
 			var now_count_1 = parseInt($('#count_1').attr('data-count'),10);
 
-			var now_count = now_count_1 - 50; 
+			var now_count = now_count_1 - 1; 
 			$('#count_1').attr('data-count',now_count) ;
 
 			if(now_count > 1){
