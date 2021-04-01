@@ -65,7 +65,7 @@
 						</div>
 						<div class="col-8">
 							<p class="item_name">{{ $c['product_name_en']}}</p>
-							<p>{{ $c['description']}}</p>
+							{!! $c['description']!!}
 						</div>
 					</div>
 				</div>
@@ -103,7 +103,7 @@
 				$all_price = $all_price + $tot_price;
 				}
 				@endphp
-				<div class="col-md-2 col-3 d-flex justify-content-center item_other tot_price" data-price="{{$c['price']}}" id="tot_price_{{$c['id']}}">
+				<div class="col-md-2 col-3 d-flex justify-content-center item_other tot_price" data-price="{{$tot_price}}" id="tot_price_{{$c['id']}}">
 
 					<p>USD${{$tot_price}}</p>
 				</div>
@@ -224,7 +224,9 @@
 		var item_qty = parseInt($('#qty_'+item_id).val(),10);
 		var new_item_qty = item_qty-50; 
 		if (new_item_qty < 50  ){
-			$('#item_'+item_id).remove();
+
+	if (confirm('Remove Item?')) {
+  		$('#item_'+item_id).remove();
 			var now_count_1 = parseInt($('#count_1').attr('data-count'),10);
 
 			var now_count = now_count_1 - 50; 
@@ -237,6 +239,9 @@
 				$('#count_1').text(now_count+' Item');
 				$('#count_2').text(now_count+' Item');
 			}
+				}else{
+					 new_item_qty = 50;
+				}			
 		}
 		var item_price = parseInt($(this).attr('data-price'),10); 
 		var new_item_price = item_price*new_item_qty;
@@ -246,6 +251,7 @@
 		var new_tot_price = 0 ;
 		$(".cart_item").each(function(){
 			var tot_price = parseInt($(this).find(".tot_price").attr('data-price'),10);
+
 			new_tot_price = tot_price + new_tot_price;
 		});
 		$('#tital_price').text('USD$'+new_tot_price);

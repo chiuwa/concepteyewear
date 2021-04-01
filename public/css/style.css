@@ -1279,7 +1279,7 @@ float: left!important;
   letter-spacing: 2px;
 }
 .description{
-  height:80px;
+  min-height:80px;
   margin-bottom: 30px;
 }
 .card {

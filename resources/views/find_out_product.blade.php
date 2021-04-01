@@ -135,9 +135,9 @@
 						</ul>
 					</div>
 					<div class="col-12 own-poduct-description ">
-						<p>
-							{{$your_product->description}}
-						</p>
+
+							{!! $your_product->description !!}
+				
 					</div>
 					<div class="col-12 own-poduct-add-cart find-image">
 						@if($your_product->product_image_1!==null)
@@ -195,7 +195,9 @@
 					<h5>{{$other_1->product_name_en}}</h5>
 					<p class="price">HK${{$other_1->price}}</p>
 	
-					<p class="description">{{$other_1->description}}</p>
+					<div class="description">
+						{!!$other_1->description!!}
+					</div>
 					@if($other_1->product_image_1!==null)
 						<img src="{{Voyager::image($other_1->product_image_1)}}" alt="item" style="display: none;" />
 						@else
@@ -245,7 +247,7 @@
 					<h5>{{$other_2->product_name_en}}</h5>
 					<p class="price">HK${{$other_2->price}}</p>
 		
-					<p class="description">{{$other_2->description}}</p>
+					<div class="description">{!!$other_2->description!!}</div>
 							@if($other_2->product_image_1!==null)
 						<img src="{{Voyager::image($other_2->product_image_1)}}" alt="item" style="display: none;" />
 						@else
