@@ -991,6 +991,7 @@ main{
 .item_sm_title{
   font-size: 18px;
   color: #828282;
+  text-align: center;
 }
 .no-item-title{
 font-weight: 800;

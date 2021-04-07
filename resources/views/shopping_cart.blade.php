@@ -51,7 +51,7 @@
 
 					<div class="col-md-2">
 
-						<p class="item_sm_title"> Totle</p>
+						<p class="item_sm_title"> Total</p>
 					</div>
 				</div>
 			</div>
