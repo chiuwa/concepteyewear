@@ -9,10 +9,10 @@
 <main>
 	<div class="container wow fadeIn">
 		<div class="row flex-md-row">
-
+		
 			@if (isset($data[0]))
 
-			@php $your_product = $data[0]; @endphp
+			@php $your_product = $data[0];@endphp
 
 			<div class="col-md-6 full-image">
 

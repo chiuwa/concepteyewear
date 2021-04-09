@@ -8,6 +8,7 @@ use Session;
 use App\AskingQuery;
 use App\Order;
 use App\OrderDetail;
+use App\Product;
 use DB;
 use Redirect;
 use Auth;
@@ -40,7 +41,7 @@ class HomeController extends Controller
 		exit();
 	}
 
-		public static function getOrder(){
+	public static function getOrder(){
 		
 		if (!Auth::check()) {
 			return Redirect::to('home')
@@ -50,21 +51,21 @@ class HomeController extends Controller
 		$user = Auth::user();
 
 
- 		$order = Order::with('order_detail')
-   		->where('status', '<>', 'Finish')
-        ->get();
+		$order = Order::with('order_detail')
+		->where('status', '<>', 'Finish')
+		->get();
 
-        if($order){
-        	$order =count($order);
-        }else{
-        	$oder = 0 ;
-        }
+		if($order){
+			$order =count($order);
+		}else{
+			$oder = 0 ;
+		}
 
 		return $order;					
 		exit();
 	}
 
-		public static function getCart(){
+	public static function getCart(){
 		
 		if (!Auth::check()) {
 			return Redirect::to('home')
@@ -73,11 +74,11 @@ class HomeController extends Controller
 
 		$cart = Session::get('cart');
 
-        if($cart){
-        	$cart =count($cart);
-        }else{
-        	$cart = 0 ;
-        }
+		if($cart){
+			$cart =count($cart);
+		}else{
+			$cart = 0 ;
+		}
 
 		return $cart;					
 		exit();
@@ -156,17 +157,64 @@ class HomeController extends Controller
 		->orderBy('id', 'DESC')	
 		->get();
 
-		$request->session()->put('own_product', $data);
-		return redirect()->route('find_out_product');
+		if(!isset($data[0]) ){
 
+			$lens = DB::table('lens_color')
+			->where('id','=',$request->len_color_options)
+			->first();
+			$frames = DB::table('frames_color')
+			->where('id','=',$request->frame_color_options)
+			->first();
+			$temples = DB::table('temples_color')
+			->where('id','=',$request->temple_color_options)
+			->first();
+
+			$model = new Product();
+			$name = $lens->name .'-'. $frames->name .'-'. $temples->name.'_'.'G'.time();
+			$model->product_name = $name;
+			$model->product_name_en = $name;
+			$model->price = 100 ; 
+			if(isset($lens->option_price)&&$lens->option_price!=0){
+				$model->price = 100 + $lens->option_price ; 
+			}
+			$model->created_at = date("Y-m-d H:i:s");    
+			$model->updated_at = date("Y-m-d H:i:s");    
+			$model->product_code = uniqid();
+			$model->lens_type_id = $request->len_color_options;
+			$model->frames_type_id = $request->frame_color_options;
+			$model->temples_type_id = $request->temple_color_options;
+			$model->description = 'Make Own Generator Product';
+			$model->save();
+	
+		$data = DB::table('product') 
+		->join('lens_color','lens_color.id','=','product.lens_type_id')
+		->join('lens','lens.id','=','lens_color.len_id')		
+		->join('frames_color','frames_color.id','=','product.frames_type_id')
+		->join('frames','frames.id','=','frames_color.frames_id')
+		->join('temples_color','temples_color.id','=','product.temples_type_id')
+		->join('temples','temples.id','=','temples_color.temples_id')
+		->where('lens_type_id', '=', $request->len_color_options)
+		->where('frames_type_id', '=', $request->frame_color_options)
+		->where('temples_type_id', '=', $request->temple_color_options)
+		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color_image as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color_image as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color_image as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
+		->orderBy('id', 'DESC')	
+		->get();
+
+			$request->session()->put('own_product', $data);
+			return redirect()->route('find_out_product');
+		}else{
+			$request->session()->put('own_product', $data);
+			return redirect()->route('find_out_product');
+
+		}
 	}
 
 	public function getLensColor(Request $request){
 		$data= [] ;
 		$data = DB::table('lens_color') 
 		->where('len_id', '=', $request->option)
-		 ->orderBy('sort_order', 'desc')
-		  ->orderBy('updated_at', 'desc')
+		->orderBy('sort_order', 'desc')
+		->orderBy('updated_at', 'desc')
 		->get();
 
 		return $data;
@@ -178,8 +226,8 @@ class HomeController extends Controller
 		$data= [] ;
 		$data = DB::table('frames_color') 
 		->where('frames_id', '=', $request->option)
-		 ->orderBy('sort_order', 'desc')
-		  ->orderBy('updated_at', 'desc')
+		->orderBy('sort_order', 'desc')
+		->orderBy('updated_at', 'desc')
 		->get();
 
 		return $data;
@@ -190,8 +238,8 @@ class HomeController extends Controller
 		$data= [] ;
 		$data = DB::table('temples_color') 
 		->where('temples_id', '=', $request->option)
-		 ->orderBy('sort_order', 'desc')
-		  ->orderBy('updated_at', 'desc')
+		->orderBy('sort_order', 'desc')
+		->orderBy('updated_at', 'desc')
 		->get();
 
 		return $data;
@@ -262,7 +310,7 @@ class HomeController extends Controller
 		}else{
 			$cart = [] ; 
 		}
-	
+
 
 		return view('shopping_cart',['cart'=>$cart]);
 	}
@@ -291,10 +339,10 @@ class HomeController extends Controller
 		$user = Auth::user();
 
 
- 		$order = Order::with('order_detail')
-   		->with('order_detail.product')
-      	->orderby('updated_at','DESC')
-        ->get();
+		$order = Order::with('order_detail')
+		->with('order_detail.product')
+		->orderby('updated_at','DESC')
+		->get();
 
 
 		return view('order',['user'=>$user,'order'=>$order]);
@@ -337,7 +385,7 @@ class HomeController extends Controller
 		$order = new Order();
 		$total_price = 0 ; 
 		$total_qty = 0 ; 
-			
+
 		try{
 			foreach ($request->cart as $key => $value) {
 				$product[$key] = DB::table('product') 
@@ -345,18 +393,18 @@ class HomeController extends Controller
 				->first();
 				$total_price = (($product[$key]->price) * (  $value['qty'])) + $total_price;
 				$total_qty = $total_qty + $value['qty'];
-			if($value['qty'] < 50){
-			Session::flash('message', 'Each item min 50 qty'); 
-			Session::flash('alert-class', 'alert-danger'); 
-			return Redirect::to('shopping_cart')
-			->withErrors(['fail' => 'Min 100 total qty for each order']);
+				if($value['qty'] < 50){
+					Session::flash('message', 'Each item min 50 qty'); 
+					Session::flash('alert-class', 'alert-danger'); 
+					return Redirect::to('shopping_cart')
+					->withErrors(['fail' => 'Min 100 total qty for each order']);
 				}
 			}
 			if($total_qty < 100){
-			Session::flash('message', 'Min 100 total qty for each order'); 
-			Session::flash('alert-class', 'alert-danger'); 
-			return Redirect::to('shopping_cart')
-			->withErrors(['fail' => 'Min 100 total qty for each order']);
+				Session::flash('message', 'Min 100 total qty for each order'); 
+				Session::flash('alert-class', 'alert-danger'); 
+				return Redirect::to('shopping_cart')
+				->withErrors(['fail' => 'Min 100 total qty for each order']);
 			}
 			
 			$order->user_id = $user->id ; 
@@ -373,18 +421,18 @@ class HomeController extends Controller
 				$order_detail->product_qty = $value['qty']; 
 				$order_detail->detail_price = (($value['qty'])*($product[$key]->price)); 
 				if(isset($value['model_name'])){
-				$order_detail->model_name = $value['model_name']; 
-			}
-			if(isset($value['model_dc'])){
-				$order_detail->model_dc = $value['model_dc']; 
-			}
+					$order_detail->model_name = $value['model_name']; 
+				}
+				if(isset($value['model_dc'])){
+					$order_detail->model_dc = $value['model_dc']; 
+				}
 				$order_detail->created_at = date('Y-m-d H:i:s');
 				$order_detail->updated_at = date('Y-m-d H:i:s');
 				$order_detail->save();
 			}
 
-		$cart = [];
-		$request->session()->put('cart', $cart);
+			$cart = [];
+			$request->session()->put('cart', $cart);
 			return Redirect::intended('order');
 		}catch(Exception $e){
 			return Redirect::back()->with("error",$e->getMessage());
@@ -406,9 +454,9 @@ class HomeController extends Controller
 	public function addEyeCase(Request $request){
 
 		$data = DB::table('product') 
-				->where('product_code', '=', 'eye_glasses_case')
-				->first();
-				$item_id = $data->id;
+		->where('product_code', '=', 'eye_glasses_case')
+		->first();
+		$item_id = $data->id;
 		
 		$cart = Session::get('cart');
 
@@ -431,30 +479,30 @@ class HomeController extends Controller
 		}
 		if(request('receipt_image')==null){
 			return Redirect::to('order');
-					session()->flash('error', 'Please upload receipt file first');
+			session()->flash('error', 'Please upload receipt file first');
 			//->withErrors(['fail' => 'Please upload receipt file first']);
 		}
-	try{
-  		$order_id = request('order_id');
-        $imagePath = request('receipt_image')->store("uploads/receipt/{$order_id}", 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $image->save(public_path("storage/{$imagePath}"), 60);
+		try{
+			$order_id = request('order_id');
+			$imagePath = request('receipt_image')->store("uploads/receipt/{$order_id}", 'public');
+			$image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
+				$constraint->aspectRatio();
+			});
+			$image->save(public_path("storage/{$imagePath}"), 60);
 
-        $image->save();
+			$image->save();
         // Save Purchase Order Data
         // Attach User Data
-   
-		$order = DB::table('order') 
-		->where('id', '=', $order_id)
-		 ->update(['receipt_image' =>  $imagePath,'status' => 'Under Review']); 
-	
-	
+
+			$order = DB::table('order') 
+			->where('id', '=', $order_id)
+			->update(['receipt_image' =>  $imagePath,'status' => 'Under Review']); 
+
+
 		//session()->flash('success', 'Order Update Success');
         // Redirect Route
-        return redirect('order');
-        }catch(Exception $e){
+			return redirect('order');
+		}catch(Exception $e){
 			return Redirect::back()->with("error",$e->getMessage());
 		}
 	}
