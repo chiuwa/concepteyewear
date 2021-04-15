@@ -61,7 +61,8 @@
 				<div class="col-md-5">
 					<div class="row">
 						<div class="col-4 item_image">
-							<img src="{{ Voyager::image($c['product_image'])}}" class="img-fluid center">  
+		
+							<img src="{{ Voyager::image($c['product_image'])}}" class="img-fluid center">  					
 						</div>
 						<div class="col-8">
 							<p class="item_name">{{ $c['product_name_en']}}</p>

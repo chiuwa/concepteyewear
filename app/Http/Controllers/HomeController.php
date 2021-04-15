@@ -296,8 +296,13 @@ class HomeController extends Controller
 		if(isset($cart)){
 			foreach ($cart as $key => $value) {
 				$data = DB::table('product') 
-				->where('id', '=', $key)
+
+				->join('lens_color','lens_color.id','=','product.lens_type_id')
+				->where('product.id', '=', $key)
+				->select('product.*','lens_color.*')
 				->first();
+
+
 				$cart[$key]['id'] = $data->id;
 				$cart[$key]['product_name'] = $data->product_name;
 				$cart[$key]['product_name_en'] = $data->product_name_en;
@@ -305,7 +310,12 @@ class HomeController extends Controller
 				$cart[$key]['price'] = $data->price;
 				$cart[$key]['color'] = $data->color;
 				$cart[$key]['color_name'] = $data->color_name;
+				if($data->product_image_1!=''){
 				$cart[$key]['product_image'] = $data->product_image_1;
+			}else{
+				$cart[$key]['product_image'] = $data->image;
+			}
+	
 			}
 		}else{
 			$cart = [] ; 

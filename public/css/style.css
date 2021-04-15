@@ -984,6 +984,7 @@ main{
   padding: 15px;
   margin-top: 30px; 
   width: 30%;
+  border-color: black !important;
 }
 #add-to-cart_2:hover {
   opacity: 0.7;
