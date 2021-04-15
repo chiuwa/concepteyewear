@@ -170,7 +170,7 @@ class HomeController extends Controller
 			->first();
 
 			$model = new Product();
-			$name = $lens->name .'-'. $frames->name .'-'. $temples->name.'_'.'G'.time();
+			$name = $lens->color_name.'-'.$frames->color_name.'-'.$temples->color_name.'_'.'G'.time();
 			$model->product_name = $name;
 			$model->product_name_en = $name;
 			$model->price = 100 ; 
