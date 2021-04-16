@@ -266,8 +266,41 @@ $carousel  = HomeController::getCarousel();
 
 
        <div class="login_div tab-pane " id="register">
-        <div class="login_main text-center">
-          <h5>Coming Soon</h5>
+           {!! Form::open(array('action' => 'LoginController@register')) !!}
+        <div class="login_main">
+              <div class="input-login row">
+              <div class="login_label col-5">
+                <span>USERNAME | EMAIL</span> 
+              </div>
+              <div class="login_input col-7">
+                <input class="text-center login_field" name="email" type="email"  required="true">
+              </div>
+            </div>
+
+            <div class="input-login row"> 
+              <div class="login_label col-5">
+                <span>PASSWORD</span> 
+              </div>
+              <div class="login_input col-7">
+                <input class="text-center login_field" name="password" type="password"  required="true">
+              </div>
+            </div>
+                   <div class="input-login row"> 
+              <div class="login_label col-5">
+                <span>@lang('frontend.invitation')</span> 
+              </div>
+              <div class="login_input col-7">
+               <input class="text-center login_field" name="code" type="text"  required="true">
+              </div>
+            </div>
+        
+            </div>
+            <div class="login_submit_button">
+             {{Form::submit('Registration', ['class' => 'login-btn text-center'])}}
+           </div>
+         </div>
+
+         {{ Form::close() }}
         </div>
       </div>
 
