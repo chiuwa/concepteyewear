@@ -9,6 +9,7 @@ use DB;
 use Redirect;
 use Auth;
 use View;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Input;
 class LoginController extends Controller {
@@ -52,65 +53,50 @@ class LoginController extends Controller {
             //;
         }
     }
-    public function client_register(Request $request)
+    public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'bail|required|email',
             'password' => 'bail|required',
+            'code' => 'bail|required',
         ]);
 
+        if($request->code =='hkdesv'){
         if ($validator->passes()) {
-            $attempt = Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password
-            ]);
+            $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+             'avatar' => 'users/default.png',
+             'created_at' => date("Y-m-d H:i:s"),
+             'updated_at' => date("Y-m-d H:i:s"),
+             'mobile' => $request->input('mobile'),
 
-            if ($attempt) {
-                return Redirect::intended('home');
-            }
+        ]);
+       
 
-            return Redirect::to('login')
-                ->withErrors(['fail' => 'Email or password is wrong']);
-        }
 
-        //fail
-        if ($validator->fails()) {
-            return Redirect::to('login')
+     return back()->with(["status" => "success", "message" => "User Created!"]);
+
+
+        }else{
+
+           
+            return Redirect::to('home')
                 ->withErrors($validator)
                 ->withInput();
             //;
-        }
-    }
-
-        public function staff_register(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'bail|required|email',
-            'password' => 'bail|required',
-        ]);
-
-        if ($validator->passes()) {
-            $attempt = Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password
-            ]);
-
-            if ($attempt) {
-                return Redirect::intended('home');
-            }
+        
 
             return Redirect::to('login')
-                ->withErrors(['fail' => 'Email or password is wrong']);
+                ->withErrors(['home' => 'Email or password is wrong']);
         }
-
-        //fail
-        if ($validator->fails()) {
-            return Redirect::to('login')
-                ->withErrors($validator)
-                ->withInput();
-            //;
-        }
+    }else{
+          return redirect()->back()->withErrors(['fail' => 'Invalid invitation code']);
     }
+       
+    }
+
 
     public function logout()
     {

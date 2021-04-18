@@ -266,16 +266,44 @@ $carousel  = HomeController::getCarousel();
 
 
        <div class="login_div tab-pane " id="register">
+         @if ($errors->any())
+          @foreach($errors->all() as $message)
+          <div class="alert alert-danger" id="message" value="open" role="alert">
+            {{$message}}
+          </div>
+          @endforeach
+          @endif
            {!! Form::open(array('action' => 'LoginController@register')) !!}
         <div class="login_main">
+
+                <div class="input-login row">
+              <div class="login_label col-5">
+                <span>NAME</span> 
+              </div>
+              <div class="login_input col-7">
+                <input class="text-center login_field" name="name" type="text"  required="true">
+              </div>
+            </div>
+
+
+
               <div class="input-login row">
               <div class="login_label col-5">
-                <span>USERNAME | EMAIL</span> 
+                <span>EMAIL</span> 
               </div>
               <div class="login_input col-7">
                 <input class="text-center login_field" name="email" type="email"  required="true">
               </div>
             </div>
+            <div class="input-login row">
+              <div class="login_label col-5">
+                <span>MOBILE</span> 
+              </div>
+              <div class="login_input col-7">
+                <input class="text-center login_field" name="mobile" type="text"  required="true">
+              </div>
+            </div>
+
 
             <div class="input-login row"> 
               <div class="login_label col-5">
