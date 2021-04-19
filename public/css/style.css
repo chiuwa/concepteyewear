@@ -1073,7 +1073,12 @@ float: left!important;
   letter-spacing: 2px;
 
 }
-
+.enquire_link{
+   text-decoration: underline;
+}
+.enquire_link:hover {
+  color: blue;
+}
 .tab {
   display: none;
   margin-top:50px;

@@ -71,6 +71,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::post('/updateOrder', 'HomeController@updateOrder')->name('updateOrder');
     Route::get('/order', 'HomeController@order')->name('order');
     Route::get('/home', 'HomeController@home')->name('home');
+    Route::get('/enquire', 'HomeController@enquire')->name('enquire');
     Route::get('/blog/view/{id}', 'BlogController@home');
     Route::post('/asking', 'HomeController@asking')->name('asking');
     Route::post('/plan_asking', 'HomeController@plan_asking')->name('plan_asking');

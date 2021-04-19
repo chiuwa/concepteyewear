@@ -313,14 +313,7 @@ $carousel  = HomeController::getCarousel();
                 <input class="text-center login_field" name="password" type="password"  required="true">
               </div>
             </div>
-                   <div class="input-login row"> 
-              <div class="login_label col-5">
-                <span>@lang('frontend.invitation')</span> 
-              </div>
-              <div class="login_input col-7">
-               <input class="text-center login_field" name="code" type="text"  required="true">
-              </div>
-            </div>
+              
         
             </div>
             <div class="login_submit_button">

@@ -12,6 +12,7 @@ use App\Product;
 use DB;
 use Redirect;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
 class HomeController extends Controller
 {
@@ -143,6 +144,16 @@ class HomeController extends Controller
 	public function findOwn(Request $request){
 
 
+  $validator = Validator::make($request->all(), [
+            'len_color_options' => 'bail|required',
+            'frame_color_options' => 'bail|required',
+             'temple_color_options' => 'bail|required',
+        ]);
+
+        if (!$validator->passes()) {
+        	  return redirect()->back()->withErrors(['fail' => 'Missing required options']);
+           }
+
 		$data = DB::table('product') 
 		->join('lens_color','lens_color.id','=','product.lens_type_id')
 		->join('lens','lens.id','=','lens_color.len_id')		
@@ -157,20 +168,38 @@ class HomeController extends Controller
 		->orderBy('id', 'DESC')	
 		->get();
 
+
 		if(!isset($data[0]) ){
 
 			$lens = DB::table('lens_color')
 			->where('id','=',$request->len_color_options)
 			->first();
+
 			$frames = DB::table('frames_color')
 			->where('id','=',$request->frame_color_options)
 			->first();
+
 			$temples = DB::table('temples_color')
 			->where('id','=',$request->temple_color_options)
 			->first();
+			if($lens->color_name!==''){
+				$l_n = $lens->color_name;
+			}else{
+				$l_n = 'Lens'
+			}
+				if($frames->color_name!==''){
+				$f_n = $frames->color_name;
+			}else{
+				$f_n = 'Frames'
+			}
+				if($temples->color_name!==''){
+				$t_n = $temples->color_name;
+			}else{
+				$t_n = 'Temples'
+			}
 
 			$model = new Product();
-			$name = $lens->color_name.'-'.$frames->color_name.'-'.$temples->color_name.'_'.'G'.time();
+			$name = $l_n.'-'.$f_n.'-'.$t_n.'_'.'G'.time();
 			$model->product_name = $name;
 			$model->product_name_en = $name;
 			$model->price = 100 ; 
@@ -212,7 +241,7 @@ class HomeController extends Controller
 	public function getLensColor(Request $request){
 		$data= [] ;
 		$data = DB::table('lens_color') 
-		->where('len_id', '=', $request->option)
+		//->where('len_id', '=', $request->option)
 		->orderBy('sort_order', 'desc')
 		->orderBy('updated_at', 'desc')
 		->get();
@@ -237,7 +266,7 @@ class HomeController extends Controller
 	public function getTemplesColor(Request $request){
 		$data= [] ;
 		$data = DB::table('temples_color') 
-		->where('temples_id', '=', $request->option)
+		//->where('temples_id', '=', $request->option)
 		->orderBy('sort_order', 'desc')
 		->orderBy('updated_at', 'desc')
 		->get();
@@ -260,6 +289,18 @@ class HomeController extends Controller
 		return view('find_out_product',['data'=>$data,'images'=>$images]);
 	}
 	
+
+	public function enquire(){
+
+
+		$files = glob('storage/lookbook/*.*');
+		$images = [];
+		for($i = 0; $i < count($files); $i++){
+			$images[$i] = $files[$i];    
+		}
+		
+		return view('enquire',['images'=>$images]);
+	}
 
 	public function contact(){
 

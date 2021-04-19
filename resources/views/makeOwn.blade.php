@@ -11,12 +11,11 @@
   <div class="row flex-column-reverse flex-md-row">
     <div class="col-md-6 offset-md-1">
       {!! Form::open(array('action'=>'HomeController@findOwn','method'=>'post','id'=>'regForm')) !!}
-     
-
+     <br>
+    <a class="enquire_link" href="enquire">COULDN'T FIND WHAT YOU'RE LOOKING FOR?</a>
     <div class="tab" data-id="frame">
       <p class="step-title">STEP 1 - Frames</p>
       <br>
-
       <p class="step-options">OPTION A</p>
       @foreach($frames as $key2=>$frame)
       <div class="form-check step-radio">
@@ -39,7 +38,7 @@
     </div>
   </div>
 
-  <div class="tab" data-id="temple">
+  <!--div class="tab" data-id="temple">
     <p class="step-title">STEP 3 - Temples</p>
     <br>
 
@@ -53,16 +52,16 @@
     </label>
   </div>
   @endforeach
-</div>
+</div-->
 <div class="tab" data-id="temple_color">
-  <p class="step-title">STEP 4 - Temple Color</p>
+  <p class="step-title">STEP 3 - Temple Color</p>
   <br>
 
-  <p class="step-options" id ="temple_option_line">OPTION D</p>
+  <p class="step-options" id ="temple_option_line">OPTION C</p>
   <div id="temple_color_div">
   </div>
 </div>
- <div class="tab active" data-id="len">
+ <!--div class="tab active" data-id="len">
         <p class="step-title">Step 5 - Lenes</p>
         <br>
 
@@ -78,17 +77,17 @@
         </label>
       </div>
       @endforeach
-    </div>
+    </div-->
     <div class="tab" data-id="len_color">
-      <p class="step-title">STEP 6 - Len Color</p>
+      <p class="step-title">STEP 4 - Len Color</p>
       <br>
 
-      <p class="step-options" id ="len_option_line">OPTION F</p>
+      <p class="step-options" id ="len_option_line">OPTION D</p>
       <div id="len_color_div">
       </div>
     </div>
     <br><br>
-<div style="margin-top:30%;">
+<div style="margin-top:60%;">
   <div style="float:left;margin-bottom:10%;">
     <button type="button" id="prevBtn"  onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
   </div>
@@ -156,55 +155,10 @@
   $('#nextBtn').on('click', function () { 
   
 
-   if($type == 'len'){  
-
-    $.ajax({
-      type:'POST',
-      url:'getLensColor',
-      data:{'option':$option,'_token':'{{csrf_token()}}'},
-      success:function(data){
-        var  all_option =data;
-        var  html = '';
-        var image = ''; 
-
-        if(all_option!=''){
-          $('#len_color_div').html('');
-
-         $.each(all_option, function(index) {
-        var APP_URL = {!! json_encode(url('/')) !!}
-          html+='<div class="form-check step-radio ">';
-          html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+' >';
-          html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
-          html+='</div>';   
-          image+='<div class="carousel-item"   id="len_color_image_'+all_option[index].id+'">';
+   //if($type == 'len'){  
 
 
-          image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
-
-        });
-         $('#len_color_div').append(html); 
-         $('.carousel-inner').append(image); 
-
-         $('input[type=radio]').on('change', function() {
-          $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
-          $(".active").removeClass("active");
-          $($image).addClass("active");
-           $option = '';
-            $type ='';
-            $option = $(this).val();
-            $type =  $(this).attr('id');
-        });
-
-       }else{
-                $('#len_color_div').html('');
-        html='<label> This Len with out any color options</label>';
-        $('#len_color_div').append(html);         
-      }
-    }
-
-  });
-
-  }
+ // }
   if($type == 'frame'){
 
     $.ajax({
@@ -252,16 +206,60 @@
     }
 
   });
-  }
 
 
-  if($type == 'temple'){
-    console.log($type);
-    console.log($option);
+
     $.ajax({
       type:'POST',
+      url:'getLensColor',
+      data:{'_token':'{{csrf_token()}}'},
+      success:function(data){
+        var  all_option =data;
+        var  html = '';
+        var image = ''; 
+
+        if(all_option!=''){
+          $('#len_color_div').html('');
+
+         $.each(all_option, function(index) {
+        var APP_URL = {!! json_encode(url('/')) !!}
+          html+='<div class="form-check step-radio ">';
+          html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+' >';
+          html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
+          html+='</div>';   
+          image+='<div class="carousel-item"   id="len_color_image_'+all_option[index].id+'">';
+
+
+          image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
+
+        });
+         $('#len_color_div').append(html); 
+         $('.carousel-inner').append(image); 
+
+         $('input[type=radio]').on('change', function() {
+          $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
+          $(".active").removeClass("active");
+          $($image).addClass("active");
+           $option = '';
+            $type ='';
+            $option = $(this).val();
+            $type =  $(this).attr('id');
+        });
+
+       }else{
+                $('#len_color_div').html('');
+        html='<label> This Len with out any color options</label>';
+        $('#len_color_div').append(html);         
+      }
+    }
+
+  });
+
+
+     $.ajax({
+      type:'POST',
       url:'getTemplesColor',
-      data:{'option':$option,'_token':'{{csrf_token()}}'},
+      data:{'_token':'{{csrf_token()}}'},
       success:function(data){
         var  all_option = data;
         var  html = '';
@@ -304,6 +302,12 @@
 
   });
   }
+
+
+ // if($type == 'temple'){
+
+   
+  //}
 
 });
 

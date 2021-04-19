@@ -58,10 +58,9 @@ class LoginController extends Controller {
         $validator = Validator::make($request->all(), [
             'email' => 'bail|required|email',
             'password' => 'bail|required',
-            'code' => 'bail|required',
+         
         ]);
 
-        if($request->code =='hkdesv'){
         if ($validator->passes()) {
             $user = User::create([
             'name' => $request->input('name'),
@@ -74,7 +73,20 @@ class LoginController extends Controller {
 
         ]);
        
+            $attempt = Auth::attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
 
+            if ($attempt) {
+                
+                $find_user= User::leftJoin('roles', 'users.role_id', '=', 'roles.id')
+                ->where('users.email', '=', $request->email)
+                ->select('users.*','roles.name as roles')
+                ->first();
+                
+                return redirect()->back()->with('success', 'Login success');   
+            }
 
      return back()->with(["status" => "success", "message" => "User Created!"]);
 
@@ -91,9 +103,7 @@ class LoginController extends Controller {
             return Redirect::to('login')
                 ->withErrors(['home' => 'Email or password is wrong']);
         }
-    }else{
-          return redirect()->back()->withErrors(['fail' => 'Invalid invitation code']);
-    }
+
        
     }
 
