@@ -144,15 +144,15 @@ class HomeController extends Controller
 	public function findOwn(Request $request){
 
 
-  $validator = Validator::make($request->all(), [
-            'len_color_options' => 'bail|required',
-            'frame_color_options' => 'bail|required',
-             'temple_color_options' => 'bail|required',
-        ]);
+		$validator = Validator::make($request->all(), [
+			'len_color_options' => 'bail|required',
+			'frame_color_options' => 'bail|required',
+			'temple_color_options' => 'bail|required',
+		]);
 
-        if (!$validator->passes()) {
-        	  return redirect()->back()->withErrors(['fail' => 'Missing required options']);
-           }
+		if (!$validator->passes()) {
+			return redirect()->back()->withErrors(['fail' => 'Missing required options']);
+		}
 
 		$data = DB::table('product') 
 		->join('lens_color','lens_color.id','=','product.lens_type_id')
@@ -185,17 +185,17 @@ class HomeController extends Controller
 			if($lens->color_name!==''){
 				$l_n = $lens->color_name;
 			}else{
-				$l_n = 'Lens'
+				$l_n = 'Lens';
 			}
-				if($frames->color_name!==''){
+			if($frames->color_name!==''){
 				$f_n = $frames->color_name;
 			}else{
-				$f_n = 'Frames'
+				$f_n = 'Frames';
 			}
-				if($temples->color_name!==''){
+			if($temples->color_name!==''){
 				$t_n = $temples->color_name;
 			}else{
-				$t_n = 'Temples'
+				$t_n = 'Temples';
 			}
 
 			$model = new Product();
@@ -214,20 +214,20 @@ class HomeController extends Controller
 			$model->temples_type_id = $request->temple_color_options;
 			$model->description = 'Make Own Generator Product';
 			$model->save();
-	
-		$data = DB::table('product') 
-		->join('lens_color','lens_color.id','=','product.lens_type_id')
-		->join('lens','lens.id','=','lens_color.len_id')		
-		->join('frames_color','frames_color.id','=','product.frames_type_id')
-		->join('frames','frames.id','=','frames_color.frames_id')
-		->join('temples_color','temples_color.id','=','product.temples_type_id')
-		->join('temples','temples.id','=','temples_color.temples_id')
-		->where('lens_type_id', '=', $request->len_color_options)
-		->where('frames_type_id', '=', $request->frame_color_options)
-		->where('temples_type_id', '=', $request->temple_color_options)
-		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color_image as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color_image as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color_image as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
-		->orderBy('id', 'DESC')	
-		->get();
+
+			$data = DB::table('product') 
+			->join('lens_color','lens_color.id','=','product.lens_type_id')
+			->join('lens','lens.id','=','lens_color.len_id')		
+			->join('frames_color','frames_color.id','=','product.frames_type_id')
+			->join('frames','frames.id','=','frames_color.frames_id')
+			->join('temples_color','temples_color.id','=','product.temples_type_id')
+			->join('temples','temples.id','=','temples_color.temples_id')
+			->where('lens_type_id', '=', $request->len_color_options)
+			->where('frames_type_id', '=', $request->frame_color_options)
+			->where('temples_type_id', '=', $request->temple_color_options)
+			->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color_image as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color_image as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color_image as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
+			->orderBy('id', 'DESC')	
+			->get();
 
 			$request->session()->put('own_product', $data);
 			return redirect()->route('find_out_product');
@@ -352,11 +352,11 @@ class HomeController extends Controller
 				$cart[$key]['color'] = $data->color;
 				$cart[$key]['color_name'] = $data->color_name;
 				if($data->product_image_1!=''){
-				$cart[$key]['product_image'] = $data->product_image_1;
-			}else{
-				$cart[$key]['product_image'] = $data->image;
-			}
-	
+					$cart[$key]['product_image'] = $data->product_image_1;
+				}else{
+					$cart[$key]['product_image'] = $data->image;
+				}
+
 			}
 		}else{
 			$cart = [] ; 
@@ -586,4 +586,50 @@ class HomeController extends Controller
 		}
 	}	
 	
+	public function order_detail($id){
+		if (!Auth::check()) {
+			return Redirect::to('home')
+			->withErrors(['fail' => 'Please Login First']);
+		}
+
+		$user = Auth::user();
+
+
+		$order = Order::with('order_detail')
+		->with('order_detail.product')
+		->where('order.id','=',$id)
+		->where('order.user_id','=',$user->id)
+		->orderby('updated_at','DESC')
+		->first();
+
+		if(!$order){
+			return Redirect::back()->with("error",'Order id error');
+		}
+
+		return view('order_detail',['user'=>$user,'order'=>$order]);
+
+	}
+
+
+	public function productView(Request $request){
+
+		$data = DB::table('product') 
+		->join('lens_color','lens_color.id','=','product.lens_type_id')
+		->join('lens','lens.id','=','lens_color.len_id')		
+		->join('frames_color','frames_color.id','=','product.frames_type_id')
+		->join('frames','frames.id','=','frames_color.frames_id')
+		->join('temples_color','temples_color.id','=','product.temples_type_id')
+		->join('temples','temples.id','=','temples_color.temples_id')
+		->where('product.id', '=', $request->product_id)
+		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color_image as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color_image as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color_image as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
+		->orderBy('product.id', 'DESC')	
+		->first();
+
+	
+		return json_encode($data);
+		exit();
+
+	}
+
+
 }

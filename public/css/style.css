@@ -1074,7 +1074,7 @@ float: left!important;
 
 }
 .enquire_link{
-   text-decoration: underline;
+   text-decoration: underline !important;
 }
 .enquire_link:hover {
   color: blue;

@@ -32,7 +32,9 @@
       <div class="panel">
  
           <div class="panel-body bio-graph-info">
-              <h1>Order {{$data->id}}</h1>
+              <h1>Order {{$data->id}}  <a class="enquire_link" href="{{ route('order_detail', ['id' => $data->id]) }}" style="float:right;font-size: 13px;">Order Detail >></a></h1>
+             
+
               <div class="row flex-md-row cus-row">
                     {!! Form::open(array('action'=>'HomeController@updateOrder','method'=>'post','enctype'=>'multipart/form-data')) !!}
               <div class="bio-row">
@@ -85,9 +87,9 @@
             {{Form::submit('Update Order', ['class' => 'user_submit_button' ])}}
           </div>
                   @else
-                     <div class="bio-row full-bio-row">
+                     <!--div class="bio-row full-bio-row">
                       <p><span>Receipt : </span>   <img src="{{ Voyager::image($data->receipt_image)}}" class="d-block select-image">      </p>
-                  </div>
+                  </div-->
                   @endif
                
                    {!!  Form::close() !!}

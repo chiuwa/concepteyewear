@@ -78,6 +78,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::get('login', 'LoginController@show');
     Route::post('login', 'LoginController@login')->name('login');
     Route::post('register', 'LoginController@register')->name('register');
+    Route::post('/productView', 'HomeController@productView')->name('productView');
+    Route::get('order_detail/{id}', 'HomeController@order_detail')->name('order_detail');
     Route::post('client_register', 'LoginController@client_register');
     Route::post('staff_register', 'LoginController@staff_register');
 
