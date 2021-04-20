@@ -707,6 +707,12 @@ main{
   max-width: 30% !important;
   opacity: 0.9;
 }
+.product-modal{
+  top:10%;
+  width: auto !important;
+  max-width: 50% !important;
+  opacity: 0.9;
+}
 .modal-close{
   margin: 10px;
 }
@@ -865,7 +871,9 @@ main{
     margin: auto;
     width: 100%;
   }
-
+.product-modal{
+    max-width: 90% !important;
+}
 
 }
 @media (min-width: 1151px) and (max-width: 1502px) {
@@ -876,7 +884,9 @@ main{
     margin: auto;
     width: 100%;
   }
-
+.product-modal{
+    max-width: 90% !important;
+}
 
 }
 @media (max-width: 599px) {
@@ -884,7 +894,9 @@ main{
  .desv-modal{
   max-width: 100% !important;
 }
-
+.product-modal{
+    max-width: 100% !important;
+}
 }
 @media (max-width: 415px) {
 

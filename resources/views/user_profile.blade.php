@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-@section('title',setting('site.title') ." | ". __('frontend.user_profile'))
+@section('title',setting('site.title') ." | User Profile" )
 
 
 @section('main_page')

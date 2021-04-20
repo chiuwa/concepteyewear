@@ -392,6 +392,7 @@ class HomeController extends Controller
 
 		$order = Order::with('order_detail')
 		->with('order_detail.product')
+		->where('order.user_id','=',$user->id)
 		->orderby('updated_at','DESC')
 		->get();
 
@@ -614,15 +615,14 @@ class HomeController extends Controller
 	public function productView(Request $request){
 
 		$data = DB::table('product') 
+		->where('product.id', '=', $request->product_id)
 		->join('lens_color','lens_color.id','=','product.lens_type_id')
 		->join('lens','lens.id','=','lens_color.len_id')		
 		->join('frames_color','frames_color.id','=','product.frames_type_id')
 		->join('frames','frames.id','=','frames_color.frames_id')
 		->join('temples_color','temples_color.id','=','product.temples_type_id')
-		->join('temples','temples.id','=','temples_color.temples_id')
-		->where('product.id', '=', $request->product_id)
+		->join('temples','temples.id','=','temples_color.temples_id')	
 		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color_image as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color_image as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color_image as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
-		->orderBy('product.id', 'DESC')	
 		->first();
 
 	

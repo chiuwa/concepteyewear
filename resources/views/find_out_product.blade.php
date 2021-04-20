@@ -108,7 +108,7 @@
 					</div>
 					<div class="col-12 own-poduct-money">
 						<p>
-							HK${{$your_product->price}}
+							USD${{$your_product->price}}
 						</p>
 					</div>
 					

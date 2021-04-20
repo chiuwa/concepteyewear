@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-@section('title',setting('site.title') ." | ". __('frontend.order_detail'))
+@section('title',setting('site.title') ." | Order Detail")
 
 
 @section('main_page')
@@ -13,6 +13,8 @@
    <a href="{{ route('order') }}" class="btn btn-dark">
     <span ><< &nbsp; Back To Orders </span>
   </a>
+
+  <a class="btn btn-info"  data-toggle="modal" data-target="#ReceiptModal">Receipt </a>
   <br><br>
 
   <p>Last Update Time :{{$order->updated_at}} </p>
@@ -85,7 +87,7 @@
 
 <div class="modal fade" id="ProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
-<div class="modal-dialog modal-notify modal-info desv-modal" role="document">
+<div class="modal-dialog modal-notify modal-info product-modal" role="document">
   <!--Content-->
   <div class="modal-content text-center">
     <!--Header-->
@@ -99,11 +101,11 @@ aria-hidden="true">
 
   <div class="modal-body">
     <div class="text-center">
-      <span class="modal-title"></span>
+      <span class="modal-title_1"></span>
 
     </div>
 
-<br><br>
+    <br><br>
 
     <div class="container modal-container">
 
@@ -114,6 +116,37 @@ aria-hidden="true">
 </div>
 </div>
 
+
+<div class="modal fade" id="ReceiptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-notify modal-info product-modal" role="document">
+  <!--Content-->
+  <div class="modal-content text-center">
+    <!--Header-->
+    <div class="desv-header">
+     <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+
+
+
+  <div class="modal-body">
+    <div class="text-center">
+      <span class="modal-title">Receipt</span>
+      <img src="{{ Voyager::image($order->receipt_image)}}" class="d-block" style="width: 100%">
+    </div>
+
+    <br><br>
+
+    <div class="container">
+
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
 
 <script>
 
@@ -130,31 +163,36 @@ aria-hidden="true">
     data:{'product_id':$prop_id,'_token':'{{csrf_token()}}'},
     dataType: 'json',
     success:function(data){
-      $('.modal-title').text('');
-      $('.modal-title').text(data.product_name);
+      
       var APP_URL = {!! json_encode(url('/')) !!}
       $html = '';
-      $html += '<div class="col-6"><div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" > <div class="carousel-inner">';
+      $html += '<div class="row"><div class="col-md-6"><div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" > <div class="carousel-inner">';
       $html += ' <div class="carousel-item active" id="product_image_1">';
       $html += '<img src="'+APP_URL+'/storage/'+data.len_color_image+'"  class="d-block step-image"> </div>';  
       $html += ' <div class="carousel-item " id="product_image_2">';
       $html += '<img src="'+APP_URL+'/storage/'+data.frames_color_image+'"  class="d-block step-image"> </div>';  
       $html += ' <div class="carousel-item " id="product_image_3">';
       $html += '<img src="'+APP_URL+'/storage/'+data.temples_color_image+'"  class="d-block step-image"> </div>';  
-      if(data.product_image_1!=''){
+      if(data.product_image_1!=null){
         $html += ' <div class="carousel-item " id="product_image_4">';
-      $html += '<img src="'+APP_URL+'/storage/'+data.product_image_1+'"  class="d-block step-image"> </div>';  
+        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_1+'"  class="d-block step-image"> </div>';  
       }
-        if(data.product_image_2!=''){
+      if(data.product_image_2!=null){
         $html += ' <div class="carousel-item " id="product_image_5">';
-      $html += '<img src="'+APP_URL+'/storage/'+data.product_image_2+'"  class="d-block step-image"> </div>';  
+        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_2+'"  class="d-block step-image"> </div>';  
       }
-        if(data.product_image_3!=''){
+      if(data.product_image_3!=null){
         $html += ' <div class="carousel-item " id="product_image_6">';
-      $html += '<img src="'+APP_URL+'/storage/'+data.product_image_3+'"  class="d-block step-image"> </div>';  
+        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_3+'"  class="d-block step-image"> </div>';  
       }
 
       $html += '</div></div></div>';   
+      $html += '<div class="col-md-6"><div calss="row flex-md-row">  <div class="col-md-6 own-poduct-title"><p>'+data.product_name_en+'</p></div>';
+      $html += '<div class="col-md-6 "><p>'+data.product_code+'</p></div>';
+      $html += '<div class="col-md-6 "><p>USD $ <b>'+data.price+'</b></p></div>';
+      $html += ' <div class="col-md-6 "><ul><li>'+data.lens_name_en+' '+data.len_color_name+'<img src="'+APP_URL+'/storage/'+data.lens_color+'" class=" d-block step-image option_small_image"> </li><li>'+data.frames_name_en+' '+data.frames_color_name+'<img src="'+APP_URL+'/storage/'+data.frames_color+'" class=" d-block step-image option_small_image"> </li>  <li>'+data.temples_name_en+' '+data.temples_color_name+'<img src="'+APP_URL+'/storage/'+data.temples_color+'" class=" d-block step-image option_small_image"></li> </ul></div>';
+      $html += '<div class="col-md-6 own-poduct-description ">'+data.description+'</div>';
+      $html += '</div></div></div><br><br>';   
       $('.modal-container').html('');
       $('.modal-container').append($html); 
       $('.carousel').carousel();
