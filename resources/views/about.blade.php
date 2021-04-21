@@ -6,13 +6,22 @@
 <main>
  <div class="container-flex d-flex">
      @php
-        $promotion_image = Voyager::setting('site.about_banner', '');
+     $promotion_image = Voyager::setting('site.about_banner', '');
         @endphp
+        <div class="bg-image" id="jumboid" style="background: url({{ Voyager::image($promotion_image)}});">
+      </div>
+    </div>
 
-<div class="bg-image" id="jumboid" style="background: url({{ Voyager::image($promotion_image)}});">
+   <div class="container-flex d-flex">
+         @php
+        $promotion_image_1 = Voyager::setting('site.about_banner_2', '');
+        @endphp
+<div class="bg-image" id="jumboid" style="background: url({{ Voyager::image($promotion_image_1)}});">
 <div class="about_main">
 <div class="container d-flex wow fadeIn ">
-  <div class=" row flex-md-row ">
+
+  <div class=" row flex-md-row" style="    margin-top: 8vh;">
+
  <div class="col-md-1 ">
  </div>
     <div class="col-md-3 about_box">

@@ -1915,10 +1915,9 @@ ul.summary-list > li:last-child  {
 # About
 --------------------------------------------------------------*/
 .about_main{
-  margin-top: 70vh;
 
- background-color: rgba(191, 191, 191, 0.6);
-  min-height: 50vh;
+ background-color: rgba(191, 191, 191, 0.7);
+min-height: 80vh;
 }
 #jumboid {
   width: 100%;
@@ -1927,7 +1926,7 @@ ul.summary-list > li:last-child  {
 }
 .bg-image {
   position: relative;
-  min-height: 100vh !important;
+  min-height: 80vh !important;
   background-attachment: fixed !important;
 }
 .about_box{

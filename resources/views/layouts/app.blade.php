@@ -55,16 +55,16 @@ $carousel  = HomeController::getCarousel();
   <div class="colorlib-loader"></div>
   <div class="icon-bar">
     <div class="icon-backgroud">
-      <a href="#" class="facebook"><img  class="png_icon" src="/images/facebook.png" onmouseover="fb_hover(this);" onmouseout="fb_unhover(this);"></a> 
+      <a href="//{{Voyager::setting('site.facebook')}}" target="_blank"  class="facebook" ><img  class="png_icon" src="/images/facebook.png" onmouseover="fb_hover(this);" onmouseout="fb_unhover(this);"></a> 
     </div>
     <div class="icon-backgroud">
-     <a href="#" class="instagram"><img  class="png_icon" src="/images/instagram.png" onmouseover="ig_hover(this);" onmouseout="ig_unhover(this);"></a> 
+     <a href="//{{Voyager::setting('site.instagram')}}" target="_blank" class="instagram"><img  class="png_icon" src="/images/instagram.png" onmouseover="ig_hover(this);" onmouseout="ig_unhover(this);"></a> 
    </div> 
    <div class="icon-backgroud">
-     <a href="#" class="pinterest"><img  class="png_icon" src="/images/pinterest.png" onmouseover="pi_hover(this);" onmouseout="pi_unhover(this);"></a> 
+     <a href="//{{Voyager::setting('site.pinterest')}}" target="_blank" class="pinterest"><img  class="png_icon" src="/images/pinterest.png" onmouseover="pi_hover(this);" onmouseout="pi_unhover(this);"></a> 
    </div> 
    <div class="icon-backgroud">
-     <a href="#" class="twitter"><img  class="png_icon" src="/images/twitter.png" onmouseover="tw_hover(this);" onmouseout="tw_unhover(this);"></a> 
+     <a href="//{{Voyager::setting('site.twitter')}}" target="_blank" class="twitter"><img  class="png_icon" src="/images/twitter.png" onmouseover="tw_hover(this);" onmouseout="tw_unhover(this);"></a> 
    </div> 
  </div>
 
