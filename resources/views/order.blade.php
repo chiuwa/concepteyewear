@@ -32,7 +32,7 @@
       <div class="panel">
        
         <div class="panel-body bio-graph-info">
-          <h1>Order {{$data->id}}  <a class="enquire_link" href="{{ route('order_detail', ['id' => $data->id]) }}" style="float:right;font-size: 1rem;">Order Detail >></a></h1>
+          <h1>Order {{$data->id}}  <a class="enquire_link" href="{{ route('order_detail', ['id' => $data->id]) }}" style="float:right;font-size: 1rem;color: #89817e;">Order Detail >></a></h1>
           
 
           <div class="row flex-md-row cus-row">
