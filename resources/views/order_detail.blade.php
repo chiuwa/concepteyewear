@@ -13,8 +13,9 @@
    <a href="{{ route('order') }}" class="btn btn-dark">
     <span ><< &nbsp; Back To Orders </span>
   </a>
-
+@if($order->receipt_image!=null)
   <a class="btn btn-info"  data-toggle="modal" data-target="#ReceiptModal">Receipt </a>
+  @endif
   <br><br>
 
   <p>Last Update Time :{{$order->updated_at}} </p>
@@ -46,7 +47,7 @@
     @foreach($order->order_detail as $key => $product) 
     <tr style="height: 50px;">
       <td class="FieldLabel2">
-       <a class="enquire_link" id="product" data-id="{{$product->product->id}}" data-toggle="modal" data-target="#ProductModal"> {{$product->product->product_name}} </a>
+       <a class="enquire_link product_class" id="product" data-id="{{$product->product->id}}" data-toggle="modal" data-target="#ProductModal"> {{$product->product->product_name}} </a>
      </td> 
      <td class="FieldLabel2" >
        ${{$product->product->price}}
@@ -150,8 +151,9 @@ aria-hidden="true">
 
 <script>
 
-  $('#product').on('click', function () {
+  $('.product_class').on('click', function () {
    $prop_id = $(this).data('id');
+   
    $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -163,16 +165,28 @@ aria-hidden="true">
     data:{'product_id':$prop_id,'_token':'{{csrf_token()}}'},
     dataType: 'json',
     success:function(data){
-      
+
+      if(data==null){
+        console.log('no data');
+      $('.modal-container').html('');
+      $('.modal-container').append('This Product Without Perview'); 
+      return false;
+      }
       var APP_URL = {!! json_encode(url('/')) !!}
       $html = '';
       $html += '<div class="row"><div class="col-md-6"><div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" > <div class="carousel-inner">';
+            if(data.len_color_image!=null){
       $html += ' <div class="carousel-item active" id="product_image_1">';
       $html += '<img src="'+APP_URL+'/storage/'+data.len_color_image+'"  class="d-block step-image"> </div>';  
+    }
+             if(data.frames_color_image!=null){
       $html += ' <div class="carousel-item " id="product_image_2">';
       $html += '<img src="'+APP_URL+'/storage/'+data.frames_color_image+'"  class="d-block step-image"> </div>';  
+    }
+    if(data.temples_color_image!=null){
       $html += ' <div class="carousel-item " id="product_image_3">';
       $html += '<img src="'+APP_URL+'/storage/'+data.temples_color_image+'"  class="d-block step-image"> </div>';  
+    }
       if(data.product_image_1!=null){
         $html += ' <div class="carousel-item " id="product_image_4">';
         $html += '<img src="'+APP_URL+'/storage/'+data.product_image_1+'"  class="d-block step-image"> </div>';  
@@ -196,7 +210,7 @@ aria-hidden="true">
       $('.modal-container').html('');
       $('.modal-container').append($html); 
       $('.carousel').carousel();
-      console.log(data.product_name);
+
     }
 
   });

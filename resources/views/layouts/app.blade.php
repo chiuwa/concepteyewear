@@ -97,18 +97,18 @@ $carousel  = HomeController::getCarousel();
         $logo = Voyager::setting('site.logo');
         @endphp
         @if($logo)
-       <a href="home">  <img  class="responsive logo_image"  src="{{ Voyager::image($logo) }}" type="image/png"></a>
+       <a href="/home">  <img  class="responsive logo_image"  src="{{ Voyager::image($logo) }}" type="image/png"></a>
         @else
-          <a href="home"><span style="color: #000000;">{{Voyager::setting('site.title')}}</span></a>
+          <a href="/home"><span style="color: #000000;">{{Voyager::setting('site.title')}}</span></a>
         @endif
   </nav>
   <nav class="nav-menu d-flex justify-content-center non-active">
     <ul>
-      <li class="active"><a href="home">Home</a></li>
-      <li><a href="makeOwn">Make-Your-Own</a></li>
-      <li><a href="lookbook">Lookbook</a></li>
-      <li><a href="about">About</a></li>
-      <li><a href="contact">Contact</a></li>
+      <li class="active"><a href="/home">Home</a></li>
+      <li><a href="/makeOwn">Make-Your-Own</a></li>
+      <li><a href="/lookbook">Lookbook</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
           <!--li class="drop-down"><a href="">Drop Down</a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
