@@ -21,6 +21,20 @@ $carousel  = HomeController::getCarousel();
 
   gtag('config', 'G-0J9GL73CF3');
 </script>
+<!-- Global site tag (gtag.js) - Google Ads: 721286711 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-721286711"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-721286711');
+</script>
+
+<!-- Event snippet for Website traffic conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-721286711/asyHCMrv84kCELfs99cC'});
+</script>
 
 
   <meta charset="utf-8">
