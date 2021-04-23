@@ -249,6 +249,7 @@ $carousel  = HomeController::getCarousel();
           @endforeach
           @endif
           {!! Form::open(array('action' => 'LoginController@login')) !!}
+          @csrf
 
           <div class="login_main">
 
@@ -298,6 +299,7 @@ $carousel  = HomeController::getCarousel();
           @endforeach
           @endif
            {!! Form::open(array('action' => 'LoginController@register')) !!}
+           @csrf
         <div class="login_main">
 
                 <div class="input-login row">

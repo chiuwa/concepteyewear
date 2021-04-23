@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',setting('site.title') ." | ". __('frontend.contact'))
+@section('title',setting('site.title') ." | Contact")
 
 
 @section('main_page')

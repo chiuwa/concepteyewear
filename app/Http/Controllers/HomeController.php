@@ -304,7 +304,6 @@ class HomeController extends Controller
 
 	public function contact(){
 
-
 		return view('contact');
 	}
 	
@@ -316,9 +315,13 @@ class HomeController extends Controller
 		$model->name = $request->name;
 		$model->email = $request->email;
 		$model->phone = $request->phone;
+		$model->query_type = 'standard';
 		$model->asking = $request->query_question;
 		$model->save();
 		if($model->save()){
+			  \Mail::send('emails.to_admin_enquire_email', $admin_offer = ['name' =>$model->title.' '.$model->name, 'email' => $model->email,'id'=>$model->id,'mobile'=>$model->phone,'enquire'=>$model->asking], function ($message) use ($admin_offer) {
+                $message->to('support@desv-uat.com')->subject('Enquire By '.'('.$admin_offer['email'].') ');
+            });
 			return Redirect::intended('home');
 		}else{
 			return Redirect::back()->with("modal_message_error", "Submit Error");
@@ -603,6 +606,9 @@ class HomeController extends Controller
 		->orderby('updated_at','DESC')
 		->first();
 
+
+		
+
 		if(!$order){
 			return Redirect::back()->with("error",'Order id error');
 		}
@@ -630,6 +636,8 @@ class HomeController extends Controller
 		exit();
 
 	}
+
+
 
 
 }

@@ -16,7 +16,7 @@ class LoginController extends Controller {
 
     public function show()
     {
-    return View::make('admin.login');
+        return View::make('admin.login');
     }
 
     public function login(Request $request)
@@ -33,23 +33,23 @@ class LoginController extends Controller {
             ]);
 
             if ($attempt) {
-				
-				$find_user= User::leftJoin('roles', 'users.role_id', '=', 'roles.id')
+
+                $find_user= User::leftJoin('roles', 'users.role_id', '=', 'roles.id')
                 ->where('users.email', '=', $request->email)
                 ->select('users.*','roles.name as roles')
                 ->first();
-				
+
                 return redirect()->back()->with('success', 'Login success');   
             }
 
-           return redirect()->back()->withErrors(['fail' => 'Username or password is wrong']);
+            return redirect()->back()->withErrors(['fail' => 'Username or password is wrong']);
         }
 
         //fail
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+            ->withErrors($validator)
+            ->withInput();
             //;
         }
     }
@@ -58,60 +58,71 @@ class LoginController extends Controller {
         $validator = Validator::make($request->all(), [
             'email' => 'bail|required|email',
             'password' => 'bail|required',
-         
+
         ]);
 
         if ($validator->passes()) {
-            $user = User::create([
+
+            $old_user= User::leftJoin('roles', 'users.role_id', '=', 'roles.id')
+            ->where('users.email', '=', $request->email)
+            ->select('users.*','roles.name as roles')
+            ->first();
+
+            if(isset($old_user->id)){
+              return redirect()->back()->withErrors(['fail' => 'Email already exists']);
+              exit();
+          }else{
+
+          $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-             'avatar' => 'users/default.png',
-             'created_at' => date("Y-m-d H:i:s"),
-             'updated_at' => date("Y-m-d H:i:s"),
-             'mobile' => $request->input('mobile'),
+            'avatar' => 'users/default.png',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+            'mobile' => $request->input('mobile'),
 
         ]);
-       
-            $attempt = Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password
-            ]);
 
-            if ($attempt) {
-                
-                $find_user= User::leftJoin('roles', 'users.role_id', '=', 'roles.id')
-                ->where('users.email', '=', $request->email)
-                ->select('users.*','roles.name as roles')
-                ->first();
-                
-                return redirect()->back()->with('success', 'Login success');   
-            }
+          $attempt = Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
 
-     return back()->with(["status" => "success", "message" => "User Created!"]);
+          if ($attempt) {
+            $find_user= User::leftJoin('roles', 'users.role_id', '=', 'roles.id')
+            ->where('users.email', '=', $request->email)
+            ->select('users.*','roles.name as roles')
+            ->first();
+            \Mail::send('emails.visitor_email', $offer = ['name' => $find_user->name, 'email' => $find_user->email], function ($message) use ($offer) {
+                $message->to($offer['email'])->subject('Hi '.$offer['name'].' The Eyes Crafters Welcome You !');
+            });
 
+            \Mail::send('emails.to_admin_new_email', $admin_offer = ['name' => $find_user->name, 'email' => $find_user->email,'id'=>$find_user->id,'created_at'=>$find_user->created_at,'mobile'=>$find_user->mobile], function ($message) use ($admin_offer) {
+                $message->to('support@desv-uat.com')->subject('New Member '.$admin_offer['name'].'('.$admin_offer['email'].')  Registration');
+            });
 
-        }else{
-
-           
-            return Redirect::to('home')
-                ->withErrors($validator)
-                ->withInput();
-            //;
-        
-
-            return Redirect::to('login')
-                ->withErrors(['home' => 'Email or password is wrong']);
+            return redirect()->back()->with('success', 'Login success');   
         }
 
-       
+        return back()->with(["status" => "success", "message" => "User Created!"]);
+}
+
+    }else{
+        return Redirect::to('home')
+        ->withErrors($validator)
+        ->withInput();
+
     }
 
 
-    public function logout()
-    {
-	Auth::logout();
-    return Redirect::to('home');
-    }
+}
+
+
+public function logout()
+{
+ Auth::logout();
+ return Redirect::to('home');
+}
 
 }

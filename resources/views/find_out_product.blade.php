@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',setting('site.title') ." | ". __('frontend.find_out_product'))
+@section('title',setting('site.title') ." | Product")
 
 
 @section('main_page')

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',setting('site.title') ." | ". __('frontend.makeOwn'))
+@section('title',setting('site.title') ." | Make Own")
 
 
 @section('main_page')
