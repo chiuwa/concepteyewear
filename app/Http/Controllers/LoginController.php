@@ -58,8 +58,11 @@ class LoginController extends Controller {
         $validator = Validator::make($request->all(), [
             'email' => 'bail|required|email',
             'password' => 'bail|required',
+             'mobile' => 'bail|required',
 
         ]);
+
+
 
         if ($validator->passes()) {
 
