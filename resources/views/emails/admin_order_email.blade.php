@@ -111,6 +111,37 @@ a[x-apple-data-detectors='true'] {
   }
 
 }
+.btn{
+    padding: 10px 15px;
+    display: inline-block;
+}
+.btn.btn-primary{
+    border-radius: 5px;
+    background: #17bebb;
+    color: #ffffff;
+}
+.btn.btn-white{
+    border-radius: 5px;
+    background: #ffffff;
+    color: #000000;
+}
+.btn.btn-white-outline{
+    border-radius: 5px;
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+}
+.btn.btn-black-outline{
+    border-radius: 0px;
+    background: transparent;
+    border: 2px solid #000;
+    color: #000;
+    font-weight: 700;
+}
+.btn-custom{
+    color: rgba(0,0,0,.3);
+    text-decoration: underline;
+}
     </style>
   
   
@@ -190,7 +221,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #47484b; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 25px; line-height: 42px;">Thanks for your Order</span></strong></p>
+    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 25px; line-height: 42px;">New Order</span></strong></p>
   </div>
 
       </td>
@@ -204,7 +235,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:2px 40px 25px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #7a7676; line-height: 170%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 170%; text-align: center;"><span style="font-size: 16px; line-height: 27.2px;">You will be contacted to complete further transactions. </span></p>
+    <p style="font-size: 14px; line-height: 170%; text-align: center;"><span style="font-size: 16px; line-height: 27.2px;">Please contact customer to complete further transactions. </span></p>
   </div>
 
       </td>
@@ -383,7 +414,7 @@ $orders = json_decode($orders);
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #615e5e; line-height: 140%; text-align: right; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">{{$order->detail_price}}</span></p>
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">USD $ {{$order->detail_price}}</span></p>
   </div>
 
       </td>
@@ -487,7 +518,7 @@ $orders = json_decode($orders);
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #615e5e; line-height: 140%; text-align: right; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">${{$total_price}}</span></strong></p>
+    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">USD $ {{$total_price}}</span></strong></p>
   </div>
 
       </td>
@@ -643,9 +674,12 @@ $orders = json_decode($orders);
   <tbody>
     <tr>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:35px 10px 10px;font-family:'Open Sans',sans-serif;" align="left">
-        
+                                  @php
+                                $link = 'https://theeyescrafters.com/admin/vendor/voyager/order/custom_view?id='.$order_id;
+                                @endphp
   <div class="v-text-align" style="color: #000000; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 30px; line-height: 42px;">The Eyes Crafters</span></strong></p>
+    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 20px; line-height: 42px;"> 
+                            <a href="{{$link}}" class="btn btn-primary">Check Order</a></p>
   </div>
 
       </td>
@@ -653,39 +687,9 @@ $orders = json_decode($orders);
   </tbody>
 </table>
 
-<table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:2px 40px 15px;font-family:'Open Sans',sans-serif;" align="left">
-        
-  <div class="v-text-align" style="color: #7a7676; line-height: 170%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 170%; text-align: center;"><em><span style="font-size: 14px; line-height: 23.8px;">The eyes crafters can make your own glasses.<br> Click  <a href="https://theeyescrafters.com">>This<</a> get more information.</span></em></p>
-  </div>
 
-      </td>
-    </tr>
-  </tbody>
-</table>
 
-<table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:9px 9px 31px;font-family:'Open Sans',sans-serif;" align="left">
-        
-<div align="center">
-  <div style="display: table; max-width:-1px;">
-  <!--[if (mso)|(IE)]><table width="-1" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse;" align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:-1px;"><tr><![endif]-->
-  
-    
-    
-    <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-  </div>
-</div>
 
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>

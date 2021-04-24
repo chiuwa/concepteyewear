@@ -319,9 +319,9 @@ class HomeController extends Controller
 		$model->asking = $request->query_question;
 		$model->save();
 		if($model->save()){
-			  \Mail::send('emails.to_admin_enquire_email', $admin_offer = ['name' =>$model->title.' '.$model->name, 'email' => $model->email,'id'=>$model->id,'mobile'=>$model->phone,'enquire'=>$model->asking], function ($message) use ($admin_offer) {
-                $message->to('support@desv-uat.com')->subject('Enquire By '.'('.$admin_offer['email'].') ');
-            });
+			\Mail::send('emails.to_admin_enquire_email', $admin_offer = ['name' =>$model->title.' '.$model->name, 'email' => $model->email,'id'=>$model->id,'mobile'=>$model->phone,'enquire'=>$model->asking], function ($message) use ($admin_offer) {
+				$message->to('support@desv-uat.com')->subject('Enquire By '.'('.$admin_offer['email'].') ');
+			});
 			return Redirect::intended('home');
 		}else{
 			return Redirect::back()->with("modal_message_error", "Submit Error");
@@ -339,12 +339,18 @@ class HomeController extends Controller
 
 		if(isset($cart)){
 			foreach ($cart as $key => $value) {
-				$data = DB::table('product') 
-
-				->join('lens_color','lens_color.id','=','product.lens_type_id')
-				->where('product.id', '=', $key)
-				->select('product.*','lens_color.*')
-				->first();
+				if(isset($value['type']) && $value['type'] =='case' ){
+					$data = DB::table('product') 
+					->where('product.id', '=', $key)
+					->select('product.*')
+					->first();
+				}else{
+					$data = DB::table('product') 
+					->join('lens_color','lens_color.id','=','product.lens_type_id')
+					->where('product.id', '=', $key)
+					->select('product.*','lens_color.*')
+					->first();
+				}
 
 
 				$cart[$key]['id'] = $data->id;
@@ -354,17 +360,20 @@ class HomeController extends Controller
 				$cart[$key]['price'] = $data->price;
 				$cart[$key]['color'] = $data->color;
 				$cart[$key]['color_name'] = $data->color_name;
-				if($data->product_image_1!=''){
-					$cart[$key]['product_image'] = $data->product_image_1;
+				if(isset($value['type']) && $value['type'] =='case' ){
+					$cart[$key]['product_image'] = '';
 				}else{
-					$cart[$key]['product_image'] = $data->image;
-				}
+					if($data->product_image_1!=''){
+						$cart[$key]['product_image'] = $data->product_image_1;
+					}else{
+						$cart[$key]['product_image'] = $data->image;
+					}
+				}	
 
 			}
 		}else{
 			$cart = [] ; 
 		}
-
 
 		return view('shopping_cart',['cart'=>$cart]);
 	}
@@ -488,6 +497,22 @@ class HomeController extends Controller
 
 			$cart = [];
 			$request->session()->put('cart', $cart);
+
+			$order = Order::with('order_detail')
+			->with('order_detail.product')
+			->where('order.id','=',$order->id)
+			->where('order.user_id','=',$user->id)
+			->orderby('updated_at','DESC')
+			->first();
+
+			$js_order = json_encode($order->toArray());
+			\Mail::send('emails.order_email', $offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($offer) {
+				$message->to($offer['email'])->subject('Order #'.$offer['order_id']);
+			});
+			\Mail::send('emails.admin_order_email', $admin_offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($admin_offer) {
+				$message->to('support@desv-uat.com')->subject('New Order #'.$admin_offer['order_id']);
+			});
+
 			return Redirect::intended('order');
 		}catch(Exception $e){
 			return Redirect::back()->with("error",$e->getMessage());
@@ -606,9 +631,7 @@ class HomeController extends Controller
 		->orderby('updated_at','DESC')
 		->first();
 
-
 		
-
 		if(!$order){
 			return Redirect::back()->with("error",'Order id error');
 		}
@@ -631,7 +654,7 @@ class HomeController extends Controller
 		->select('product.*','lens.name_en as lens_name_en','lens.name_zh as lens_name_zh','lens_color.color_image as lens_color','lens_color.color_name as len_color_name','lens_color.image as len_color_image','frames_color.color_image as frames_color','frames.name_en as frames_name_en','frames.name_zh as frames_name_zh','frames_color.color_name as frames_color_name','frames_color.image as frames_color_image','temples_color.color_image as temples_color','temples.name_en as temples_name_en','temples.name_zh as temples_name_zh','temples_color.color_name as temples_color_name','temples_color.image as temples_color_image')	
 		->first();
 
-	
+
 		return json_encode($data);
 		exit();
 

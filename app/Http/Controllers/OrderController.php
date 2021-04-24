@@ -25,7 +25,7 @@ class OrderController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
 
     $slug = $this->getSlug($request);
 
-    if (!Auth::check() && Auth::user()->hasRole('admin')!== 1) {
+    if (!Auth::check() || Auth::user()->hasRole('admin')!== 1) {
      return Redirect::to('home')
      ->withErrors(['fail' => 'Please Login First']);
    }
@@ -57,10 +57,7 @@ class OrderController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
 public function custom_view()
 {
 
-
-
-
-  if (!Auth::check() && Auth::user()->hasRole('admin')!== 1) {
+  if (!Auth::check() || Auth::user()->hasRole('admin')!== 1) {
     return Redirect::to('home')
     ->withErrors(['fail' => 'Please Login First']);
   }
@@ -75,6 +72,9 @@ public function custom_view()
         ->orderby('updated_at','DESC')
         ->first();
        //->toarray();
+        if( !isset($dataType)){
+           return Redirect::back()->with("error",'Cannot find this order');
+        }
 
    //$view = 'voyager::bread.browse';
      // echo '<pre>';

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',setting('site.title') ." | ". __('frontend.shopping_cart'))
+@section('title',setting('site.title') ." | Shopping Cart")
 
 
 @section('main_page')
