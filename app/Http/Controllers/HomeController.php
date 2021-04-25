@@ -320,7 +320,7 @@ class HomeController extends Controller
 		$model->save();
 		if($model->save()){
 			\Mail::send('emails.to_admin_enquire_email', $admin_offer = ['name' =>$model->title.' '.$model->name, 'email' => $model->email,'id'=>$model->id,'mobile'=>$model->phone,'enquire'=>$model->asking], function ($message) use ($admin_offer) {
-				$message->to('support@desv-uat.com')->subject('Enquire By '.'('.$admin_offer['email'].') ');
+				$message->to('info@cms.com.hk')->subject('Enquire By '.'('.$admin_offer['email'].') ');
 			});
 			return Redirect::intended('home');
 		}else{
@@ -510,7 +510,7 @@ class HomeController extends Controller
 				$message->to($offer['email'])->subject('Order #'.$offer['order_id']);
 			});
 			\Mail::send('emails.admin_order_email', $admin_offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($admin_offer) {
-				$message->to('support@desv-uat.com')->subject('New Order #'.$admin_offer['order_id']);
+				$message->to('info@cms.com.hk')->subject('New Order #'.$admin_offer['order_id']);
 			});
 
 			return Redirect::intended('order');
