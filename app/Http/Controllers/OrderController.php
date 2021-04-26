@@ -25,10 +25,10 @@ class OrderController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
 
     $slug = $this->getSlug($request);
 
-    if (!Auth::check() || Auth::user()->hasRole('admin')!== 1) {
-     return Redirect::to('home')
-     ->withErrors(['fail' => 'Please Login First']);
+    if (!Auth::check() || Auth::user()->hasRole('admin')!= '1') {
+    return Redirect::back()->with("error",'No Permission');
    }
+
    $user = Auth::user();
 
    $dataType = Order::with('order_detail')
@@ -56,10 +56,9 @@ class OrderController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
 
 public function custom_view()
 {
-
-  if (!Auth::check() || Auth::user()->hasRole('admin')!== 1) {
-    return Redirect::to('home')
-    ->withErrors(['fail' => 'Please Login First']);
+    
+  if (!Auth::check() ||   Auth::user()->hasRole('admin') != '1') {
+   return Redirect::back()->with("error",'No Permission');
   }
         $user = Auth::user();
         $id = $_GET['id'];
