@@ -1106,6 +1106,7 @@ main{
   margin-top: 20px;
   width: 300px;
   float: left;
+  height: 60px;
 }
 
 .step-radio > input[type='radio']:after {
