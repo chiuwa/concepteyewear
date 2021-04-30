@@ -405,7 +405,7 @@ $carousel  = HomeController::getCarousel();
 </script>
 
 <script type="text/javascript">
-  $(window).ready(setTimeout(loaderPage, 800));
+  $(window).ready(loaderPage);
   
 
   function loaderPage() {
