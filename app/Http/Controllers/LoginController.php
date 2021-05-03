@@ -102,7 +102,7 @@ class LoginController extends Controller {
             ->first();
 
 
-
+/*
             $data['name'] =$find_user->name;
             $data['email'] =$find_user->email;
             $data['id'] =$find_user->id;
@@ -111,7 +111,8 @@ class LoginController extends Controller {
 
             Mail::to($find_user->email)->queue(new NewMenber($data));
             Mail::to('info@cms.com.hk')->queue(new NewMenberToAdmin($data));
-/*
+            */
+
             \Mail::send('emails.visitor_email', $offer = ['name' => $find_user->name, 'email' => $find_user->email], function ($message) use ($offer) {
                 $message->to($offer['email'])->subject('Hi '.$offer['name'].' The Eyes Crafters Welcome You !');
             });
@@ -119,7 +120,7 @@ class LoginController extends Controller {
             \Mail::send('emails.to_admin_new_email', $admin_offer = ['name' => $find_user->name, 'email' => $find_user->email,'id'=>$find_user->id,'created_at'=>$find_user->created_at,'mobile'=>$find_user->mobile], function ($message) use ($admin_offer) {
                 $message->to('info@cms.com.hk')->subject('New Member '.$admin_offer['name'].'('.$admin_offer['email'].')  Registration');
             });
-*/
+
             return redirect()->back()->with('success', 'Login success');   
         }
 

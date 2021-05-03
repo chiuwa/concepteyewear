@@ -324,19 +324,20 @@ class HomeController extends Controller
 		$model->asking = $request->query_question;
 		$model->save();
 		if($model->save()){
-
+/*
 			$data['name'] =$model->title.' '.$model->name;
 			$data['email'] =$model->email;
 			$data['id'] =$model->id;
 			$data['mobile'] =$model->phone;
 			$data['enquire'] =$model->asking;
+*/
 
-			Mail::to('info@cms.com.hk')->queue(new EnquireToAdmin($data));
-			/*
+			//Mail::to('info@cms.com.hk')->queue(new EnquireToAdmin($data));
+			
 			\Mail::send('emails.to_admin_enquire_email', $admin_offer = ['name' =>$model->title.' '.$model->name, 'email' => $model->email,'id'=>$model->id,'mobile'=>$model->phone,'enquire'=>$model->asking], function ($message) use ($admin_offer) {
 				$message->to('info@cms.com.hk')->subject('Enquire By '.'('.$admin_offer['email'].') ');
 			});
-			*/
+			
 			return Redirect::intended('home');
 		}else{
 			return Redirect::back()->with("modal_message_error", "Submit Error");
@@ -523,7 +524,7 @@ class HomeController extends Controller
 			->first();
 
 			$js_order = json_encode($order->toArray());
-
+/*
 			$data['orders'] =$js_order;
 			$data['email'] =$user->email;
 			$data['order_id'] =$order->id;
@@ -533,15 +534,15 @@ class HomeController extends Controller
 			Mail::to($user->email)->queue(new OrderShipped($data));
 
 			Mail::to('info@cms.com.hk')->queue(new OrderShippedToAdmin($data));
-
-		/*	
+*/
+		
 			\Mail::send('emails.order_email', $offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($offer) {
 				$message->to($offer['email'])->subject('Order #'.$offer['order_id']);
 			});
 			\Mail::send('emails.admin_order_email', $admin_offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($admin_offer) {
 				$message->to('info@cms.com.hk')->subject('New Order #'.$admin_offer['order_id']);
 			});
-			*/
+			
 
 			return Redirect::intended('order');
 		}catch(Exception $e){
