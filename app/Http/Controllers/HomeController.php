@@ -58,6 +58,7 @@ class HomeController extends Controller
 
 		$order = Order::with('order_detail')
 		->where('status', '<>', 'Finish')
+		->where('user_id','=',$user->id)
 		->get();
 
 		if($order){
