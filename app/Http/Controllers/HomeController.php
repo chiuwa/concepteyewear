@@ -202,9 +202,9 @@ class HomeController extends Controller
 			$name = $l_n.'-'.$f_n.'-'.$t_n.'_'.'G'.time();
 			$model->product_name = $name;
 			$model->product_name_en = $name;
-			$model->price = 100 ; 
+			$model->price = 12 ; 
 			if(isset($lens->option_price)&&$lens->option_price!=0){
-				$model->price = 100 + $lens->option_price ; 
+				$model->price = 12 + $lens->option_price ; 
 			}
 			$model->created_at = date("Y-m-d H:i:s");    
 			$model->updated_at = date("Y-m-d H:i:s");    
