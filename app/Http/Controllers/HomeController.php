@@ -14,6 +14,10 @@ use Redirect;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Mail;
+use App\mail\OrderShipped;
+use App\mail\OrderShippedToAdmin;
+use App\mail\EnquireToAdmin;
 class HomeController extends Controller
 {
 
@@ -319,9 +323,19 @@ class HomeController extends Controller
 		$model->asking = $request->query_question;
 		$model->save();
 		if($model->save()){
+
+			$data['name'] =$model->title.' '.$model->name;
+			$data['email'] =$model->email;
+			$data['id'] =$model->id;
+			$data['mobile'] =$model->phone;
+			$data['enquire'] =$model->asking;
+
+			Mail::to('info@cms.com.hk')->queue(new EnquireToAdmin($data));
+			/*
 			\Mail::send('emails.to_admin_enquire_email', $admin_offer = ['name' =>$model->title.' '.$model->name, 'email' => $model->email,'id'=>$model->id,'mobile'=>$model->phone,'enquire'=>$model->asking], function ($message) use ($admin_offer) {
 				$message->to('info@cms.com.hk')->subject('Enquire By '.'('.$admin_offer['email'].') ');
 			});
+			*/
 			return Redirect::intended('home');
 		}else{
 			return Redirect::back()->with("modal_message_error", "Submit Error");
@@ -348,18 +362,19 @@ class HomeController extends Controller
 					$data = DB::table('product') 
 					->join('lens_color','lens_color.id','=','product.lens_type_id')
 					->where('product.id', '=', $key)
-					->select('product.*','lens_color.*')
+					->select('product.*','lens_color.*','product.id as product_id')
 					->first();
 				}
 
 
-				$cart[$key]['id'] = $data->id;
+				$cart[$key]['id'] = $data->product_id;
 				$cart[$key]['product_name'] = $data->product_name;
 				$cart[$key]['product_name_en'] = $data->product_name_en;
 				$cart[$key]['description'] = $data->description;
 				$cart[$key]['price'] = $data->price;
 				$cart[$key]['color'] = $data->color;
 				$cart[$key]['color_name'] = $data->color_name;
+	
 				if(isset($value['type']) && $value['type'] =='case' ){
 					$cart[$key]['product_image'] = '';
 				}else{
@@ -455,6 +470,7 @@ class HomeController extends Controller
 				$product[$key] = DB::table('product') 
 				->where('id', '=', $key)
 				->first();
+		
 				$total_price = (($product[$key]->price) * (  $value['qty'])) + $total_price;
 				$total_qty = $total_qty + $value['qty'];
 				if($value['qty'] < 50){
@@ -506,12 +522,25 @@ class HomeController extends Controller
 			->first();
 
 			$js_order = json_encode($order->toArray());
+
+			$data['orders'] =$js_order;
+			$data['email'] =$user->email;
+			$data['order_id'] =$order->id;
+			$data['total_price'] =$order->total_price;
+			$data['address'] =$user->address;
+
+			Mail::to($user->email)->queue(new OrderShipped($data));
+
+			Mail::to('info@cms.com.hk')->queue(new OrderShippedToAdmin($data));
+
+		/*	
 			\Mail::send('emails.order_email', $offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($offer) {
 				$message->to($offer['email'])->subject('Order #'.$offer['order_id']);
 			});
 			\Mail::send('emails.admin_order_email', $admin_offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($admin_offer) {
 				$message->to('info@cms.com.hk')->subject('New Order #'.$admin_offer['order_id']);
 			});
+			*/
 
 			return Redirect::intended('order');
 		}catch(Exception $e){
@@ -631,7 +660,7 @@ class HomeController extends Controller
 		->orderby('updated_at','DESC')
 		->first();
 
-		
+
 		if(!$order){
 			return Redirect::back()->with("error",'Order id error');
 		}
