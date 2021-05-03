@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 use App\mail\OrderShipped;
 use App\mail\OrderShippedToAdmin;
 use App\mail\EnquireToAdmin;
+use App\User;
 class HomeController extends Controller
 {
 
@@ -376,7 +377,7 @@ class HomeController extends Controller
 				$cart[$key]['price'] = $data->price;
 				$cart[$key]['color'] = $data->color;
 				$cart[$key]['color_name'] = $data->color_name;
-	
+
 				if(isset($value['type']) && $value['type'] =='case' ){
 					$cart[$key]['product_image'] = '';
 				}else{
@@ -472,7 +473,7 @@ class HomeController extends Controller
 				$product[$key] = DB::table('product') 
 				->where('id', '=', $key)
 				->first();
-		
+
 				$total_price = (($product[$key]->price) * (  $value['qty'])) + $total_price;
 				$total_qty = $total_qty + $value['qty'];
 				if($value['qty'] < 50){
@@ -535,7 +536,7 @@ class HomeController extends Controller
 
 			Mail::to('info@cms.com.hk')->queue(new OrderShippedToAdmin($data));
 */
-		
+
 			\Mail::send('emails.order_email', $offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($offer) {
 				$message->to($offer['email'])->subject('Order #'.$offer['order_id']);
 			});
@@ -690,8 +691,22 @@ class HomeController extends Controller
 		exit();
 
 	}
+	
+	public function forget_pw(){
+		
+		return view('auth.forget_pw');
+	}
+	public function goToNewPw(Request $request){
+		$user= User::where('users.email', '=', $request->email)
+		->first();
+		if (!$user){
+			return Redirect::back()->withErrors(['fail' => 'With out This Email Data']);
+		}else{
+			return redirect()->route('password.email', ['email' => $request->email]);
+		}
 
-
-
-
+	}
 }
+
+
+

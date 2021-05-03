@@ -272,7 +272,7 @@ $carousel  = HomeController::getCarousel();
             </div>
 
             <div class="pull-right forget_pw_div">
-              <a class="forget_pw" href="#forget_pw">Forgot Password</a>
+              <a class="forget_pw" href="forget_pw">Forgot Password</a>
             </div>
 
             <div class="login_remember pull-left">

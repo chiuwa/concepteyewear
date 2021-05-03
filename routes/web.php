@@ -82,6 +82,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),  'middleware' => ['l
     Route::get('order_detail/{id}', 'HomeController@order_detail')->name('order_detail');
     Route::post('client_register', 'LoginController@client_register');
     Route::post('staff_register', 'LoginController@staff_register');
+    Route::get('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('/forget_pw', 'HomeController@forget_pw')->name('forget_pw');
+        Route::post('/goToNewPw', 'HomeController@goToNewPw')->name('goToNewPw');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('/ResetPassword', 'Auth\ResetPasswordController@ResetPassword')->name('ResetPassword');
+
 
 });
 
