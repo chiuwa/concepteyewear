@@ -1947,6 +1947,22 @@ min-height: 80vh;
     text-align: center;
     margin-bottom: 20px;
 }
+.desv-about-caption {
+  position: absolute;
+
+  bottom: 50px;
+  left: 15%;
+  z-index: 10;
+  top: 20%;
+  color: #fff;
+   
+}
+.desv-about-label{
+  letter-spacing: 3px;
+  font-size: 35px;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  margin-bottom: 70px; 
+}
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/

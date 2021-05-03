@@ -9,6 +9,12 @@
      $promotion_image = Voyager::setting('site.about_banner', '');
         @endphp
         <div class="bg-image" id="jumboid" style="background: url({{ Voyager::image($promotion_image)}});">
+              <div class="desv-about-caption" >
+           <label class="desv-about-label">We are The Eyes Crafters.</label>
+           <br>
+           <label class="desv-about-label">We are here to bring you a brand new eyewear production experience.</label>
+           <br> <br>
+         </div>
       </div>
     </div>
 
