@@ -118,7 +118,7 @@ class LoginController extends Controller {
             });
 
             \Mail::send('emails.to_admin_new_email', $admin_offer = ['name' => $find_user->name, 'email' => $find_user->email,'id'=>$find_user->id,'created_at'=>$find_user->created_at,'mobile'=>$find_user->mobile], function ($message) use ($admin_offer) {
-                $message->to('info@cms.com.hk')->subject('New Member '.$admin_offer['name'].'('.$admin_offer['email'].')  Registration');
+                $message->to('info@cem.com.hk')->subject('New Member '.$admin_offer['name'].'('.$admin_offer['email'].')  Registration');
             });
 
             return redirect()->back()->with('success', 'Login success');   
