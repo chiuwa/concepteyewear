@@ -58,7 +58,7 @@ class HomeController extends Controller
 
 
 		$order = Order::with('order_detail')
-		->where('status', '<>', 'Finish')
+		->where('status', '<>', 'Complete Order')
 		->where('user_id','=',$user->id)
 		->get();
 
@@ -380,6 +380,9 @@ class HomeController extends Controller
 
 				if(isset($value['type']) && $value['type'] =='case' ){
 					$cart[$key]['product_image'] = '';
+					if($data->product_image_1!=''){
+						$cart[$key]['product_image'] =$data->product_image_1;
+					}
 				}else{
 					if($data->product_image_1!=''){
 						$cart[$key]['product_image'] = $data->product_image_1;
@@ -573,9 +576,9 @@ class HomeController extends Controller
 		$cart = Session::get('cart');
 
 		if(isset($cart[$item_id])){
-			$cart[$item_id]['qty'] = $cart[$item_id]['qty']+1;
+			$cart[$item_id]['qty'] = $cart[$item_id]['qty']+50;
 		}else{
-			$cart[$item_id]['qty'] = 1; 
+			$cart[$item_id]['qty'] = 100; 
 		}
 		$cart[$item_id]['type'] = 'case'; 
 		$request->session()->put('cart', $cart);

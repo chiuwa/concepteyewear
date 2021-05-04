@@ -9,9 +9,9 @@
 
 
     <div class="col-12 contact_title_email">
-      <span class="contact_title">CONCEPT EYEWEAR MANUFACTURER LTD</span>
+      <span class="contact_title">THE EYES CRAFTERS BY CONCEPT EYEWEAR MANUFACTURER LTD </span>
       <br>
-      <span class="contact_dc"><i class="fa fa-envelope-o icon" aria-hidden="true"> </i> INFO@CMS.COM.HK</span>
+      <span class="contact_dc"><i class="fa fa-envelope-o icon" aria-hidden="true"> </i> info@cem.com.hk</span>
     </div>
 
 
@@ -34,7 +34,7 @@
       <span class="address_dc">No.33 Hong Shi Lu, Bu Xin Gong Ye Qu, Yan Tian, Feng Gang,
 Dong Guan, China</span>
       <br>    <br>
-      <span class="address_dc"><i class="fa fa-phone icon" aria-hidden="true"></i>(86) 769-8777 000 4</span>
+      <span class="address_dc"><i class="fa fa-phone icon" aria-hidden="true"></i>(86) 769-8777 0004</span>
     </div>
 
     <div class="col-md-6 ">

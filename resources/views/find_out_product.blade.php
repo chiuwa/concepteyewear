@@ -108,7 +108,7 @@
 					</div>
 					<div class="col-12 own-poduct-money">
 						<p>
-							USD${{$your_product->price}}
+							US${{$your_product->price}}
 						</p>
 					</div>
 					
@@ -404,7 +404,7 @@
 
 
             });
-
+			$(location).attr('href', '/shopping_cart')
 	});
 
 

@@ -73,7 +73,7 @@
 
 				<div class="col-md-2 col-3 item_other d-flex justify-content-center">
 
-					<p>USD${{ $c['price']}}</p>
+					<p>US${{ $c['price']}}</p>
 				</div>
 
 				<div class="col-md-3 col-6 item_other ">
@@ -106,7 +106,7 @@
 				@endphp
 				<div class="col-md-2 col-3 d-flex justify-content-center item_other tot_price" data-price="{{$tot_price}}" id="tot_price_{{$c['id']}}">
 
-					<p>USD${{$tot_price}}</p>
+					<p>US${{$tot_price}}</p>
 				</div>
 				@if(!isset($c['type']))
 				<label class="col-12 text-center">Printing instructions:</label>
@@ -138,7 +138,7 @@
 			</div>
 
 			<div class="col-6 col-md-2 item_count">
-				<p id="tital_price" class="pull-right">USD${{$all_price}}</p>
+				<p id="tital_price" class="pull-right">US${{$all_price}}</p>
 			</div>
 		<br>
 		<div class="col-md-6 ">
@@ -209,14 +209,14 @@
 		var item_price = parseInt($(this).attr('data-price'),10); 
 		var new_item_price = item_price*new_item_qty;
 		$('#qty_'+item_id).val(new_item_qty);
-		$('#tot_price_'+item_id).text('USD$'+new_item_price);
+		$('#tot_price_'+item_id).text('US$'+new_item_price);
 		$('#tot_price_'+item_id).attr('data-price',new_item_price) ;
 		var new_tot_price = 0 ;
 		$(".cart_item").each(function(){
 			var tot_price = parseInt($(this).find(".tot_price").attr('data-price'),10);
 			new_tot_price = tot_price + new_tot_price;
 		});
-		$('#tital_price').text('USD$'+new_tot_price);
+		$('#tital_price').text('US$'+new_tot_price);
 	});
 
 
@@ -247,7 +247,7 @@
 		var item_price = parseInt($(this).attr('data-price'),10); 
 		var new_item_price = item_price*new_item_qty;
 		$('#qty_'+item_id).val(new_item_qty);
-		$('#tot_price_'+item_id).text('USD$'+new_item_price);
+		$('#tot_price_'+item_id).text('US$'+new_item_price);
 		$('#tot_price_'+item_id).attr('data-price',new_item_price) ;
 		var new_tot_price = 0 ;
 		$(".cart_item").each(function(){
@@ -255,7 +255,7 @@
 
 			new_tot_price = tot_price + new_tot_price;
 		});
-		$('#tital_price').text('USD$'+new_tot_price);
+		$('#tital_price').text('US$'+new_tot_price);
 
 	});
 
@@ -264,14 +264,14 @@
 		var item_qty = parseInt($(this).val(),10);
 		var item_price = parseInt($(this).attr('data-price'),10);
 		var new_item_price = item_qty*item_price;
-		$('#tot_price_'+item_id).text('USD$'+new_item_price);
+		$('#tot_price_'+item_id).text('US$'+new_item_price);
 		$('#tot_price_'+item_id).attr('data-price',new_item_price) ;
 		var new_tot_price = 0 ;
 		$(".cart_item").each(function(){
 			var tot_price = parseInt($(this).find(".tot_price").attr('data-price'),10);
 			new_tot_price = tot_price + new_tot_price;
 		});
-		$('#tital_price').text('USD$'+new_tot_price);
+		$('#tital_price').text('US$'+new_tot_price);
 	});
 
 	$('.item_eye_case').on('click', function () {

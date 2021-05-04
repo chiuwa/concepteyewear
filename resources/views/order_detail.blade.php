@@ -43,6 +43,11 @@
       <td class="FieldLabel2" >
         Model
       </td> 
+
+    <td class="FieldLabel2">
+      Total
+    </td> 
+  
     </tr>
     @foreach($order->order_detail as $key => $product) 
     <tr style="height: 50px;">
@@ -59,28 +64,16 @@
       <li>{{$product->model_name}}</li>
       <li>{{$product->product->model_dc}}</li>
     </td> 
+    <td class="FieldLabel2">
+     ${{$product->detail_price}}
+   </td> 
   </tr>
   @endforeach
 </table>
 </td>
 
 <td >
-  <table style="float: right" 
-  class="RightAlignedInputs">
-  <tr style="height: 50px;">
-    <td class="FieldLabel2">
-      Total
-    </td> 
-  </tr>
 
-  @foreach($order->order_detail as $key => $product) 
-  <tr style="height: 50px;">
-   <td class="FieldLabel2">
-     ${{$product->detail_price}}
-   </td> 
- </tr>
- @endforeach
-</table>
 </td>
 </div>
 </main>
@@ -203,7 +196,7 @@ aria-hidden="true">
       $html += '</div></div></div>';   
       $html += '<div class="col-md-6"><div calss="row flex-md-row">  <div class="col-md-6 own-poduct-title"><p>'+data.product_name_en+'</p></div>';
       $html += '<div class="col-md-6 "><p>'+data.product_code+'</p></div>';
-      $html += '<div class="col-md-6 "><p>USD $ <b>'+data.price+'</b></p></div>';
+      $html += '<div class="col-md-6 "><p>US $ <b>'+data.price+'</b></p></div>';
       $html += ' <div class="col-md-6 "><ul><li>'+data.lens_name_en+' '+data.len_color_name+'<img src="'+APP_URL+'/storage/'+data.lens_color+'" class=" d-block step-image option_small_image"> </li><li>'+data.frames_name_en+' '+data.frames_color_name+'<img src="'+APP_URL+'/storage/'+data.frames_color+'" class=" d-block step-image option_small_image"> </li>  <li>'+data.temples_name_en+' '+data.temples_color_name+'<img src="'+APP_URL+'/storage/'+data.temples_color+'" class=" d-block step-image option_small_image"></li> </ul></div>';
       $html += '<div class="col-md-6 own-poduct-description ">'+data.description+'</div>';
       $html += '</div></div></div><br><br>';   
