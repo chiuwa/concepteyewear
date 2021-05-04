@@ -359,7 +359,7 @@ class HomeController extends Controller
 				if(isset($value['type']) && $value['type'] =='case' ){
 					$data = DB::table('product') 
 					->where('product.id', '=', $key)
-					->select('product.*')
+					->select('product.*','product.id as product_id')
 					->first();
 				}else{
 					$data = DB::table('product') 
