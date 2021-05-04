@@ -1194,7 +1194,16 @@ main{
 .make-slide{
   top:25%;
 }
-
+.makeOwnleftside{
+  width: 100%;
+    height: 60vh;
+    overflow: scroll;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+.makeOwnNext{
+      position: relative;
+}
 .step-style{
   opacity: 1 !important;
   top: 80% !important;
@@ -1240,7 +1249,17 @@ main{
   }
 
 }
+@media (max-width: 759px) {
+.makeOwnleftside{
+  margin-top: 100px;
+    margin-bottom: 200px;
 
+}
+.makeOwnNext{
+  position: absolute;
+}
+
+}
 /*--------------------------------------------------------------
 # find-product
 --------------------------------------------------------------*/

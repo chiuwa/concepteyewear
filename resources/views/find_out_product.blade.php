@@ -9,7 +9,7 @@
 <main>
 	<div class="container wow fadeIn">
 		<div class="row flex-md-row">
-		
+
 			@if (isset($data[0]))
 
 			@php $your_product = $data[0];@endphp
@@ -54,7 +54,7 @@
 						</div>
 
 						@else
-							<div class="carousel-item active" id="product_image_1">
+						<div class="carousel-item active" id="product_image_1">
 							<img src="{{ Voyager::image($your_product->len_color_image)}}" class="d-block step-image">      
 						</div>
 
@@ -80,18 +80,18 @@
 				</div>
 
 				<div id="slider">
-						@if($your_product->product_image_1!==null)
+					@if($your_product->product_image_1!==null)
 					<img class="thumbnail active" id="1"src="{{ Voyager::image($your_product->product_image_1)}}">
 					<img class="thumbnail" id="2" src="{{ Voyager::image($your_product->product_image_2)}}">
 					<img class="thumbnail" id="3" src="{{ Voyager::image($your_product->product_image_3)}}">	
 					<img class="thumbnail" id="4"src="{{ Voyager::image($your_product->len_color_image)}}">
 					<img class="thumbnail" id="5" src="{{ Voyager::image($your_product->frames_color_image)}}">
 					<img class="thumbnail" id="6" src="{{ Voyager::image($your_product->temples_color_image)}}">	
-						@else	
+					@else	
 					<img class="thumbnail active" id="1"src="{{ Voyager::image($your_product->len_color_image)}}">
 					<img class="thumbnail" id="2" src="{{ Voyager::image($your_product->frames_color_image)}}">
 					<img class="thumbnail" id="3" src="{{ Voyager::image($your_product->temples_color_image)}}">	
-						@endif			
+					@endif			
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -112,23 +112,23 @@
 						</p>
 					</div>
 					
-			
+
 					<div class="col-12 ">
 						<ul>
 							<li>
 								{{$your_product->lens_name_en}} ({{$your_product->len_color_name}})
-							<img src="{{ Voyager::image($your_product->lens_color)}}" class=" d-block step-image option_small_image">
-					
+								<img src="{{ Voyager::image($your_product->lens_color)}}" class=" d-block step-image option_small_image">
+
 							</li>	
 							<li>
 								{{$your_product->frames_name_en}}({{$your_product->frames_color_name}})
-							<img src="{{ Voyager::image($your_product->frames_color)}}" class=" d-block step-image option_small_image">
+								<img src="{{ Voyager::image($your_product->frames_color)}}" class=" d-block step-image option_small_image">
 
 							</li>
 
 							<li>
 								{{$your_product->temples_name_en}}({{$your_product->temples_color_name}})
-							<img src="{{ Voyager::image($your_product->temples_color)}}" class=" d-block step-image option_small_image">
+								<img src="{{ Voyager::image($your_product->temples_color)}}" class=" d-block step-image option_small_image">
 								
 
 							</li>								
@@ -136,8 +136,8 @@
 					</div>
 					<div class="col-12 own-poduct-description ">
 
-							{!! $your_product->description !!}
-				
+						{!! $your_product->description !!}
+
 					</div>
 					<div class="col-12 own-poduct-add-cart find-image">
 						@if($your_product->product_image_1!==null)
@@ -162,47 +162,47 @@
 				@php $other_1=($data[1]); @endphp
 				<div class="col-md-4 card find-image">
 
-				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  >
-					<div class="carousel-inner">
-						@if($other_1->product_image_1!==null)
-						<div class="carousel-item active">
-							<img src="{{ Voyager::image($other_1->product_image_1)}}" class="d-block step-image">      
-						</div>
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  >
+						<div class="carousel-inner">
+							@if($other_1->product_image_1!==null)
+							<div class="carousel-item active">
+								<img src="{{ Voyager::image($other_1->product_image_1)}}" class="d-block step-image">      
+							</div>
 
-						<div class="carousel-item">
-							<img  src="{{ Voyager::image($other_1->product_image_2)}}" class="d-block step-image">      
-						</div>
+							<div class="carousel-item">
+								<img  src="{{ Voyager::image($other_1->product_image_2)}}" class="d-block step-image">      
+							</div>
 
-						<div class="carousel-item" >
-							<img  src="{{ Voyager::image($other_1->product_image_3)}}" class="d-block step-image">      
-						</div>
+							<div class="carousel-item" >
+								<img  src="{{ Voyager::image($other_1->product_image_3)}}" class="d-block step-image">      
+							</div>
 
-						@else
+							@else
 							<div class="carousel-item active" >
-							<img src="{{ Voyager::image($other_1->len_color_image)}}" class="d-block step-image">      
-						</div>
+								<img src="{{ Voyager::image($other_1->len_color_image)}}" class="d-block step-image">      
+							</div>
 
-						<div class="carousel-item" >
-							<img  src="{{ Voyager::image($other_1->frames_color_image)}}" class="d-block step-image">      
-						</div>
+							<div class="carousel-item" >
+								<img  src="{{ Voyager::image($other_1->frames_color_image)}}" class="d-block step-image">      
+							</div>
 
-						<div class="carousel-item" >
-							<img  src="{{ Voyager::image($other_1->temples_color_image)}}" class="d-block step-image">      
+							<div class="carousel-item" >
+								<img  src="{{ Voyager::image($other_1->temples_color_image)}}" class="d-block step-image">      
+							</div>
+							@endif
 						</div>
-						@endif
 					</div>
-				</div>
 					<h5>{{$other_1->product_name_en}}</h5>
 					<p class="price">HK${{$other_1->price}}</p>
-	
+
 					<div class="description">
 						{!!$other_1->description!!}
 					</div>
 					@if($other_1->product_image_1!==null)
-						<img src="{{Voyager::image($other_1->product_image_1)}}" alt="item" style="display: none;" />
-						@else
-						<img src="{{Voyager::image($other_1->len_color_image)}}" alt="item" style="display: none;" />
-						@endif
+					<img src="{{Voyager::image($other_1->product_image_1)}}" alt="item" style="display: none;" />
+					@else
+					<img src="{{Voyager::image($other_1->len_color_image)}}" alt="item" style="display: none;" />
+					@endif
 					@if(Auth::check())
 					<button class="addtocart"  data-id="{{$other_1->id}}">Add to Cart</button>
 					@else
@@ -214,45 +214,45 @@
 				@if (isset($data[2]))
 				@php $other_2=($data[2]); @endphp
 				<div class="col-md-4 card find-image">
-							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  >
-					<div class="carousel-inner">
-						@if($other_1->product_image_1!==null)
-						<div class="carousel-item active">
-							<img src="{{ Voyager::image($other_2->product_image_1)}}" class="d-block step-image">      
-						</div>
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  >
+						<div class="carousel-inner">
+							@if($other_1->product_image_1!==null)
+							<div class="carousel-item active">
+								<img src="{{ Voyager::image($other_2->product_image_1)}}" class="d-block step-image">      
+							</div>
 
-						<div class="carousel-item">
-							<img  src="{{ Voyager::image($other_2->product_image_2)}}" class="d-block step-image">      
-						</div>
+							<div class="carousel-item">
+								<img  src="{{ Voyager::image($other_2->product_image_2)}}" class="d-block step-image">      
+							</div>
 
-						<div class="carousel-item" >
-							<img  src="{{ Voyager::image($other_2->product_image_3)}}" class="d-block step-image">      
-						</div>
+							<div class="carousel-item" >
+								<img  src="{{ Voyager::image($other_2->product_image_3)}}" class="d-block step-image">      
+							</div>
 
-						@else
+							@else
 							<div class="carousel-item active" >
-							<img src="{{ Voyager::image($other_2->len_color_image)}}" class="d-block step-image">      
-						</div>
+								<img src="{{ Voyager::image($other_2->len_color_image)}}" class="d-block step-image">      
+							</div>
 
-						<div class="carousel-item" >
-							<img  src="{{ Voyager::image($other_2->frames_color_image)}}" class="d-block step-image">      
-						</div>
+							<div class="carousel-item" >
+								<img  src="{{ Voyager::image($other_2->frames_color_image)}}" class="d-block step-image">      
+							</div>
 
-						<div class="carousel-item" >
-							<img  src="{{ Voyager::image($other_2->temples_color_image)}}" class="d-block step-image">      
+							<div class="carousel-item" >
+								<img  src="{{ Voyager::image($other_2->temples_color_image)}}" class="d-block step-image">      
+							</div>
+							@endif
 						</div>
-						@endif
 					</div>
-				</div>
 					<h5>{{$other_2->product_name_en}}</h5>
 					<p class="price">HK${{$other_2->price}}</p>
-		
+
 					<div class="description">{!!$other_2->description!!}</div>
-							@if($other_2->product_image_1!==null)
-						<img src="{{Voyager::image($other_2->product_image_1)}}" alt="item" style="display: none;" />
-						@else
-						<img src="{{Voyager::image($other_2->len_color_image)}}" alt="item" style="display: none;" />
-						@endif
+					@if($other_2->product_image_1!==null)
+					<img src="{{Voyager::image($other_2->product_image_1)}}" alt="item" style="display: none;" />
+					@else
+					<img src="{{Voyager::image($other_2->len_color_image)}}" alt="item" style="display: none;" />
+					@endif
 					@if(Auth::check())
 					<button class="addtocart" data-id="{{$other_2->id}}">Add to Cart</button>
 					@else
@@ -353,7 +353,7 @@
 		$('.modal_bubble').css('display','block');
 		var cart_no = $('.modal_bubble').val();
 		cart_no = cart_no + 1;
-	     $('.modal_bubble').text(cart_no);
+		$('.modal_bubble').text(cart_no);
 		var cart = $('.nav-member');
 		var imgtodrag =$(this).parent('.find-image').find("img").eq(0);
 
@@ -393,18 +393,22 @@
 		}
 
 		var item_id = $(this).attr('data-id');
-		  $.ajax({
-		  	 type:'POST',
-               url:'addtocart',
-               data:{'id':item_id,'_token':'{{csrf_token()}}'},
-               success:function(data){
-                 console.log(data);
-                 return false;
-               }
+		$.ajax({
+			type:'POST',
+			url:'addtocart',
+			data:{'id':item_id,'_token':'{{csrf_token()}}'},
+			success:function(data){
+				console.log(data);
+				return false;
+			},complete: function(data) {
+				setTimeout(function() { 
+					$(location).attr('href', '/shopping_cart')
+				}, 500);
 
+			},
 
-            });
-			$(location).attr('href', '/shopping_cart')
+		});
+
 	});
 
 
