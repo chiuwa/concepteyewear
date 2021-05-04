@@ -62,7 +62,7 @@ $carousel  = HomeController::getCarousel();
   <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
 
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="{{ asset('css/style.css?1') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css?3') }}">
 
   <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
