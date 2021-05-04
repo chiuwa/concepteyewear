@@ -1201,6 +1201,9 @@ main{
     margin-bottom: 100px;
     margin-top: 50px;
 }
+.makeOwnleftside::-webkit-scrollbar {
+  display: none;
+}
 .makeOwnNext{
       position: relative;
 }
