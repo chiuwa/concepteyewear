@@ -47,7 +47,7 @@ class HomeController extends Controller
 		exit();
 	}
 
-	public static function getOrder(){
+	public static function getOrder() {
 		
 		if (!Auth::check()) {
 			return Redirect::to('home')
@@ -408,8 +408,8 @@ class HomeController extends Controller
 			->withErrors(['fail' => 'Please Login First']);
 		}
 		$user = Auth::user();
-
-		return view('user_profile',['user'=>$user]);
+		$order_number = $this->getOrder();
+		return view('user_profile',['user'=>$user,'order_number'=>$order_number]);
 	}
 
 
@@ -421,7 +421,7 @@ class HomeController extends Controller
 		}
 
 		$user = Auth::user();
-
+		$order_number = $this->getOrder();
 
 		$order = Order::with('order_detail')
 		->with('order_detail.product')
@@ -430,7 +430,7 @@ class HomeController extends Controller
 		->get();
 
 
-		return view('order',['user'=>$user,'order'=>$order]);
+		return view('order',['user'=>$user,'order'=>$order,'order_number'=>$order_number]);
 	}
 
 

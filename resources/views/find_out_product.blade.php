@@ -148,7 +148,7 @@
 						@if(Auth::check())
 						<button type="button" id="add-to-cart"  class="addtocart"  data-id="{{$your_product->id}}" data-image="{{Voyager::image($your_product->product_image_1)}}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
 						@else
-						<button type="button" id="add-to-cart" class="check_login"  data-image="{{Voyager::image($your_product->product_image_1)}}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
+						<button type="button" id="add-to-cart" class="check_login"  data-id="{{$your_product->id}}" data-image="{{Voyager::image($your_product->product_image_1)}}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
 						@endif
 					</div>
 				</div>
@@ -193,7 +193,7 @@
 						</div>
 					</div>
 					<h5>{{$other_1->product_name_en}}</h5>
-					<p class="price">HK${{$other_1->price}}</p>
+					<p class="price">US${{$other_1->price}}</p>
 
 					<div class="description">
 						{!!$other_1->description!!}
@@ -245,7 +245,7 @@
 						</div>
 					</div>
 					<h5>{{$other_2->product_name_en}}</h5>
-					<p class="price">HK${{$other_2->price}}</p>
+					<p class="price">US${{$other_2->price}}</p>
 
 					<div class="description">{!!$other_2->description!!}</div>
 					@if($other_2->product_image_1!==null)
@@ -344,6 +344,16 @@
 	});
 	$(".check_login").click(function () {
 		$('#LoginModal').modal('show');
+		var item_id = $(this).attr('data-id');
+		$.ajax({
+			type:'POST',
+			url:'addtocart',
+			data:{'id':item_id,'_token':'{{csrf_token()}}'},
+			success:function(data){
+				console.log(data);
+				return false;
+			}
+		});
 	});
 </script>
 

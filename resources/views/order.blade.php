@@ -23,7 +23,10 @@
         <ul class="nav nav-pills nav-stacked">
           <li ><a href="user_profile"> <i class="fa fa-user"></i>Profile</a></li>
 
-          <li class="active"><a href="order"> <i class="fa fa-edit"></i> Order </a></li>
+          <li class="active"><a href="order"> <i class="fa fa-edit"></i> Order </a>  @if($order_number!=0)
+         <span style="color:red;font-size: 10px;
+    font-weight: 600;">({{$order_number}})</span>
+               @endif</li>
         </ul>
       </div>
     </div>
