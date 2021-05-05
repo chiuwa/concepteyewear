@@ -51,7 +51,7 @@
            </div>
 
            <div class="bio-row full-bio-row">
-             <p>Order Totel Price : <b>HKD ${{$data->total_price}} </b></p>
+             <p>Order Totel Price : <b>US ${{$data->total_price}} </b></p>
            </div>     
 
            <div class="bio-row full-bio-row">

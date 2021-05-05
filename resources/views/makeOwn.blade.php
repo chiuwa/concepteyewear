@@ -142,8 +142,6 @@
 
 <script>
 
-  $option = '';
-  $type ='frame';
 
   $('input[type=radio]').on('change', function() {
     $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
@@ -154,13 +152,26 @@
     $type ='';
     $option = $(this).val();
     $type =  $(this).attr('id');
-
+    console.log($type);
   });
+  // $('#prevBtn').on('click', function () {
+  //   if($type =='len_color'){
+  //     $type ='temple_color';
+  //   }
+  //   else if($type =='temple_color'){
+  //     $type = 'frame_color';
+  //   }
+  //   else if($type =='frame_color'){
+  //     $type = 'frame';
+  //   }
 
+  // });
   $('#nextBtn').on('click', function () { 
 
-    if($type == 'frame'){
+    if(typeof $type =='undefined' || $type =='frame'){
+
       $option =  $('.frame_div').find('input:checked').prop("checked", true).val();
+
       $.ajax({
         type:'POST',
         url:'getFramesColor',
@@ -180,15 +191,19 @@
                html+='<input class="form-check-input" type="radio" name="frame_color_options" id="frame_color" value='+all_option[index].id+' checked="checked" >';
                html+='<label class="form-check-label" for="frame_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"> </div> </label>' ; 
                html+='</div>';   
+               $(".active").removeClass("active");
+               image+='<div class="carousel-item active"   id="frame_color_image_'+all_option[index].id+'">';
+               image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image" ></div>';
+
              }else{
               html+='<input class="form-check-input" type="radio" name="frame_color_options" id="frame_color" value='+all_option[index].id+' >';
-              html+='<label class="form-check-label" for="frame_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"> </div> </label>' ; 
+              html+='<label class="form-check-label" for="frame_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"> </div> </label>' ;
+              html+='</div>';  
+              image+='<div class="carousel-item"   id="frame_color_image_'+all_option[index].id+'">';
+              image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';  
             }
-            html+='</div>';   
-            image+='<div class="carousel-item"   id="frame_color_image_'+all_option[index].id+'">';
 
 
-            image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
             i = i +1;
           });
             $('#frame_color_div').append(html); 
@@ -202,7 +217,7 @@
               $type ='';
               $option = $(this).val();
               $type =  $(this).attr('id');
-
+              console.log($type);
             });
 
           }else{
@@ -210,100 +225,64 @@
             html='<label> This Frame with out any color options</label>';
             $('#frame_color_div').append(html);         
           }
-        }
+        },complete: function(index) {
+          $type = 'frame_color';
+  //         $('#prevBtn').on('click', function () {
+  //           if($type =='len_color'){
+  //             $type ='temple_color';
+  //           }
+  //           else if($type =='temple_color'){
+  //             $type = 'frame_color';
+  //           }
+  //           else if($type =='frame_color'){
+  //             $type = 'frame';
+  //           }
+  // console.log($type);
+  //         });
+},
 
-      });
+});
+    }
 
+    if($type =='temple_color'){
+     console.log($type);
+     $.ajax({
+      type:'POST',
+      url:'getLensColor',
+      data:{'_token':'{{csrf_token()}}'},
+      success:function(data){
+        var  all_option =data;
+        var  html = '';
+        var image = ''; 
 
+        if(all_option!=''){
+          $('#len_color_div').html('');
+          var y =0 ;
+          $.each(all_option, function(index) {
 
-      $.ajax({
-        type:'POST',
-        url:'getLensColor',
-        data:{'_token':'{{csrf_token()}}'},
-        success:function(data){
-          var  all_option =data;
-          var  html = '';
-          var image = ''; 
-
-          if(all_option!=''){
-            $('#len_color_div').html('');
-            var y =0 ;
-            $.each(all_option, function(index) {
-
-              var APP_URL = {!! json_encode(url('/')) !!}
-              html+='<div class="form-check step-radio ">';
-              if(y == 0){
-                html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+'  checked="checked">';
-                html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
-                html+='</div>'; 
-              }else{
-               html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+' >';
-               html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
-               html+='</div>'; 
-             }  
-             image+='<div class="carousel-item"   id="len_color_image_'+all_option[index].id+'">';
-
-
-             image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
-             y = y +1;
-           });
-            $('#len_color_div').append(html); 
-            $('.carousel-inner').append(image); 
-
-            $('input[type=radio]').on('change', function() {
-              $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
-              $(".active").removeClass("active");
-              $($image).addClass("active");
-              $option = '';
-              $type ='';
-              $option = $(this).val();
-              $type =  $(this).attr('id');
-            });
-
-          }else{
-            $('#len_color_div').html('');
-            html='<label> This Len with out any color options</label>';
-            $('#len_color_div').append(html);         
-          }
-        }
-
-      });
-
-
-      $.ajax({
-        type:'POST',
-        url:'getTemplesColor',
-        data:{'_token':'{{csrf_token()}}'},
-        success:function(data){
-          var  all_option = data;
-          var  html = '';
-          var image = ''; 
-
-          if(all_option!=''){
-           $('#temple_color_div').html('');
-           var z =0 ;
-           $.each(all_option, function(index) {
-            var APP_URL = {!! json_encode(url('/')) !!}      
+            var APP_URL = {!! json_encode(url('/')) !!}
             html+='<div class="form-check step-radio ">';
-            if(z == 0){
-              html+='<input class="form-check-input" type="radio" name="temple_color_options" id="temple_color" value='+all_option[index].id+' checked="checked" >';
-              html+='<label class="form-check-label" for="temple_color"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
+            if(y == 0){
+              html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+'  checked="checked">';
+              html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
               html+='</div>'; 
+              $(".active").removeClass("active");
+              image+='<div class="carousel-item active"   id="len_color_image_'+all_option[index].id+'">';
+              image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
             }else{
-              html+='<input class="form-check-input" type="radio" name="temple_color_options" id="temple_color" value='+all_option[index].id+' >';
-              html+='<label class="form-check-label" for="temple_color"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
-              html+='</div>'; 
-            }  
-            image+='<div class="carousel-item"   id="temple_color_image_'+all_option[index].id+'">';
+             html+='<input class="form-check-input" type="radio" name="len_color_options" id="len_color" value='+all_option[index].id+' >';
+             html+='<label class="form-check-label" for="len_color_options"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
+             html+='</div>'; 
+             image+='<div class="carousel-item"   id="len_color_image_'+all_option[index].id+'">';
+             image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
+           }  
 
+           y = y +1;
+         });
+          $('#len_color_div').append(html); 
+          $('.carousel-inner').append(image); 
 
-            image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
-            z = z+1;
-          });
-           $('#temple_color_div').append(html); 
-           $('.carousel-inner').append(image); 
-
-           $('input[type=radio]').on('change', function() {
+          $('input[type=radio]').on('change', function() {
             $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
             $(".active").removeClass("active");
             $($image).addClass("active");
@@ -311,19 +290,105 @@
             $type ='';
             $option = $(this).val();
             $type =  $(this).attr('id');
+            
           });
 
-         }else{
-           $('#temple_color_div').html('');
-           html='<label> This Temple with out any color options</label>';
-           $('#temple_color_div').append(html);         
-         }
-       }
+        }else{
+          $('#len_color_div').html('');
+          html='<label> This Len with out any color options</label>';
+          $('#len_color_div').append(html);         
+        }
+      },complete: function(index) {
+       $type = 'len_color';
+  //       $('#prevBtn').on('click', function () {
+  //         if($type =='len_color'){
+  //           $type ='temple_color';
+  //         }
+  //         else if($type =='temples'){
+  //           $type = 'frames_color';
+  //         }
+  //         else if($type =='frames_color'){
+  //           $type = 'frame';
+  //         }
+  // console.log($type);
+  //       });
+},
 
-     });
-    }
-    
 });
+   }
+   if($type == 'frame_color'){
+     console.log($type);
+     $.ajax({
+      type:'POST',
+      url:'getTemplesColor',
+      data:{'_token':'{{csrf_token()}}'},
+      success:function(data){
+        var  all_option = data;
+        var  html = '';
+        var image = ''; 
+
+        if(all_option!=''){
+         $('#temple_color_div').html('');
+         var z =0 ;
+         $.each(all_option, function(index) {
+          var APP_URL = {!! json_encode(url('/')) !!}      
+          html+='<div class="form-check step-radio ">';
+          if(z == 0){
+            html+='<input class="form-check-input" type="radio" name="temple_color_options" id="temple_color" value='+all_option[index].id+' checked="checked" >';
+            html+='<label class="form-check-label" for="temple_color"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
+            html+='</div>'; 
+            $(".active").removeClass("active");
+            image+='<div class="carousel-item active"   id="temple_color_image_'+all_option[index].id+'">';
+            image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
+          }else{
+            html+='<input class="form-check-input" type="radio" name="temple_color_options" id="temple_color" value='+all_option[index].id+' >';
+            html+='<label class="form-check-label" for="temple_color"> '+all_option[index].color_name+' <div class="options_image" ><img src="'+APP_URL+'/storage/'+all_option[index].color_image+'" class=" d-block step-image option_small_image"></div> </label>'  ;
+            html+='</div>'; 
+            image+='<div class="carousel-item"   id="temple_color_image_'+all_option[index].id+'">';
+            image+='<img src="'+APP_URL+'/storage/'+all_option[index].image+'" class=" d-block step-image"></div>';
+          }  
+
+          z = z+1;
+        });
+         $('#temple_color_div').append(html); 
+         $('.carousel-inner').append(image); 
+
+         $('input[type=radio]').on('change', function() {
+          $image = '#'+$(this).attr('id')+'_image_'+$(this).val();
+          $(".active").removeClass("active");
+          $($image).addClass("active");
+          $option = '';
+          $type ='';
+          $option = $(this).val();
+          $type =  $(this).attr('id');
+          console.log($type);
+        });
+
+       }else{
+         $('#temple_color_div').html('');
+         html='<label> This Temple with out any color options</label>';
+         $('#temple_color_div').append(html);         
+       }
+     },complete: function(index) {
+      $type = 'temple_color';
+  //     $('#prevBtn').on('click', function () {
+  //       if($type =='len_color'){
+  //         $type ='temple_color';
+  //       }
+  //       else if($type =='temples'){
+  //         $type = 'frames_color';
+  //       }
+  //       else if($type =='frames_color'){
+  //         $type = 'frame';
+  //       }
+  // console.log($type);
+  //     });
+},
+
+});
+
+   }
+ });
 
 </script>
 
