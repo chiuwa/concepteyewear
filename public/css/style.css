@@ -1088,7 +1088,7 @@ main{
 # contact
 --------------------------------------------------------------*/
 .contact_title_email{
-  margin-bottom: 10%;
+  margin-bottom: 2%;
 }
 .contact_title{
   font-size: 20px;
@@ -1097,7 +1097,6 @@ main{
 }
 .contact_dc{
   font-size: 18px;
-  letter-spacing: 2px;
   font-weight: 500;
 }
 .icon{
