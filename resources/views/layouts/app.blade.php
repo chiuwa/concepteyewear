@@ -62,7 +62,7 @@ $carousel  = HomeController::getCarousel();
   <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
 
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="{{ asset('css/style.css?3') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
   <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
@@ -79,18 +79,26 @@ $carousel  = HomeController::getCarousel();
   <div class="colorlib-loader"></div>
 
   <div class="icon-bar">
+       @if(Voyager::setting('site.facebook'))
     <div class="icon-backgroud">
       <a href="//{{Voyager::setting('site.facebook')}}" target="_blank"  class="facebook" ><img  class="png_icon" src="/images/facebook.png" onmouseover="fb_hover(this);" onmouseout="fb_unhover(this);"></a> 
     </div>
+          @endif
+     @if(Voyager::setting('site.instagram'))
     <div class="icon-backgroud">
      <a href="//{{Voyager::setting('site.instagram')}}" target="_blank" class="instagram"><img  class="png_icon" src="/images/instagram.png" onmouseover="ig_hover(this);" onmouseout="ig_unhover(this);"></a> 
    </div> 
+      @endif
+   @if(Voyager::setting('site.pinterest'))
    <div class="icon-backgroud">
      <a href="//{{Voyager::setting('site.pinterest')}}" target="_blank" class="pinterest"><img  class="png_icon" src="/images/pinterest.png" onmouseover="pi_hover(this);" onmouseout="pi_unhover(this);"></a> 
    </div> 
+   @endif
+    @if(Voyager::setting('site.twitter'))
    <div class="icon-backgroud">
      <a href="//{{Voyager::setting('site.twitter')}}" target="_blank" class="twitter"><img  class="png_icon" src="/images/twitter.png" onmouseover="tw_hover(this);" onmouseout="tw_unhover(this);"></a> 
    </div> 
+      @endif
  </div>
 
 
