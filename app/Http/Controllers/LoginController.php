@@ -62,6 +62,8 @@ class LoginController extends Controller {
             'email' => 'bail|required|email',
             'password' => 'bail|required',
              'mobile' => 'bail|required',
+              'name' => 'bail|required',
+               'address' => 'bail|required',
 
         ]);
 
@@ -87,6 +89,7 @@ class LoginController extends Controller {
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
             'mobile' => $request->input('mobile'),
+            'address'=>$request->input('address'),
 
         ]);
 

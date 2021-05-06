@@ -49,7 +49,7 @@ $carousel  = HomeController::getCarousel();
   <meta property="og:description" content="The eyes crafters can make your own glasses. Click the link get more information." />
   <meta property="og:url" content="{{url()->current()}}" />
   <meta property="og:site_name" content="THE EYES CRAFTERS" />
-  <meta property="og:image" content="https://theeyescrafters.com/storage/logo/theeyescrafters_logo.jpeg" />
+  <meta property="og:image" content="https://theeyescrafters.com/storage/logo/TEC_logo.png" />
   <meta property="og:locale" content="en-us" />
   <!-- Font Awesome -->
   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
@@ -330,7 +330,14 @@ $carousel  = HomeController::getCarousel();
                 <input class="text-center login_field" name="mobile" type="text"  required="true">
               </div>
             </div>
-
+        <div class="input-login row">
+              <div class="login_label col-5">
+                <span>ADDRESS</span> 
+              </div>
+              <div class="login_input col-7">
+                <input class="text-center login_field" name="address" type="text"  required="true">
+              </div>
+            </div>
 
             <div class="input-login row"> 
               <div class="login_label col-5">
