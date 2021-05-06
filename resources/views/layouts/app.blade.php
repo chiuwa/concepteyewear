@@ -10,7 +10,7 @@ use \App\Http\Controllers\HomeController;
 $carousel  = HomeController::getCarousel(); 
 
 @endphp    
-
+     
 <head>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J9GL73CF3"></script>
@@ -73,10 +73,11 @@ $carousel  = HomeController::getCarousel();
   <link rel="stylesheet" href="{{ asset('css/justifiedGallery.min.css') }}">
 
   <link rel="stylesheet" href="{{ asset('css/colorbox.css') }}">
-
+ <div class="spinner_div"><div class="spinner"></div></div>
 </head>
 <body>
   <div class="colorlib-loader"></div>
+
   <div class="icon-bar">
     <div class="icon-backgroud">
       <a href="//{{Voyager::setting('site.facebook')}}" target="_blank"  class="facebook" ><img  class="png_icon" src="/images/facebook.png" onmouseover="fb_hover(this);" onmouseout="fb_unhover(this);"></a> 
@@ -95,7 +96,7 @@ $carousel  = HomeController::getCarousel();
 
  <header id="header" class="fixed-top">
   <div class="container-fluid d-flex">
-       
+
     <div class="d-flex">
      <button type="button" class="nav-toggle d-none d-lg-block title-close"><i class="fa fa-bars"></i></button>
       @if(Auth::check())
@@ -397,11 +398,28 @@ $carousel  = HomeController::getCarousel();
 
 <script type="text/javascript">
   $alert_data = $("#message").html();
-  console.log($alert_data);
-
+  
+  if($alert_data != undefined){
   if($alert_data.length > 1){
    $('#LoginModal').modal('show');
  }
+}
+
+$(document).ready(function () {
+    $('form').on('submit', CheckRequired);
+});
+
+function CheckRequired(event) {
+    var $form = $(this);
+
+    if ($form.find('.required').filter(function(){ return this.value === '' }).length > 0) {
+        event.preventDefault();
+        alert("One or more fields cannot be blank");
+        return false;
+    }else{
+      $('.spinner_div').css('display','block');
+    }
+}
 </script>
 
 <script type="text/javascript">
