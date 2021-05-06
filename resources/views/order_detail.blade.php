@@ -62,7 +62,7 @@
     </td> 
     <td class="FieldLabel2" >
       <li>{{$product->model_name}}</li>
-      <li>{{$product->product->model_dc}}</li>
+      <li>{{$product->model_dc}}</li>
     </td> 
     <td class="FieldLabel2">
      ${{$product->detail_price}}
