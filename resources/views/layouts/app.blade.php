@@ -329,10 +329,10 @@ use \App\Http\Controllers\HomeController;
               </div>
             </div>
             <div class="input-login row">
-              <div class="login_label col-5">
-                <span>MOBILE</span> 
+              <div class="login_label col-7">
+                <span>COUNTRY CODE+PHONE NO</span> 
               </div>
-              <div class="login_input col-7">
+              <div class="login_input col-5">
                 <input class="text-center login_field" name="mobile" type="text"  required="true">
               </div>
             </div>
