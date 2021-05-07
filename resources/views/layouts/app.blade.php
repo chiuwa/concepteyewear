@@ -6,12 +6,10 @@ use \App\Http\Controllers\HomeController;
 ?>
 
 <html>
-@php 
-$carousel  = HomeController::getCarousel(); 
 
-@endphp    
      
 <head>
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J9GL73CF3"></script>
 <script>
@@ -340,7 +338,7 @@ $carousel  = HomeController::getCarousel();
             </div>
         <div class="input-login row">
               <div class="login_label col-5">
-                <span>ADDRESS</span> 
+                <span>SHIPPING ADDRESS</span> 
               </div>
               <div class="login_input col-7">
                 <input class="text-center login_field" name="address" type="text"  required="true">

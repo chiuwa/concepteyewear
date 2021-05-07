@@ -8,7 +8,7 @@
 @php 
 $carousel  = HomeController::getCarousel(); 
 @endphp         
-
+<link rel="preload" as="image" href="{{ Voyager::image($carousel[0]->value)}}">
 
 <!--Main layout-->
 <main >

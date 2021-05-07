@@ -796,7 +796,7 @@ main{
 .input-login{
  border: 2px solid #000000;
  border-radius: 10px;
- height: 35px;
+ height: 100%;
  margin-top:20px;
 }
 .login_div{
@@ -805,11 +805,12 @@ main{
 }
 .login_label{
   margin-top:5px;
+  text-align: left;
 }
 .login_field{
   width: 100%;
   border: 0;
-  height: 30px;
+  height: 100%;
 }
 .forget_pw_div{
   margin-top:15px;
@@ -821,6 +822,7 @@ main{
 .login_remember{
   margin-top: 80px;
   margin-left: 10px;
+  margin-bottom: 30px;
 }
 .custom-control-input:checked ~ .custom-control-label::before {
   color: #fff;
@@ -830,7 +832,7 @@ main{
 
 }
 .login_submit_button{
- margin-top: 120px;
+ margin-top: 40px;
  margin-bottom: 20px;
  width: 100%;
 }
