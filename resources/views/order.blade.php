@@ -8,7 +8,7 @@
 
 
 <main>
-	<div class="container wow fadeIn">
+	<div class="container">
 		
 
    <div class="row flex-md-row cus-row">
@@ -50,30 +50,29 @@
              <p>Order Status :<b>{{$data->status}}</b> </p>
            </div>
            <div class="bio-row">
-             <p>Follow Up Salse :{{$data->follow_up_user_id}} </p>
+             <p>Contact Person :{{$data->follow_up_user_id}} </p>
            </div>
 
            <div class="bio-row full-bio-row">
-             <p>Order Totel Price : <b>US ${{$data->total_price}} </b></p>
+             <p>Order Total Amount : <b>US ${{$data->total_price}} </b></p>
            </div>     
 
            <div class="bio-row full-bio-row">
-             <p>Order Detail :</p>
+             <p>Order Details :</p>
              @foreach($data->order_detail as $key2 => $product) 
              <ul>
               <li>Product : {{$product->product->product_name_en}}</a> </li>
               <li>Unit Price : ${{$product->product->price}}</li>
               <li>Qty : {{$product->product_qty}}</li>
               <li>Total  : ${{$product->detail_price}}</li>
-              <li>Code : {{$product->product->product_code}}</li>
               
-
+              @if(($product->model_name)!='' || ($product->model_dc) !='')
               <li>Printing instructions:</li> 
               <ul>
                 <li>Left Inner Temple : {{$product->model_name}}</li>
                 <li>Right Inner temple : {{$product->model_dc}}</li>
               </ul>
-              
+              @endif
             </ul>
             @endforeach
           </div>    
@@ -83,18 +82,38 @@
             <p><span>Order Num: </span> {!! Form::text('order_id', $data->id, array('class'=>'form_text user-input')) !!}</p>
           </div>
           @if($data->receipt_image == null)
-          <div class="bio-row full-bio-row">
-            <p><span>Receipt : </span>  <input class="receipt_upload" type="file" name="receipt_image"/ required></p>
+          <div class="col-md-12 full-bio-row">
+            <p>  <input class="receipt_upload" type="file" name="receipt_image"/ required> <br><span>Payment receipt upload(jpg ,png image only) </span></p>
           </div>
-          <div class="col-md-4 submit_button pull-right">
-            {{Form::submit('Update Order', ['class' => 'user_submit_button' ])}}
+              <hr>
+<div>
+Our Bank Information:  <br>                                                              
+<span>A/C Name    : Concept Eyewear Manufacturer Ltd   </span>   <br>                                                                 
+<span>Bank Name   : DBS Bank (Hong Kong)Ltd     </span>   <br>                                                                             
+<span>Bank Address: Unit 9-18,12/F,Miramar Tower,134 Nathan Road,        </span>   <br>                                                                    
+<span>Tsimshatsui Kowloon,Hong Kong </span>   <br>                                                                                 
+<span>A/C No      : 016-494-470092114.  </span>   <br>                                                                                
+<span>SWIFT       : DHBKHKHH    </span>   <br>                     
+</div>
+          <div class="col-md-6 submit_button pull-right">
+            {{Form::submit('Upload Payment Receipt', ['class' => 'user_submit_button' ])}}
           </div>
-          @else
+          @else    
+          <hr>
+                              <div>
+Our Bank Information:  <br>                                                              
+<span>A/C Name    : Concept Eyewear Manufacturer Ltd   </span>   <br>                                                                 
+<span>Bank Name   : DBS Bank (Hong Kong)Ltd     </span>   <br>                                                                             
+<span>Bank Address: Unit 9-18,12/F,Miramar Tower,134 Nathan Road,        </span>   <br>                                                                    
+<span>Tsimshatsui Kowloon,Hong Kong </span>   <br>                                                                                 
+<span>A/C No      : 016-494-470092114.  </span>   <br>                                                                                
+<span>SWIFT       : DHBKHKHH    </span>   <br>                     
+</div>
                      <!--div class="bio-row full-bio-row">
                       <p><span>Receipt : </span>   <img src="{{ Voyager::image($data->receipt_image)}}" class="d-block select-image">      </p>
                     </div-->
                     @endif
-                    
+
                     {!!  Form::close() !!}
                   </div>
                 </div>

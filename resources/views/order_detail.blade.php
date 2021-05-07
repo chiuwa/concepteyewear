@@ -170,34 +170,34 @@ aria-hidden="true">
       $html += '<div class="row"><div class="col-md-6"><div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" > <div class="carousel-inner">';
             if(data.len_color_image!=null){
       $html += ' <div class="carousel-item active" id="product_image_1">';
-      $html += '<img src="'+APP_URL+'/storage/'+data.len_color_image+'"  class="d-block step-image"> </div>';  
+      $html += '<img src="'+APP_URL+'/storage/'+data.len_color_image+'"  class="d-block step-image" style="object-fit: contain;height:  300px;cursor: pointer;">          </div>';  
     }
              if(data.frames_color_image!=null){
       $html += ' <div class="carousel-item " id="product_image_2">';
-      $html += '<img src="'+APP_URL+'/storage/'+data.frames_color_image+'"  class="d-block step-image"> </div>';  
+      $html += '<img src="'+APP_URL+'/storage/'+data.frames_color_image+'"  class="d-block step-image" style="object-fit: contain;height:  300px;cursor: pointer;">          </div>';  
     }
     if(data.temples_color_image!=null){
       $html += ' <div class="carousel-item " id="product_image_3">';
-      $html += '<img src="'+APP_URL+'/storage/'+data.temples_color_image+'"  class="d-block step-image"> </div>';  
+      $html += '<img src="'+APP_URL+'/storage/'+data.temples_color_image+'"  class="d-block step-image" style="object-fit: contain;height:  300px;cursor: pointer;">          </div>';  
     }
       if(data.product_image_1!=null){
         $html += ' <div class="carousel-item " id="product_image_4">';
-        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_1+'"  class="d-block step-image"> </div>';  
+        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_1+'"  class="d-block step-image" style="object-fit: contain;height:  300px;cursor: pointer;">          </div>';  
       }
       if(data.product_image_2!=null){
         $html += ' <div class="carousel-item " id="product_image_5">';
-        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_2+'"  class="d-block step-image"> </div>';  
+        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_2+'"  class="d-block step-image" style="object-fit: contain;height:  300px;cursor: pointer;">          </div>';  
       }
       if(data.product_image_3!=null){
         $html += ' <div class="carousel-item " id="product_image_6">';
-        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_3+'"  class="d-block step-image"> </div>';  
+        $html += '<img src="'+APP_URL+'/storage/'+data.product_image_3+'"  class="d-block step-image" style="object-fit: contain;height:  300px;cursor: pointer;">          </div>';  
       }
 
       $html += '</div></div></div>';   
       $html += '<div class="col-md-6"><div calss="row flex-md-row">  <div class="col-md-6 own-poduct-title"><p>'+data.product_name_en+'</p></div>';
       $html += '<div class="col-md-6 "><p>'+data.product_code+'</p></div>';
       $html += '<div class="col-md-6 "><p>US $ <b>'+data.price+'</b></p></div>';
-      $html += ' <div class="col-md-6 "><ul><li>'+data.lens_name_en+' '+data.len_color_name+'<img src="'+APP_URL+'/storage/'+data.lens_color+'" class=" d-block step-image option_small_image"> </li><li>'+data.frames_name_en+' '+data.frames_color_name+'<img src="'+APP_URL+'/storage/'+data.frames_color+'" class=" d-block step-image option_small_image"> </li>  <li>'+data.temples_name_en+' '+data.temples_color_name+'<img src="'+APP_URL+'/storage/'+data.temples_color+'" class=" d-block step-image option_small_image"></li> </ul></div>';
+      $html += ' <div class="col-md-12 " style="    text-align: left;"><ul><li>'+data.lens_name_en+' '+data.len_color_name+'<img src="'+APP_URL+'/storage/'+data.lens_color+'" class=" d-block step-image option_small_image"> </li><li>'+data.frames_name_en+' '+data.frames_color_name+'<img src="'+APP_URL+'/storage/'+data.frames_color+'" class=" d-block step-image option_small_image"> </li>  <li>'+data.temples_name_en+' '+data.temples_color_name+'<img src="'+APP_URL+'/storage/'+data.temples_color+'" class=" d-block step-image option_small_image"></li> </ul></div>';
       $html += '<div class="col-md-6 own-poduct-description ">'+data.description+'</div>';
       $html += '</div></div></div><br><br>';   
       $('.modal-container').html('');

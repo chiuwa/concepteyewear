@@ -4,6 +4,7 @@
 
 @section('main_page')
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
 
 <main>
@@ -168,7 +169,7 @@
 		@endif
 	</div>
 </main>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script type="text/javascript">
 		$('#item-clear_1').on('click', function () {
 
@@ -290,7 +291,27 @@
 	});
 
 
+$('form').submit(function(event) {
+    event.preventDefault();
+    var form = $(this)[0];
+ 
+    $.confirm({
+      columnClass: 'col-md-4 col-md-offset-4',
+      theme: 'white',
+      title: 'Confirm submit the order?',
+      content:$('#count_2').text() +'<br>' +'Total : '+ $('#tital_price').text(),
+       buttons: {
+      confirm: function() {
 
+       form.submit();
+      },
+      cancel: function() {
+
+        $('.spinner_div').css('display','none');
+      }
+  }
+    });
+  });
 </script>
 
 

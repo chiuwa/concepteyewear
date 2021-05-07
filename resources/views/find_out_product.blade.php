@@ -27,43 +27,52 @@
 
 					</ol>
 
-					<div class="carousel-inner">
+					<div class="carousel-inner" style="height: 300px;">
 						@if($your_product->product_image_1!==null)
 						<div class="carousel-item active" id="product_image_1">
-							<img src="{{ Voyager::image($your_product->product_image_1)}}" class="d-block step-image">      
+							<img src="{{ Voyager::image($your_product->product_image_1)}}" class="d-block step-image "
+								style="object-fit: contain;max-height:  300px;cursor: pointer;">          
 						</div>
 
 						<div class="carousel-item" id="product_image_2">
-							<img  src="{{ Voyager::image($your_product->product_image_2)}}" class="d-block step-image">      
+							<img  src="{{ Voyager::image($your_product->product_image_2)}}" class="d-block step-image "
+								style="object-fit: contain;max-height:  300px;cursor: pointer;">          
 						</div>
 
 						<div class="carousel-item" id="product_image_3">
-							<img  src="{{ Voyager::image($your_product->product_image_3)}}" class="d-block step-image">      
+							<img  src="{{ Voyager::image($your_product->product_image_3)}}" class="d-block step-image "
+								style="object-fit: contain;max-height:  300px;cursor: pointer;">         
 						</div>
 
 						<div class="carousel-item" id="product_image_4">
-							<img src="{{ Voyager::image($your_product->len_color_image)}}" class="d-block step-image">      
+							<img src="{{ Voyager::image($your_product->len_color_image)}}" class="d-block step-image "
+								style="object-fit: contain;max-height:  300px;cursor: pointer;">         
 						</div>
 
 						<div class="carousel-item" id="product_image_5">
-							<img  src="{{ Voyager::image($your_product->frames_color_image)}}" class="d-block step-image">      
+							<img  src="{{ Voyager::image($your_product->frames_color_image)}}" class="d-block step-image "
+								style="object-fit: contain;max-height:  300px;cursor: pointer;">          
 						</div>
 
 						<div class="carousel-item" id="product_image_6">
-							<img  src="{{ Voyager::image($your_product->temples_color_image)}}" class="d-block step-image">      
+							<img  src="{{ Voyager::image($your_product->temples_color_image)}}" class="d-block step-image "
+								style="object-fit: contain;max-height:  300px;cursor: pointer;">          
 						</div>
 
 						@else
-						<div class="carousel-item active" id="product_image_1">
-							<img src="{{ Voyager::image($your_product->len_color_image)}}" class="d-block step-image">      
+						<div class="carousel-item active " id="product_image_1">
+							<img src="{{ Voyager::image($your_product->len_color_image)}}" class="d-block step-image" 
+							style="object-fit: contain;max-height:  300px;cursor: pointer;">      
 						</div>
 
 						<div class="carousel-item" id="product_image_2">
-							<img  src="{{ Voyager::image($your_product->frames_color_image)}}" class="d-block step-image">      
+							<img  src="{{ Voyager::image($your_product->frames_color_image)}}" class="d-block step-image "
+								style="object-fit: contain;max-height:  300px;cursor: pointer;">        
 						</div>
 
 						<div class="carousel-item" id="product_image_3">
-							<img  src="{{ Voyager::image($your_product->temples_color_image)}}" class="d-block step-image">      
+							<img  src="{{ Voyager::image($your_product->temples_color_image)}}" class="d-block step-image "
+								style="object-fit: contain;max-height:  300px;cursor: pointer;">        
 						</div>
 
 

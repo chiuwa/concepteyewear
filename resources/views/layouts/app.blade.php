@@ -218,7 +218,7 @@ use \App\Http\Controllers\HomeController;
          <div class="modal_bubble_2">{{$order_number}}</div>
                @endif
         <div class="member_button d-flex justify-content-center">
-          <a class="btn member-btn d-flex justify-content-center" href="/user_profile"><p> <i class="fa fa-user member-icon mr-3" aria-hidden="true"></i> PROFILE SETTINGS</p></a>
+          <a class="btn member-btn d-flex justify-content-center" href="/user_profile"><p> <i class="fa fa-user member-icon mr-3" aria-hidden="true"></i> PROFILE SETTING</p></a>
         </div>
      
         <div class="login_submit_button">
@@ -426,7 +426,7 @@ function CheckRequired(event) {
     var $form = $(this);
 
     if ($form.find('.required').filter(function(){ return this.value === '' }).length > 0) {
-        event.preventDefault();
+       // event.preventDefault();
         alert("One or more fields cannot be blank");
         return false;
     }else{
