@@ -1249,8 +1249,9 @@ main{
   width: 100%;
     height: 60vh;
     overflow: scroll;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     margin-top: 50px;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.3);
 }
 .makeOwnleftside::-webkit-scrollbar {
   display: none;
@@ -1305,8 +1306,8 @@ main{
 }
 @media (max-width: 759px) {
 .makeOwnleftside{
-  margin-top: 100px;
-    margin-bottom: 200px;
+
+    margin-bottom: 120px;
 
 }
 .makeOwnNext{
