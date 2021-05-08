@@ -1317,8 +1317,8 @@ button:focus {
 }
 @media (max-width: 759px) {
 .makeOwnleftside{
-  margin-top: 100px;
-    margin-bottom: 200px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
 
 }
 .makeOwnNext{
@@ -1339,6 +1339,9 @@ button:focus {
 float: right;
 background-color: rgba(0, 0, 0, 0.2);
 border-radius: 5px;
+}
+.full-image{
+  margin-top: 20px;
 }
 }
 
