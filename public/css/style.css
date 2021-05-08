@@ -1330,9 +1330,10 @@ main{
      width: 100%;
     float: inherit;
     border-radius: 0px;
+        border: 2px solid black;
 }
 #prevBtn{
- margin-bottom: 15%;
+ margin-bottom: 19%;
 float: right;
 background-color: rgba(0, 0, 0, 0.2);
 border-radius: 5px;
