@@ -1258,6 +1258,15 @@ main{
 }
 .makeOwnNext{
       position: relative;
+     
+}
+#nextBtn{
+   margin-bottom: 10%;
+      float: right;
+}
+#prevBtn{
+     margin-bottom: 10%;
+      float: left;
 }
 .step-style{
   opacity: 1 !important;
@@ -1306,15 +1315,31 @@ main{
 }
 @media (max-width: 759px) {
 .makeOwnleftside{
-
-    margin-bottom: 120px;
+  margin-top: 100px;
+    margin-bottom: 200px;
 
 }
 .makeOwnNext{
-  position: absolute;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
+#nextBtn{
+   margin-bottom:0;
+     width: 100%;
+    float: inherit;
+    border-radius: 0px;
 }
+#prevBtn{
+ margin-bottom: 15%;
+float: right;
+background-color: rgba(0, 0, 0, 0.2);
+border-radius: 5px;
+}
+}
+
+
 /*--------------------------------------------------------------
 # find-product
 --------------------------------------------------------------*/

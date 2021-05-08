@@ -127,12 +127,13 @@
   </div>
 
 </div>
-
 <div class="col-md-6 makeOwnNext">
-  <div style="float:left;">
+  <div>
     <button type="button" id="prevBtn"  onclick="nextPrev(-1)"> < PREVIOUS STEP</button>
   </div>
-  <div style="float:right;margin-bottom:10%;">
+  </div>
+<div class=" makeOwnNext">
+  <div>
     <button type="button" id="nextBtn" onclick="nextPrev(1)"> <i class="fa fa-arrow-right mr-2"> </i> NEXT STEP</button>
   </div>
 </div>
