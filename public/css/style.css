@@ -51,7 +51,10 @@ main{
   background-color: #000000 !important;
 }
 
+button:focus {
 
+    outline: none;
+}
 .spinner {
    position: absolute;
    left: 50%;

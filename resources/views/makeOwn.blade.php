@@ -7,7 +7,7 @@
 
 
 <main>
- <div class="container-fluid wow fadeIn makeOwn-page">
+ <div class="container-fluid  makeOwn-page">
   <div class="row flex-column-reverse flex-md-row">
     <div class="col-md-6 offset-md-1 makeOwnleftside" >
       {!! Form::open(array('action'=>'HomeController@findOwn','method'=>'post','id'=>'regForm')) !!}
