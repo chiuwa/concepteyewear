@@ -1235,9 +1235,7 @@ button:focus {
   opacity: 0;
 
 }
-.full-image{
-  padding:0;
-}
+
 .makeOwn-page{
   margin-top:-10px;
 }
@@ -2016,6 +2014,32 @@ ul.summary-list > li:last-child  {
 }
 .full-bio-row{
   width: 100% !important;
+}
+.order_back{
+  width: 150px;
+  text-align: left;
+  padding-left: 20px; 
+  margin-bottom:0px !important;
+
+}
+.order_back_2{
+    margin-bottom:0px !important;
+    display: inline-flex !important;
+}
+@media screen and (max-width: 768px) {
+.order_back{
+  width: 100%;
+  text-align: left;
+margin-bottom:0px !important;
+  padding-left: 0px; 
+
+}
+.order_back_2{
+    margin-bottom:10px !important;
+      width: 100%;
+  text-align: left;
+}
+
 }
 /*--------------------------------------------------------------
 # About
