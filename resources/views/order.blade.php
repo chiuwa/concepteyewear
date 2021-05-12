@@ -50,7 +50,7 @@
            <p>Order Status :<b>{{$data->status}}</b> </p>
          </div>
          <div class="bio-row">
-           <p>Contact Person :{{$data->follow_up_user_id}} </p>
+           <p>Contact Person :{{$data->follow_name}} </p>
          </div>
 
          <div class="bio-row full-bio-row">
@@ -83,7 +83,7 @@
         </div>
         @if($data->receipt_image == null)
         <div class="col-md-12 full-bio-row">
-          <p>  <input class="receipt_upload" type="file" name="receipt_image"/ required> <br><span>Payment receipt upload(jpg ,png image only) </span></p>
+          <p>  <input class="receipt_upload" type="file" name="receipt_image"/ required> <br><span>Payment reciept upload (jpg, png image only) </span></p>
         </div>
 
         <div>

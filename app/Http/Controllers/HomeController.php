@@ -425,10 +425,11 @@ class HomeController extends Controller
 
 		$order = Order::with('order_detail')
 		->with('order_detail.product')
+		->leftjoin('users','users.id','=','order.follow_up_user_id')
 		->where('order.user_id','=',$user->id)
-		->orderby('updated_at','DESC')
+		->select('order.*','users.name as follow_name')
+		->orderby('order.updated_at','DESC')
 		->get();
-
 
 		return view('order',['user'=>$user,'order'=>$order,'order_number'=>$order_number]);
 	}
@@ -665,7 +666,7 @@ class HomeController extends Controller
 		->where('order.user_id','=',$user->id)
 		->orderby('updated_at','DESC')
 		->first();
-		
+
 
 		if(!$order){
 			return Redirect::back()->with("error",'Order id error');

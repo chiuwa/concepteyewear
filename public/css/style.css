@@ -753,6 +753,10 @@ button:focus {
 /*--------------------------------------------------------------
 # modal
 --------------------------------------------------------------*/
+.login_label_no_bottom{
+  margin-bottom: 0px;
+  width: 100%;
+}
 .desv-modal{
   top:10%;
   width: auto !important;
@@ -932,7 +936,7 @@ button:focus {
 }
 @media (min-width: 1151px) and (max-width: 1502px) {
   .desv-modal{
-    max-width: 60% !important;
+    max-width: 50% !important;
   }
   .login_main{
     margin: auto;

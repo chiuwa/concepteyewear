@@ -83,7 +83,7 @@
                         </td>
                         <td>
                             <div class="FieldPlaceholder DataOnly">
-                               {{$dataType->customer->name}} # {{$dataType->user_id}}</div>
+                               {{$dataType->customer_name}} # {{$dataType->user_id}}</div>
                            </td>
                        </tr>
                        <tr>
@@ -92,8 +92,8 @@
                         </td>
                         <td>
                             <div class="FieldPlaceholder DataOnly">
-                             @if($dataType->follow_up_user_id!==null)
-                             {{$dataType->follow_up_user_id}}</div>
+                             @if($dataType->follow_name!==null)
+                             {{$dataType->follow_name}}</div>
                              @else
                          N/A</div>
                          @endif

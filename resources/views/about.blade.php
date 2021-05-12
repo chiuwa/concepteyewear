@@ -33,7 +33,7 @@
     <div class="col-md-3 about_box">
       <p class="about_title">Order 100+ to create your design</p>
       <hr style="border: 1px solid black;"><br>   
-      <p class="about_dc">We understand the MOQ of designing and producing a batch of eyewear is very high. Businesses and brands who are interested in producing eyewear might hold back their innovative ideas due to the high threshold. At The Eyes Crafters, you can get your design by ordering 100 or more eyeglasses in each combination.
+      <p class="about_dc">Businesses and brands who are interested in producing eyewear might hold back their innovative ideas due to the high threshold. At The Eyes Crafters, you can get your design by ordering 100 or more eyeglasses in each combination.
       </p>
     </div>
 

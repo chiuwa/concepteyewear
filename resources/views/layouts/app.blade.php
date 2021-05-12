@@ -60,7 +60,7 @@ use \App\Http\Controllers\HomeController;
   <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
 
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="{{ asset('css/style.css?10') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css?11') }}">
 
   <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
@@ -262,19 +262,19 @@ use \App\Http\Controllers\HomeController;
 
             <div class="input-login row">
               <div class="login_label col-5">
-                <span>USERNAME</span> 
+                <label class="login_label_no_bottom" for="email_login">USERNAME</label> 
               </div>
               <div class="login_input col-7">
-                <input class="text-center login_field" name="email" type="email"  required="true">
+                <input class="text-center login_field" id="email_login" name="email" type="email"  required="true">
               </div>
             </div>
 
             <div class="input-login row"> 
               <div class="login_label col-5">
-                <span>PASSWORD</span> 
+                <label  class="login_label_no_bottom" for="password_login">PASSWORD</label> 
               </div>
               <div class="login_input col-7">
-                <input class="text-center login_field" name="password" type="password"  required="true">
+                <input class="text-center login_field" id="password_login" name="password" type="password"  required="true">
               </div>
             </div>
 
@@ -311,10 +311,10 @@ use \App\Http\Controllers\HomeController;
 
                 <div class="input-login row">
               <div class="login_label col-5">
-                <span>NAME</span> 
+                <label  class="login_label_no_bottom" for="register_name">NAME</label> 
               </div>
               <div class="login_input col-7">
-                <input class="text-center login_field" name="name" type="text"  required="true">
+                <input class="text-center login_field" id="register_name" name="name" type="text"  required="true">
               </div>
             </div>
 
@@ -322,35 +322,35 @@ use \App\Http\Controllers\HomeController;
 
               <div class="input-login row">
               <div class="login_label col-5">
-                <span>EMAIL</span> 
+                  <label  class="login_label_no_bottom" for="register_email">EMAIL</label> 
               </div>
               <div class="login_input col-7">
-                <input class="text-center login_field" name="email" type="email"  required="true">
+                <input class="text-center login_field" id="register_email" name="email" type="email"  required="true">
               </div>
             </div>
             <div class="input-login row">
               <div class="login_label col-7">
-                <span>COUNTRY CODE+PHONE NO</span> 
+               <label  class="login_label_no_bottom" for="register_mobile">COUNTRY CODE+PHONE NO</label> 
               </div>
               <div class="login_input col-5">
-                <input class="text-center login_field" name="mobile" type="text"  required="true">
+                <input class="text-center login_field" id="register_mobile" name="mobile" type="text"  required="true">
               </div>
             </div>
         <div class="input-login row">
               <div class="login_label col-5">
-                <span>SHIPPING ADDRESS</span> 
+               <label  class="login_label_no_bottom" for="register_address">SHIPPING ADDRESS</label> 
               </div>
               <div class="login_input col-7">
-                <input class="text-center login_field" name="address" type="text"  required="true">
+                <input class="text-center login_field" id="register_address" name="address" type="text"  required="true">
               </div>
             </div>
 
             <div class="input-login row"> 
               <div class="login_label col-5">
-                <span>PASSWORD</span> 
+                <label  class="login_label_no_bottom" for="register_password">PASSWORD</label> 
               </div>
               <div class="login_input col-7">
-                <input class="text-center login_field" name="password" type="password"  required="true">
+                <input class="text-center login_field"  id="register_password" name="password" type="password"  required="true">
               </div>
             </div>
               

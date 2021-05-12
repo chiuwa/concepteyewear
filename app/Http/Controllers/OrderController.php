@@ -26,61 +26,65 @@ class OrderController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
     $slug = $this->getSlug($request);
 
     if (!Auth::check() || Auth::user()->hasRole('admin')!= '1') {
-    return Redirect::back()->with("error",'No Permission');
-   }
+      return Redirect::back()->with("error",'No Permission');
+    }
 
+    $user = Auth::user();
+
+    $dataType = Order::with('order_detail')
+    ->with('order_detail.product')
+    ->leftjoin('users','users.id','=','order.follow_up_user_id')
+    ->leftjoin('users as customer','customer.id','=','order.user_id')
+    ->select('order.*','users.name as follow_name','customer.name as customer_name')
+    ->orderby('order.updated_at','DESC')
+    ->get();
+      //  ->toarray();
+
+
+
+    $view = 'voyager::bread.browse';
+
+    if (view()->exists("voyager::$slug.browse")) {
+      $view = "voyager::$slug.browse";
+    }
+
+    return Voyager::view($view, compact(
+      'user', 
+      'dataType'
+    ));
+  }
+
+
+  public function custom_view()
+  {
+    
+    if (!Auth::check() ||   Auth::user()->hasRole('admin') != '1') {
+     return Redirect::back()->with("error",'No Permission');
+   }
    $user = Auth::user();
+   $id = $_GET['id'];
 
    $dataType = Order::with('order_detail')
+   ->where('order.id', '=', $id)
    ->with('order_detail.product')
-   ->orderby('updated_at','DESC')
-   ->get();
-       // ->toarray();
+   ->leftjoin('users','users.id','=','order.follow_up_user_id')
+   ->leftjoin('users as customer','customer.id','=','order.user_id')
+   ->select('order.*','users.name as follow_name','customer.name as customer_name')
+   ->orderby('order.updated_at','DESC')
+   ->first();
+      // ->toarray();
+   
 
-
-		// echo '<pre>';
-  //       print_r($dataType);
-  //       die();
-   $view = 'voyager::bread.browse';
-
-   if (view()->exists("voyager::$slug.browse")) {
-    $view = "voyager::$slug.browse";
-  }
-
-  return Voyager::view($view, compact(
-    'user', 
-    'dataType'
-  ));
-}
-
-
-public function custom_view()
-{
-    
-  if (!Auth::check() ||   Auth::user()->hasRole('admin') != '1') {
-   return Redirect::back()->with("error",'No Permission');
-  }
-        $user = Auth::user();
-        $id = $_GET['id'];
-
-        $dataType = Order::with('order_detail')
-        ->where('order.id', '=', $id)
-        ->with('order_detail.product')
-        ->with('user')
-        ->with('customer')
-        ->orderby('updated_at','DESC')
-        ->first();
-       //->toarray();
-        if( !isset($dataType)){
-           return Redirect::back()->with("error",'Cannot find this order');
-        }
+   if( !isset($dataType)){
+     return Redirect::back()->with("error",'Cannot find this order');
+   }
 
    //$view = 'voyager::bread.browse';
      // echo '<pre>';
      //     print_r($dataType);
      //     die();
-  return view('/vendor/voyager/order/custom_view', compact('dataType'));
+   return view('/vendor/voyager/order/custom_view', compact('dataType'));
  //return view('order.custom_view', compact('dataType'));
-    }
+ }
 }
 

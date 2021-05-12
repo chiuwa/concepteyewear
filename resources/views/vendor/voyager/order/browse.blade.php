@@ -5,6 +5,9 @@
     <h1 class="page-title">
       Order
   </h1>
+  <h4 class="page-total">
+      Total : {{count($dataType)}}
+  </h4>
 </div>
 @stop
  
@@ -30,9 +33,9 @@
      @foreach($dataType as $key => $v)
      <tr>
       <th scope="row">{{$key}}</th>
-      <td><a class="image-link" href="users/{{$v->user_id}}" target="_blank">{{$v->user_id}}</a> </td>
+      <td><a class="image-link" href="users/{{$v->user_id}}" target="_blank">{{$v->customer_name}}</a> </td>
       @if($v->follow_up_user_id!==null)
-           <td><a class="image-link" href="users/{{$v->follow_up_user_id}}" target="_blank">{{$v->follow_up_user_id}}</a> </td>
+           <td><a class="image-link" href="users/{{$v->follow_up_user_id}}" target="_blank">{{$v->follow_name}}</a> </td>
            @else
   <td><label style="color:red">N/A</label></td>
 @endif
