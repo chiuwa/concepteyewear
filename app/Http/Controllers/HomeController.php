@@ -523,9 +523,10 @@ class HomeController extends Controller
 
 			$order = Order::with('order_detail')
 			->with('order_detail.product')
+			->leftjoin('users','users.id','=','order.user_id')
 			->where('order.id','=',$order->id)
 			->where('order.user_id','=',$user->id)
-			->orderby('updated_at','DESC')
+			->select('order.*','users.name as customer_name')
 			->first();
 
 			$js_order = json_encode($order->toArray());
@@ -541,7 +542,7 @@ class HomeController extends Controller
 			Mail::to('info@cms.com.hk')->queue(new OrderShippedToAdmin($data));
 */
 
-			\Mail::send('emails.order_email', $offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($offer) {
+			\Mail::send('emails.order_email', $offer = ['customer_name'=>$order->customer_name,'email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($offer) {
 				$message->to($offer['email'])->subject('Order #'.$offer['order_id']);
 			});
 			\Mail::send('emails.admin_order_email', $admin_offer = ['email'=>$user->email,'order_id' => $order->id, 'total_price' => $order->total_price,'address'=>$user->address,'orders'=>$js_order], function ($message) use ($admin_offer) {
@@ -664,7 +665,7 @@ class HomeController extends Controller
 		->with('order_detail.product')
 		->where('order.id','=',$id)
 		->where('order.user_id','=',$user->id)
-		->orderby('updated_at','DESC')
+		->orderby('order.updated_at','DESC')
 		->first();
 
 

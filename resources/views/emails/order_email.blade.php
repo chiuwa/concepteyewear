@@ -189,8 +189,8 @@ a[x-apple-data-detectors='true'] {
     <tr>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
         
-  <div class="v-text-align" style="color: #47484b; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 25px; line-height: 42px;">Thanks for your Order</span></strong></p>
+  <div class="v-text-align" style="padding:2px 30px 5px;color: #47484b; line-height: 140%; text-align: left; word-wrap: break-word;">
+    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 15px; line-height: 42px;">Thank you for your order! </span></strong></p>
   </div>
 
       </td>
@@ -204,7 +204,20 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:2px 40px 25px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #7a7676; line-height: 170%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 170%; text-align: center;"><span style="font-size: 16px; line-height: 27.2px;">You will be contacted to complete further transactions. </span></p>
+    <p style="font-size: 14px; line-height: 170%; text-align: left;"><span style="font-size: 14px; line-height: 27.2px;">Please arrange 50% of the total order amount as deposit in 7 days via bank transfer to secure your order. Otherwise, order will be cancelled automatically after 7 days.  </span>
+   </p> <br>
+     <p style="font-size: 14px; line-height: 170%; text-align: left;"><span style="font-size: 14px; line-height: 27.2px;">Please upload the deposit payment receipt on your profile setting- order on our website to complete the deposit payment process. Our sales team will contact you to follow up the details after deposit payment received.  </span></p>
+<br>
+      <p style="font-size: 14px; line-height: 170%; text-align: left;"><span style="font-size: 11px; line-height: 27.2px;">
+Our Bank Information:  
+<br>
+A/C Name :     Concept Eyewear Manufacturer Ltd   <br>
+Bank Name :    DBS Bank (Hong Kong)Ltd   <br>
+Bank Address:   Unit 9-18,12/F, Miramar Tower,134 Nathan Road, <br>
+            Tsim Sha Tsui, Kowloon, Hong Kong   <br>
+A/C No :      016-494-470092114.   <br>
+SWIFT :      DHBKHKHH  <br>
+ </span></p>
   </div>
 
       </td>
@@ -259,7 +272,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #615e5e; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">ORDER CONFIRMATION</span></strong></p>
+    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">Order Summary:</span></strong></p>
   </div>
 
       </td>
@@ -604,7 +617,9 @@ $orders = json_decode($orders);
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #5c5757; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">Delivery Addresss:</span></strong></p>
+    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">Shipping Address:</span></strong></p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">{{$customer_name}}</span></p>
+    <br>
 <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">{{$address}}</span></p>
   </div>
 
@@ -644,9 +659,7 @@ $orders = json_decode($orders);
     <tr>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:35px 10px 10px;font-family:'Open Sans',sans-serif;" align="left">
         
-  <div class="v-text-align" style="color: #000000; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 30px; line-height: 42px;">The Eyes Crafters</span></strong></p>
-  </div>
+<hr>
 
       </td>
     </tr>
@@ -659,33 +672,18 @@ $orders = json_decode($orders);
       <td style="overflow-wrap:break-word;word-break:break-word;padding:2px 40px 15px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #7a7676; line-height: 170%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 170%; text-align: center;"><em><span style="font-size: 14px; line-height: 23.8px;">The eyes crafters can make your own glasses.<br> Click  <a href="https://theeyescrafters.com">>This<</a> get more information.</span></em></p>
+    <p style="font-size: 14px; line-height: 170%; text-align: left;"><em><span style="font-size: 14px; line-height: 23.8px;">If you have any question regarding on your order, please feel free to reply to this email or find us via <a href = "mailto:support@theeyescrafters.com">support@theeyescrafters.com</a></span></em></p>
   </div>
-
+  <br>
+  <div class="v-text-align" style="color: #7a7676; line-height: 170%; text-align: left; word-wrap: break-word;">
+    <p style="font-size: 14px; line-height: 170%; text-align: left;"><em><span style="font-size: 14px; line-height: 23.8px;">The Eyes Crafters Team</span></em></p>
+  </div>
       </td>
     </tr>
   </tbody>
 </table>
 
-<table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:9px 9px 31px;font-family:'Open Sans',sans-serif;" align="left">
-        
-<div align="center">
-  <div style="display: table; max-width:-1px;">
-  <!--[if (mso)|(IE)]><table width="-1" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse;" align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:-1px;"><tr><![endif]-->
-  
-    
-    
-    <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-  </div>
-</div>
 
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
@@ -719,7 +717,7 @@ $orders = json_decode($orders);
 
 
 <div class="u-row-container" style="padding: 0px;background-color: transparent">
-  <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #236fa1;">
+  <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #000000;">
     <div style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
       <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #236fa1;"><![endif]-->
       
