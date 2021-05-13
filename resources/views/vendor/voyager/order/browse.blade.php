@@ -52,7 +52,7 @@
              <li>Total  : ${{$product->detail_price}}</li>
           <li>Code : {{$product->product->product_code}}</li>
             <li>Model : {{$product->model_name}}</li>
-              <li>Model DC : {{$product->product->model_dc}}</li>
+              <li>Model DC : {{$product->model_dc}}</li>
          
       </ul>
       <hr>
