@@ -1301,7 +1301,7 @@ border: 1px groove #000000;
 }
 .select-image{
   width: 40%;
-  border-radius: 20px;
+
 }
 @media (min-width: 1400px) {
   .make-slide{
@@ -1311,7 +1311,6 @@ border: 1px groove #000000;
 }
 @media (max-width: 1100px) {
   .step-radio{
-
     width: 100%;
 
   }
