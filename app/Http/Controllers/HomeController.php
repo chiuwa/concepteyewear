@@ -670,9 +670,7 @@ class HomeController extends Controller
 		->orderby('order.updated_at','DESC')
 		->first();
 
-		echo '<pre>';
-		print_r($order->ToArray());
-		die();
+
 		if(!$order){
 			return Redirect::back()->with("error",'Order id error');
 		}

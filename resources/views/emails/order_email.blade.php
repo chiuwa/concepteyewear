@@ -377,13 +377,13 @@ $orders = json_decode($orders);
        @if(($order->model_name)!='' || ($order->model_dc) !='')
        <br>
        <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">- Printing Details:</span></p>
-       @endphp
+       @endif
        @if(($order->model_name)!='')  
        <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">Left : {{$order->model_name}}</span></p>
-             @endphp
+             @endif
                 @if(($order->model_dc)!='')
        <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">Right :{{$order->model_dc}}</span></p>
-             @endphp
+             @endif
   </div>
 
       </td>
@@ -422,7 +422,6 @@ $orders = json_decode($orders);
     </div>
   </div>
 </div>
-
 
 @endforeach
 
