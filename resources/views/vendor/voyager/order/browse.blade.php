@@ -51,8 +51,10 @@
            <li>Qty : {{$product->product_qty}}</li>
              <li>Total  : ${{$product->detail_price}}</li>
           <li>Code : {{$product->product->product_code}}</li>
-            <li>Model : {{$product->model_name}}</li>
-              <li>Model DC : {{$product->model_dc}}</li>
+           @if(($product->model_name)!='' || ($product->model_dc) !='')
+            <li>Left Inner Temple : {{$product->model_name}}</li>
+              <li>Right Inner temple : {{$product->model_dc}}</li>
+              @endif
          
       </ul>
       <hr>
