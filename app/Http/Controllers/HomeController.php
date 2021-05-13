@@ -431,6 +431,8 @@ class HomeController extends Controller
 		->orderby('order.updated_at','DESC')
 		->get();
 
+	
+
 		return view('order',['user'=>$user,'order'=>$order,'order_number'=>$order_number]);
 	}
 
@@ -668,7 +670,9 @@ class HomeController extends Controller
 		->orderby('order.updated_at','DESC')
 		->first();
 
-
+		echo '<pre>';
+		print_r($order->ToArray());
+		die();
 		if(!$order){
 			return Redirect::back()->with("error",'Order id error');
 		}

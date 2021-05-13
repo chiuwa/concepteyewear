@@ -374,6 +374,16 @@ $orders = json_decode($orders);
         
   <div class="v-text-align" style="color: #615e5e; line-height: 140%; text-align: left; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">{{$order->product->product_name}} * {{$order->product_qty}}</span></p>
+       @if(($order->model_name)!='' || ($order->model_dc) !='')
+       <br>
+       <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">- Printing Details:</span></p>
+       @endphp
+       @if(($order->model_name)!='')  
+       <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">Left : {{$order->model_name}}</span></p>
+             @endphp
+                @if(($order->model_dc)!='')
+       <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">Right :{{$order->model_dc}}</span></p>
+             @endphp
   </div>
 
       </td>
