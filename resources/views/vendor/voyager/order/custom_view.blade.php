@@ -212,7 +212,7 @@
     class="RightAlignedInputs">
     <tr style="height: 50px;">
         <td class="FieldLabel2">
-          Total
+          Ex Works Total
       </td> 
   </tr>
 
@@ -257,7 +257,7 @@
         class="RightAlignedInputs">
         <tr>
             <td class="FieldLabel">
-                Subtotal:
+                Ex Works Total:
             </td>
             <td  align="right">
                 <div class=" FieldPlaceholder DataOnly" 

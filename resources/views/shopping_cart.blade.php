@@ -52,7 +52,7 @@
 
 					<div class="col-md-2">
 
-						<p class="item_sm_title"> Total</p>
+						<p class="item_sm_title"> Ex Works Total</p>
 					</div>
 				</div>
 			</div>
@@ -112,11 +112,11 @@
 				@if(!isset($c['type']))
 				<label class="col-12 text-center">Printing instructions:</label>
 				<div class="col-6 d-flex justify-content-center">
-					<input type="text"  class="textarea-cart d-flex justify-content-center" name="cart[{{$c['id']}}][model_name]" placeholder="Left Inner Temple"/>
+					<input type="text"  class="textarea-cart d-flex justify-content-center" name="cart[{{$c['id']}}][model_name]" placeholder="Left Inner Temple" required/>
 				</div>
 
 				<div class="col-6 d-flex justify-content-center">
-						<input type="text"  class="textarea-cart d-flex justify-content-center" name="cart[{{$c['id']}}][model_dc]" placeholder="Right Inner Temple"/>
+						<input type="text"  class="textarea-cart d-flex justify-content-center" name="cart[{{$c['id']}}][model_dc]" placeholder="Right Inner Temple" required/>
 				</div>
 				@endif
 			</div>
@@ -126,7 +126,7 @@
 			<div class="col-md-5 d-none d-md-block">
 				<a class="btn item-clear" id="item-clear_2">Clear All</a>
 			</div>
-			<div class="col-md-3 item_count d-none d-md-block">
+			<div class="col-md-2 item_count d-none d-md-block">
 				@php $item_count = count($cart); @endphp
 				@if($item_count < 2)
 				<p id="count_2" data-count="{{$item_count}}">{{$item_count}} Item</p>
@@ -134,8 +134,8 @@
 				<p id="count_2" data-count="{{$item_count}}">{{$item_count}} Items</p>
 				@endif
 			</div>
-			<div class="col-6 col-md-2 item_count">
-				<p>Grand Total</p>
+			<div class="col-6 col-md-3 item_count">
+				<p>Ex Works Total</p>
 			</div>
 
 			<div class="col-6 col-md-2 item_count">
@@ -299,7 +299,7 @@ $('form').submit(function(event) {
       columnClass: 'col-md-4 col-md-offset-4',
       theme: 'white',
       title: 'Confirm submit the order?',
-      content:$('#count_2').text() +'<br>' +'Total : '+ $('#tital_price').text(),
+      content:$('#count_2').text() +'<br>' +'Ex Works Total : '+ $('#tital_price').text(),
        buttons: {
       confirm: function() {
 

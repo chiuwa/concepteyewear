@@ -54,7 +54,7 @@
          </div>
 
          <div class="bio-row full-bio-row">
-           <p>Order Total Amount : <b>US ${{$data->total_price}} </b></p>
+           <p>Order Ex Works Total Amount : <b>US ${{$data->total_price}} </b></p>
          </div>     
 
          <div class="bio-row full-bio-row">
@@ -64,7 +64,7 @@
             <li>Product : {{$product->product->product_name_en}}</a> </li>
             <li>Unit Price : ${{$product->product->price}}</li>
             <li>Qty : {{$product->product_qty}}</li>
-            <li>Total  : ${{$product->detail_price}}</li>
+            <li>Ex Works Total  : ${{$product->detail_price}}</li>
 
             @if(($product->model_name)!='' || ($product->model_dc) !='')
             <li>Printing instructions:</li> 

@@ -45,7 +45,7 @@
       </td> 
 
     <td class="FieldLabel2">
-      Total
+      Ex Works Total
     </td> 
   
     </tr>

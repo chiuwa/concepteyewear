@@ -204,7 +204,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:2px 40px 25px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #7a7676; line-height: 170%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 170%; text-align: left;"><span style="font-size: 14px; line-height: 27.2px;">Please arrange 50% of the total order amount as deposit in 7 days via bank transfer to secure your order. Otherwise, order will be cancelled automatically after 7 days.  </span>
+    <p style="font-size: 14px; line-height: 170%; text-align: left;"><span style="font-size: 14px; line-height: 27.2px;">Please arrange 50% of the Ex Works Total order amount as deposit in 7 days via bank transfer to secure your order. Otherwise, order will be cancelled automatically after 7 days.  </span>
    </p> <br>
      <p style="font-size: 14px; line-height: 170%; text-align: left;"><span style="font-size: 14px; line-height: 27.2px;">Please upload the deposit payment receipt on your profile setting- order on our website to complete the deposit payment process. Our sales team will contact you to follow up the details after deposit payment received.  </span></p>
 <br>
@@ -486,7 +486,7 @@ $orders = json_decode($orders);
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #615e5e; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">Total</span></strong></p>
+    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">Ex Works Total</span></strong></p>
   </div>
 
       </td>

@@ -21,7 +21,7 @@
           <th scope="col">User</th>
            <th scope="col">Follow Up User</th>
             <th scope="col">Order Time</th>
-          <th scope="col">Total Price</th>
+          <th scope="col">Ex Works Total Price</th>
           <th scope="col">Status</th>
           <th scope="col">Order</th>
           <th scope="col">Receipt</th>
@@ -49,7 +49,7 @@
           <li>Product : <a class="image-link" href="product/{{$product->product_id}}" target="_blank">{{$product->product->product_name_en}}</a> </li>
           <li>Unit Price : ${{$product->product->price}}</li>
            <li>Qty : {{$product->product_qty}}</li>
-             <li>Total  : ${{$product->detail_price}}</li>
+             <li>Ex Works Total  : ${{$product->detail_price}}</li>
           <li>Code : {{$product->product->product_code}}</li>
            @if(($product->model_name)!='' || ($product->model_dc) !='')
             <li>Left Inner Temple : {{$product->model_name}}</li>
