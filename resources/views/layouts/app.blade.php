@@ -60,7 +60,7 @@ use \App\Http\Controllers\HomeController;
   <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
 
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="{{ asset('css/style.css?12') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
   <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 

@@ -65,7 +65,7 @@ $carousel  = HomeController::getCarousel();
         THE STORY BEHIND
       </div>
 
-      <div class="col-6 image_class">
+      <div class="col-5 image_class">
         @php
         $promotion_image = Voyager::setting('site.promotion_image_1', '');
         @endphp
@@ -107,7 +107,7 @@ $carousel  = HomeController::getCarousel();
     <div class="col-2">
       <span class="vertical-mode">The Highest Standards</span>
     </div>
-    <div class="col-6 image_class">
+    <div class="col-5 image_class">
       @php
       $promotion_image = Voyager::setting('site.promotion_image_2', '');
       @endphp
@@ -130,7 +130,7 @@ $carousel  = HomeController::getCarousel();
 
   <div class="row">
 
-    <div class="col-6 image_class">
+    <div class="col-5 image_class">
       @php
       $promotion_image = Voyager::setting('site.promotion_image_3', '');
       @endphp

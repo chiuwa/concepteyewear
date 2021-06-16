@@ -658,6 +658,7 @@ button:focus {
   transform: rotate(-180deg);
   position: absolute;
   bottom: 0;
+  left:0;
   font-size: 35px;
   font-weight: 600;
 }
@@ -723,7 +724,7 @@ button:focus {
     margin-top: 100px;
   }
   .vertical-mode {
-    font-size: 20px;
+    font-size: 17px;
   }
   .content-text{
    font-size: 10px;
