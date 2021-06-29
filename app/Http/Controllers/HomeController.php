@@ -488,7 +488,16 @@ class HomeController extends Controller
 					return Redirect::to('shopping_cart')
 					->withErrors(['fail' => 'Min 100 total qty for each order']);
 				}
+				if($product[$key]->product_code == 'eye_glasses_case'){
+					if($value['qty'] < 100){
+					Session::flash('message', 'Case min 100 qty'); 
+					Session::flash('alert-class', 'alert-danger'); 
+					return Redirect::to('shopping_cart')
+					->withErrors(['fail' => 'Case min 100 qty']);
+					}
+				}
 			}
+
 			if($total_qty < 100){
 				Session::flash('message', 'Min 100 total qty for each order'); 
 				Session::flash('alert-class', 'alert-danger'); 
